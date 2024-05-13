@@ -36,13 +36,19 @@ public class Jogo {
      * Cria todos os ambientes e liga as saidas deles
      */
     private void criarAmbientes() {
-        Ambiente igreja, pousada, beco, praca, floresta, cabana;
+        Ambiente igreja, pousada, beco, praca;
 
         praca = new Ambiente("na praca central da cidade");
-        pousada = new Ambiente("A pousada cama e bela da cidade");
+        pousada = new Ambiente("Na pousada principal bela da cidade Moonlight");
+        igreja =  new Ambiente(" Na igreja central da cidade");
+        beco = new Ambiente("em um beco vazio");
         
         praca.ajustarSaida(Direcao.LESTE, pousada);
         pousada.ajustarSaida(Direcao.OESTE, praca);
+        igreja.ajustarSaida(Direcao.SUL, praca);
+        beco.ajustarSaida(Direcao.NORTE, praca);
+        praca.ajustarSaida(Direcao.SUL, praca);
+        praca.ajustarSaida(Direcao.NORTE, igreja);
         // cria os ambientes
         ambienteAtual = praca; // o jogo comeca em frente à reitoria
     }
