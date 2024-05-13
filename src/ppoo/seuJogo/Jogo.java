@@ -36,34 +36,15 @@ public class Jogo {
      * Cria todos os ambientes e liga as saidas deles
      */
     private void criarAmbientes() {
-        Ambiente reitoria, pavilhao, cantina, departamento, laboratorio, porao;
+        Ambiente igreja, pousada, beco, praca, floresta, cabana;
 
+        praca = new Ambiente("na praca central da cidade");
+        pousada = new Ambiente("A pousada cama e bela da cidade");
+        
+        praca.ajustarSaida(Direcao.LESTE, pousada);
+        pousada.ajustarSaida(Direcao.OESTE, praca);
         // cria os ambientes
-        reitoria = new Ambiente("em um espaço aberto, gramado, em frente à reitoria");
-        pavilhao = new Ambiente("no pavilhão de aulas");
-        cantina = new Ambiente("na cantina da universidade");
-        departamento = new Ambiente("no departamento de computação");
-        laboratorio = new Ambiente("na laboratório de aulas de programação");
-        porao = new Ambiente("no porão do laboratório de programação");
-
-        // inicializa as saidas dos ambientes
-        reitoria.ajustarSaida(Direcao.LESTE, pavilhao);
-        reitoria.ajustarSaida(Direcao.SUL, departamento);
-        reitoria.ajustarSaida(Direcao.OESTE, cantina);
-
-        pavilhao.ajustarSaida(Direcao.OESTE, reitoria);
-
-        cantina.ajustarSaida(Direcao.LESTE, reitoria);
-
-        departamento.ajustarSaida(Direcao.NORTE, reitoria);
-        departamento.ajustarSaida(Direcao.LESTE, laboratorio);
-
-        laboratorio.ajustarSaida(Direcao.OESTE, departamento);
-        laboratorio.ajustarSaida(Direcao.BAIXO, porao);
-
-        porao.ajustarSaida(Direcao.CIMA, laboratorio);
-
-        ambienteAtual = reitoria; // o jogo comeca em frente à reitoria
+        ambienteAtual = praca; // o jogo comeca em frente à reitoria
     }
 
     /**

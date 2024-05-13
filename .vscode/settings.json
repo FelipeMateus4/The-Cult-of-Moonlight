@@ -2,6 +2,10 @@
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "jar_files/flatlaf-3.4.1.jar"
+    ],
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
     ]
 }
