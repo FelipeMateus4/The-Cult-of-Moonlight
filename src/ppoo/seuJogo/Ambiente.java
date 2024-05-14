@@ -1,6 +1,5 @@
 package ppoo.seuJogo;
 
-import java.util.HashMap;
 import java.util.*;
 
 /**
@@ -114,4 +113,16 @@ public class Ambiente {
     public List<Item> getitens() {
         return Collections.unmodifiableList(itemAmbiente);
     }
+
+    public Item coletarItemAmbiente(String nome){
+        Item aux = null;
+        for(int i = 0; i < itemAmbiente.size(); i++) {
+            if(itemAmbiente.get(i).getNome().equals(nome)) {
+                aux = itemAmbiente.get(i);
+                itemAmbiente.remove(i);
+            }
+        }
+        return aux;
+    }
+
 }
