@@ -1,6 +1,7 @@
 package ppoo.seuJogo;
 
 import java.util.HashMap;
+import java.util.*;
 
 /**
  * Classe Ambiente - um ambiente em um jogo adventure.
@@ -22,6 +23,8 @@ public class Ambiente {
     // ambientes vizinhos de acordo com a direção
     private HashMap<Direcao, Ambiente> saidas;
 
+    private ArrayList<Item> itemAmbiente;
+
     /**
      * Cria um ambiente com a "descricao" passada. Inicialmente, ele não tem saidas.
      * "descricao" eh algo como "uma cozinha" ou "um jardim aberto".
@@ -31,6 +34,11 @@ public class Ambiente {
     public Ambiente(String descricao) {
         this.descricao = descricao;
         saidas = new HashMap<>();
+    }
+
+    public Ambiente(String descricao, ArrayList<Item> itemAmbiente) {
+        this(descricao);
+        this.itemAmbiente = itemAmbiente;
     }
 
     /**
@@ -82,8 +90,28 @@ public class Ambiente {
      */
     public String getDescricaoLonga() {
         String desc = "Você está " + getDescricao() + "\n";
+        desc += "voce avistou";
+        if(temItem()) {
+            for(int i = 0; i < itemAmbiente.size(); i++){
+                if(i > 0 && i == itemAmbiente.size() - 1) {
+                    desc += " e";
+                }
+                else if(i > 0 && i < itemAmbiente.size()) {
+                    desc += ",";
+                }
+                desc += itemAmbiente.get(i).getDescricao() + " cujo nome é " + itemAmbiente.get(i).getNome();
+            }
+            desc += "." + "\n";
+        }
         desc += "Saídas: " + direcoesDeSaida();
         return desc;
     }
 
+    public boolean temItem() {
+        return itemAmbiente != null;        
+    }
+
+    public List<Item> getitens() {
+        return Collections.unmodifiableList(itemAmbiente);
+    }
 }

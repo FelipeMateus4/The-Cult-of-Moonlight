@@ -1,5 +1,7 @@
 package ppoo.seuJogo;
 
+import java.util.ArrayList;
+
 /**
  * Essa é a classe principal da aplicacao "World of Zull". "World of Zuul" é um
  * jogo de aventura muito simples, baseado em texto.
@@ -37,8 +39,13 @@ public class Jogo {
      */
     private void criarAmbientes() {
         Ambiente igreja, pousada, beco, praca;
+        ArrayList<Item> itenspraca = new ArrayList<>();
 
-        praca = new Ambiente("na praça central da cidade Moonlight.");
+        itenspraca.add(new Espada("Terrablade", " uma espada lendaria da terra", 900, 200));
+        itenspraca.add(new Espada("Aguablade", " uma espada lendaria da agua", 900, 200));
+        itenspraca.add(new Espada("Sunblade", " uma espada lendaria da sol", 900, 200));
+        
+        praca = new Ambiente("na praça central da cidade Moonlight.", itenspraca);
         pousada = new Ambiente("na pousada da bela cidade Moonlight.");
         igreja = new Ambiente("na velha igreja da cidade Moonlight.");
         beco = new Ambiente("em um beco escuro.");
