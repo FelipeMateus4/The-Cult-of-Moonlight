@@ -1,6 +1,6 @@
 package ppoo.seuJogo;
 
-public class Espada extends Item {
+public class Espada extends Arma {
     private double danoCorte;
     
     public Espada(String nome, String descricao, int durabilidade, double danoCorte) {

@@ -1,6 +1,6 @@
 package ppoo.seuJogo;
 
-public class Cajado extends Item {
+public class Cajado extends Arma {
     private double danoMagico;
 
     public Cajado(String nome, String descricao, int durabilidade, double danoMagico) {

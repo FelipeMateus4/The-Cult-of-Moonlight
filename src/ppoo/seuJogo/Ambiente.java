@@ -22,7 +22,7 @@ public class Ambiente {
     // ambientes vizinhos de acordo com a direção
     private HashMap<Direcao, Ambiente> saidas;
 
-    private ArrayList<Item> itemAmbiente;
+    private ArrayList<Item> ItemAmbiente;
 
     /**
      * Cria um ambiente com a "descricao" passada. Inicialmente, ele não tem saidas.
@@ -35,9 +35,9 @@ public class Ambiente {
         saidas = new HashMap<>();
     }
 
-    public Ambiente(String descricao, ArrayList<Item> itemAmbiente) {
+    public Ambiente(String descricao, ArrayList<Item> ItemAmbiente) {
         this(descricao);
-        this.itemAmbiente = itemAmbiente;
+        this.ItemAmbiente = ItemAmbiente;
     }
 
     /**
@@ -91,14 +91,14 @@ public class Ambiente {
         String desc = "Você está " + getDescricao() + "\n";
         desc += "voce avistou";
         if(temItem()) {
-            for(int i = 0; i < itemAmbiente.size(); i++){
-                if(i > 0 && i == itemAmbiente.size() - 1) {
+            for(int i = 0; i < ItemAmbiente.size(); i++){
+                if(i > 0 && i == ItemAmbiente.size() - 1) {
                     desc += " e";
                 }
-                else if(i > 0 && i < itemAmbiente.size()) {
+                else if(i > 0 && i < ItemAmbiente.size()) {
                     desc += ",";
                 }
-                desc += itemAmbiente.get(i).getDescricao() + " cujo nome é " + itemAmbiente.get(i).getNome();
+                desc += ItemAmbiente.get(i).getDescricao() + " cujo nome é " + ItemAmbiente.get(i).getNome();
             }
             desc += "." + "\n";
         }
@@ -107,19 +107,19 @@ public class Ambiente {
     }
 
     public boolean temItem() {
-        return itemAmbiente != null;        
+        return ItemAmbiente != null;        
     }
 
     public List<Item> getitens() {
-        return Collections.unmodifiableList(itemAmbiente);
+        return Collections.unmodifiableList(ItemAmbiente);
     }
 
     public Item coletarItemAmbiente(String nome){
         Item aux = null;
-        for(int i = 0; i < itemAmbiente.size(); i++) {
-            if(itemAmbiente.get(i).getNome().equals(nome)) {
-                aux = itemAmbiente.get(i);
-                itemAmbiente.remove(i);
+        for(int i = 0; i < ItemAmbiente.size(); i++) {
+            if(ItemAmbiente.get(i).getNome().equals(nome)) {
+                aux = ItemAmbiente.get(i);
+                ItemAmbiente.remove(i);
             }
         }
         return aux;

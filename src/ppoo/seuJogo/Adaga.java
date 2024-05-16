@@ -1,6 +1,6 @@
 package ppoo.seuJogo;
 
-public class Adaga extends Item {
+public class Adaga extends Arma {
     private Double danoPerfurante;
 
     public Adaga(String nome, String descricao, Integer durabilidade, Double danoPerfurante) {
