@@ -24,20 +24,21 @@ public class Jogo {
     // analisador de comandos do jogo
     private Analisador analisador;
     // ambiente onde se encontra o jogador
-    private Ambiente ambienteAtual;
+    private Jogador jogador;
 
     /**
      * Cria o jogo e incializa seu mapa interno.
      */
     public Jogo() {
-        criarAmbientes();
+        Ambiente inicial = criarAmbientes();
         analisador = new Analisador();
+        jogador = new Jogador("Jogador", "Guerreiro", 100.0, inicial);
     }
 
     /**
      * Cria todos os ambientes e liga as saidas deles
      */
-    private void criarAmbientes() {
+    private Ambiente criarAmbientes() {
         Ambiente igreja, pousada, beco, praca;
         ArrayList<Item> itenspraca = new ArrayList<>();
 
@@ -57,7 +58,7 @@ public class Jogo {
         igreja.ajustarSaida(Direcao.SUL, praca);
         beco.ajustarSaida(Direcao.NORTE, praca);
         // cria os ambientes
-        ambienteAtual = praca; // o jogo comeca em frente à reitoria
+        return praca;
     }
 
     /**
@@ -115,6 +116,9 @@ public class Jogo {
         else if (palavraDeComando == PalavraDeComando.OBSERVAR) {
             observar(comando);
         }
+        else if (palavraDeComando == PalavraDeComando.PEGAR) {
+            pegar(comando);
+        }
         else if (palavraDeComando == PalavraDeComando.SAIR) {
             querSair = sair(comando);
         }
@@ -151,6 +155,29 @@ public class Jogo {
     }
 
     /**
+     * Trata o comando "pegar", adicionando o item ao inventário do jogador
+     * 
+     * @param comando Objeto comando a ser tratado
+     */
+    private void pegar(Comando comando) {
+
+        if(!comando.temSegundaPalavra()) {
+            System.out.println("Pegar o que?");
+            return;
+        } 
+
+        String nomeItem = comando.getSegundaPalavra();
+        Item item = jogador.getLocalizacaoAtual().coletarItemAmbiente(nomeItem);
+
+        if ( item == null) {
+            System.out.println("Não existe esse item aqui.");
+        }
+        else {
+            System.out.println("Item coletado.");
+        }
+    }
+
+    /**
      * Tenta ir em uma direcao. Se existe uma saída para lá entra no novo ambiente,
      * caso contrário imprime mensagem de erro.
      */
@@ -164,13 +191,13 @@ public class Jogo {
         Direcao direcao = Direcao.pelaString(comando.getSegundaPalavra());
 
         // Tenta sair do ambiente atual
-        Ambiente proximoAmbiente = ambienteAtual.getSaida(direcao);
+        Ambiente proximoAmbiente = jogador.getLocalizacaoAtual().getSaida(direcao);
 
         if (proximoAmbiente == null) {
             System.out.println("Não há passagem!");
         }
         else {
-            ambienteAtual = proximoAmbiente;
+            jogador.setLocalizacaoAtual(proximoAmbiente);
 
             imprimirLocalizacaoAtual();
         }
@@ -180,7 +207,7 @@ public class Jogo {
      * Exibe as informações da localização atual para o jogador
      */
     private void imprimirLocalizacaoAtual() {
-        System.out.println(ambienteAtual.getDescricaoLonga());
+        System.out.println(jogador.getLocalizacaoAtual().getDescricaoLonga());
         System.out.println();
     }
 

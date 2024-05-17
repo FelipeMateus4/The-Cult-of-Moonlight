@@ -125,4 +125,8 @@ public class Ambiente {
         return aux;
     }
 
+    public void removerItem(Item item) {
+        ItemAmbiente.remove(item);
+    }
+
 }
