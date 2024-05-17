@@ -126,7 +126,9 @@ public class Jogo {
         else if (palavraDeComando == PalavraDeComando.SAIR) {
             querSair = sair(comando);
         }
-
+        else if (palavraDeComando == PalavraDeComando.LARGAR) {
+            largar(comando);
+        }
         return querSair;
     }
 
@@ -178,6 +180,12 @@ public class Jogo {
         }
     }
 
+    private void largar(Comando comando) {
+        if(!comando.temSegundaPalavra()) {
+            System.out.println("Largar o que?");
+            return;
+        } 
+    }
     /**
      * Tenta ir em uma direcao. Se existe uma saída para lá entra no novo ambiente,
      * caso contrário imprime mensagem de erro.

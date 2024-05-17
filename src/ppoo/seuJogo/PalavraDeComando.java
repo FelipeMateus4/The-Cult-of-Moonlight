@@ -14,7 +14,8 @@ public enum PalavraDeComando {
     AJUDA("ajuda"),
     DESCONHECIDA("?"),
     OBSERVAR("observar"),
-    PEGAR("pegar");
+    PEGAR("pegar"),
+    LARGAR("Largar");
 
     // Palavra de comando
     private String palavraDeComando;
