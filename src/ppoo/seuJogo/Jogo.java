@@ -2,9 +2,6 @@ package ppoo.seuJogo;
 
 import java.util.ArrayList;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import javax.swing.plaf.synth.SynthToggleButtonUI;
-
 /**
  * Essa é a classe principal da aplicacao "World of Zull". "World of Zuul" é um
  * jogo de aventura muito simples, baseado em texto.
