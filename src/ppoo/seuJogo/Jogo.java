@@ -87,8 +87,8 @@ public class Jogo {
      */
     private void imprimirBoasVindas() {
         System.out.println();
-        System.out.println("Bem-vindo ao World of Zuul!");
-        System.out.println("World of Zuul é um novo jogo de aventura, incrivelmente chato.");
+        System.out.println("Bem-vindo a vila de Moonlight");
+        System.out.println("Voce foi contratado para descobrir o que ou quem esta causando a onda de assassinatos na cidade ");
         System.out.println("Digite 'ajuda' se você precisar de ajuda.");
         System.out.println();
 
@@ -135,9 +135,6 @@ public class Jogo {
      * lista de palavras de comando
      */
     private void imprimirAjuda() {
-        System.out.println("Você está perdido. Você está sozinho. Você caminha");
-        System.out.println("pela universidade.");
-        System.out.println();
         System.out.println("Suas palavras de comando são:");
         System.out.println("   " + analisador.getComandosValidos());
     }
