@@ -185,6 +185,8 @@ public class Jogo {
             System.out.println("Largar o que?");
             return;
         } 
+        String nomeItem = comando.getSegundaPalavra();
+        
     }
     /**
      * Tenta ir em uma direcao. Se existe uma saída para lá entra no novo ambiente,
