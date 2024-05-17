@@ -16,6 +16,7 @@ public enum PalavraDeComando {
     OBSERVAR("observar"),
     PEGAR("pegar"),
     LARGAR("largar"),
+    USAR("usar"),
     INVENTARIO("inventario");
 
     // Palavra de comando

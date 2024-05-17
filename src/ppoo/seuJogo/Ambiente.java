@@ -20,7 +20,7 @@ public class Ambiente {
     // descrição do ambiente
     private String descricao;
     // ambientes vizinhos de acordo com a direção
-    private HashMap<Direcao, Ambiente> saidas;
+    private HashMap<Direcao, Saida> saidas;
 
     private ArrayList<Item> ItemAmbiente;
 
@@ -41,6 +41,15 @@ public class Ambiente {
         this.ItemAmbiente = ItemAmbiente;
     }
 
+    public Saida getSaidaBloqueada(String nomeItem) {
+        for (Saida saida : saidas.values()) {
+            if (saida.estaTrancado() && saida.getChave().equals(nomeItem)) {
+                return saida;
+            }
+        }
+        return null;
+    }
+
     /**
      * Define uma saída do ambiente.
      * 
@@ -48,7 +57,11 @@ public class Ambiente {
      * @param saida   O ambiente para o qual a direção leva.
      */
     public void ajustarSaida(Direcao direcao, Ambiente saida) {
-        saidas.put(direcao, saida);
+        saidas.put(direcao, new Saida(saida));
+    }
+
+    public void ajustarSaidaBloqueada(Direcao direcao, Ambiente saida, String chave) {
+        saidas.put(direcao, new Saida(saida, true, chave));
     }
 
     /**
@@ -65,7 +78,12 @@ public class Ambiente {
      * @return Ambiente de saída naquela direção
      */
     public Ambiente getSaida(Direcao direcao) {
-        return saidas.get(direcao);
+        Saida saida = saidas.get(direcao);
+        if (saida != null && !saida.estaTrancado()) {
+            return saida.getDestino();
+        } else {
+            return null;
+        }
     }
 
     /**

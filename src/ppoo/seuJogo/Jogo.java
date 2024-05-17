@@ -48,15 +48,16 @@ public class Jogo {
         itenspraca.add(new Espada("Terrablade", " uma espada lendaria da terra", 900, 200));
         itenspraca.add(new Espada("Aguablade", " uma espada lendaria da agua", 900, 200));
         itenspraca.add(new Espada("Sunblade", " uma espada lendaria do sol", 900, 200));
+        itensbeco.add(new Consumivel("Chave_Dourada", " uma chave de ouro com runas antigas gravadas", 1));
 
         
         praca = new Ambiente("na praça central da cidade Moonlight.", itenspraca);
         pousada = new Ambiente("na pousada da bela cidade Moonlight.");
         igreja = new Ambiente("na velha igreja da cidade Moonlight.");
-        beco = new Ambiente("em um beco escuro.");
+        beco = new Ambiente("em um beco escuro.", itensbeco);
         
         praca.ajustarSaida(Direcao.LESTE, pousada);
-        praca.ajustarSaida(Direcao.NORTE, igreja);
+        praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada");
         praca.ajustarSaida(Direcao.SUL, beco);
         pousada.ajustarSaida(Direcao.OESTE, praca);
         igreja.ajustarSaida(Direcao.SUL, praca);
@@ -126,11 +127,14 @@ public class Jogo {
         else if (palavraDeComando == PalavraDeComando.INVENTARIO) {
             System.out.println(jogador.getItensCarregados());
         }
-        else if (palavraDeComando == PalavraDeComando.SAIR) {
-            querSair = sair(comando);
+        else if (palavraDeComando == PalavraDeComando.USAR) {
+            usar(comando);
         }
         else if (palavraDeComando == PalavraDeComando.LARGAR) {
             largar(comando);
+        }
+        else if (palavraDeComando == PalavraDeComando.SAIR) {
+            querSair = sair(comando);
         }
         return querSair;
     }
@@ -191,7 +195,7 @@ public class Jogo {
         } 
         String nomeItem = comando.getSegundaPalavra();
 
-        Item itemProcurado = jogador.getitemespecifico(nomeItem);
+        Item itemProcurado = jogador.getItemEspecifico(nomeItem);
 
         if (itemProcurado != null) {
             jogador.getLocalizacaoAtual().largarItem(itemProcurado);
@@ -224,6 +228,28 @@ public class Jogo {
             jogador.setLocalizacaoAtual(proximoAmbiente);
 
             imprimirLocalizacaoAtual();
+        }
+    }
+
+    private void usar(Comando comando) {
+        if (!comando.temSegundaPalavra()) {
+            System.out.println("Usar o que?");
+            return;
+        }
+
+        String nomeItem = comando.getSegundaPalavra();
+
+        if (jogador.temItem(nomeItem)) {
+            Saida saidaBloqueada = jogador.getLocalizacaoAtual().getSaidaBloqueada(nomeItem);
+            if (jogador.getLocalizacaoAtual().getSaidaBloqueada(nomeItem) != null) {
+                saidaBloqueada.desbloquear();
+                jogador.removerItem(nomeItem);
+                System.out.println("A saída foi destravada.");
+            } else {
+                System.out.println("Esse item não pode ser usado aqui.");
+            }
+        } else {
+            System.out.println("Você não possui esse item.");
         }
     }
 

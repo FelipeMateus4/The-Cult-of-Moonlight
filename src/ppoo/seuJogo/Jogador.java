@@ -65,7 +65,7 @@ public class Jogador {
         return itens;
     }
 
-    public Item getitemespecifico(String nome) {
+    public Item getItemEspecifico(String nome) {
         Item aux = null;
         aux = mochila.get(nome);
         if (aux != null) {
