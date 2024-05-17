@@ -41,10 +41,14 @@ public class Jogo {
     private Ambiente criarAmbientes() {
         Ambiente igreja, pousada, beco, praca;
         ArrayList<Item> itenspraca = new ArrayList<>();
+        ArrayList<Item> itensigreja = new ArrayList<>();
+        ArrayList<Item> itenspousada = new ArrayList<>();
+        ArrayList<Item> itensbeco = new ArrayList<>();
 
         itenspraca.add(new Espada("Terrablade", " uma espada lendaria da terra", 900, 200));
         itenspraca.add(new Espada("Aguablade", " uma espada lendaria da agua", 900, 200));
-        itenspraca.add(new Espada("Sunblade", " uma espada lendaria da sol", 900, 200));
+        itenspraca.add(new Espada("Sunblade", " uma espada lendaria do sol", 900, 200));
+
         
         praca = new Ambiente("na praça central da cidade Moonlight.", itenspraca);
         pousada = new Ambiente("na pousada da bela cidade Moonlight.");
@@ -151,7 +155,7 @@ public class Jogo {
             return;
         }
 
-        imprimirLocalizacaoAtual();
+        imprimirDescricaoLonga();
     }
 
     /**
@@ -207,6 +211,11 @@ public class Jogo {
      * Exibe as informações da localização atual para o jogador
      */
     private void imprimirLocalizacaoAtual() {
+        System.out.println(jogador.getLocalizacaoAtual().getDescricaoPequena());
+        System.out.println();
+    }
+
+    private void imprimirDescricaoLonga() {
         System.out.println(jogador.getLocalizacaoAtual().getDescricaoLonga());
         System.out.println();
     }

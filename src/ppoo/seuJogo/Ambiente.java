@@ -89,8 +89,8 @@ public class Ambiente {
      */
     public String getDescricaoLonga() {
         String desc = "Você está " + getDescricao() + "\n";
-        desc += "voce avistou";
         if(temItem()) {
+            desc += "Você avistou";
             for(int i = 0; i < ItemAmbiente.size(); i++){
                 if(i > 0 && i == ItemAmbiente.size() - 1) {
                     desc += " e";
@@ -102,6 +102,15 @@ public class Ambiente {
             }
             desc += "." + "\n";
         }
+        else {
+            desc += "Nao há nada de especial aqui.\n";
+        }
+        desc += "Saídas: " + direcoesDeSaida();
+        return desc;
+    }
+
+    public String getDescricaoPequena() {
+        String desc = "Você está " + getDescricao() + "\n";
         desc += "Saídas: " + direcoesDeSaida();
         return desc;
     }
