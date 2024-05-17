@@ -16,9 +16,7 @@ public class Jogador {
         this.localizacaoAtual = localizacaoAtual;
         this.mochila = new HashMap<>();
     }
-    public void addItemMochila(String nome, Item item) {
-        mochila.put(nome, item);
-    }
+
     public String getNomeJogador() {
         return nome;
     }

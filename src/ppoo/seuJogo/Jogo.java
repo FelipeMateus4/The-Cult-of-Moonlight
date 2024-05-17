@@ -179,7 +179,7 @@ public class Jogo {
             System.out.println("Não existe esse item aqui.");
         }
         else {
-                      jogador.addItemMochila(nomeItem, item);
+            jogador.adicionarItem(item);
             System.out.println("Item coletado.");
         }
     }
@@ -191,11 +191,11 @@ public class Jogo {
         } 
         String nomeItem = comando.getSegundaPalavra();
 
-        Item Itemprocurado = jogador.getitemespecifico(nomeItem);
+        Item itemProcurado = jogador.getitemespecifico(nomeItem);
 
-        if (Itemprocurado != null) {
-            jogador.getLocalizacaoAtual().largarItem(Itemprocurado);
-            System.out.println("Voce largou " + nomeItem + " no chao");
+        if (itemProcurado != null) {
+            jogador.getLocalizacaoAtual().largarItem(itemProcurado);
+            System.out.println("Você largou " + nomeItem + " no chão.");
         }
         else {
             System.out.println("Item nao encontrado na mochila");
