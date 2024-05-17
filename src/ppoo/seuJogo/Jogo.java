@@ -48,6 +48,7 @@ public class Jogo {
         itenspraca.add(new Espada("Terrablade", " uma espada lendaria da terra", 900, 200));
         itenspraca.add(new Espada("Aguablade", " uma espada lendaria da agua", 900, 200));
         itenspraca.add(new Espada("Sunblade", " uma espada lendaria do sol", 900, 200));
+        itenspraca.add(new Carta("Carta", " uma carta velha", "Beba águaaaaaa"));
         itensbeco.add(new Consumivel("Chave_Dourada", " uma chave de ouro com runas antigas gravadas", 1));
 
         
@@ -129,6 +130,9 @@ public class Jogo {
         }
         else if (palavraDeComando == PalavraDeComando.USAR) {
             usar(comando);
+        }
+        else if (palavraDeComando == PalavraDeComando.LER) {
+            ler(comando);
         }
         else if (palavraDeComando == PalavraDeComando.LARGAR) {
             largar(comando);
@@ -247,6 +251,26 @@ public class Jogo {
                 System.out.println("A saída foi destravada.");
             } else {
                 System.out.println("Esse item não pode ser usado aqui.");
+            }
+        } else {
+            System.out.println("Você não possui esse item.");
+        }
+    }
+
+    private void ler(Comando comando) {
+        if (!comando.temSegundaPalavra()) {
+            System.out.println("Ler o que?");
+            return;
+        }
+    
+        String nomeItem = comando.getSegundaPalavra();
+    
+        if (jogador.temItem(nomeItem)) {
+            Item item = jogador.getItemEspecifico(nomeItem);
+            if (item instanceof Carta) {
+                System.out.println(((Carta) item).getTexto());
+            } else {
+                System.out.println("Esse item não pode ser lido.");
             }
         } else {
             System.out.println("Você não possui esse item.");
