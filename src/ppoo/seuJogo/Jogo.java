@@ -256,7 +256,7 @@ public class Jogo {
             System.out.println("Você não possui esse item.");
         }
     }
-
+    // da
     private void ler(Comando comando) {
         if (!comando.temSegundaPalavra()) {
             System.out.println("Ler o que?");
