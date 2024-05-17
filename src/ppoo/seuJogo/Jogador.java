@@ -16,7 +16,9 @@ public class Jogador {
         this.localizacaoAtual = localizacaoAtual;
         this.mochila = new HashMap<>();
     }
-
+    public void addItemMochila(String nome, Item item) {
+        mochila.put(nome, item);
+    }
     public String getNomeJogador() {
         return nome;
     }
@@ -63,5 +65,14 @@ public class Jogador {
         itens = itens.substring(0, itens.length() - 2) + ".";
 
         return itens;
+    }
+
+    public Item getitemespecifico(String nome) {
+        Item aux = null;
+        aux = mochila.get(nome);
+        if (aux != null) {
+            mochila.remove(nome);
+        }
+        return aux;
     }
 }

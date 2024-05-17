@@ -2,6 +2,9 @@ package ppoo.seuJogo;
 
 import java.util.ArrayList;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import javax.swing.plaf.synth.SynthToggleButtonUI;
+
 /**
  * Essa é a classe principal da aplicacao "World of Zull". "World of Zuul" é um
  * jogo de aventura muito simples, baseado em texto.
@@ -175,21 +178,31 @@ public class Jogo {
         String nomeItem = comando.getSegundaPalavra();
         Item item = jogador.getLocalizacaoAtual().coletarItemAmbiente(nomeItem);
 
-        if ( item == null) {
+        if (item == null) {
             System.out.println("Não existe esse item aqui.");
         }
         else {
+                      jogador.addItemMochila(nomeItem, item);
             System.out.println("Item coletado.");
         }
     }
 
     private void largar(Comando comando) {
-        if(!comando.temSegundaPalavra()) {
+        if (!comando.temSegundaPalavra()) {
             System.out.println("Largar o que?");
             return;
         } 
         String nomeItem = comando.getSegundaPalavra();
-        
+
+        Item Itemprocurado = jogador.getitemespecifico(nomeItem);
+
+        if (Itemprocurado != null) {
+            jogador.getLocalizacaoAtual().largarItem(Itemprocurado);
+            System.out.println("Voce largou " + nomeItem + " no chao");
+        }
+        else {
+            System.out.println("Item nao encontrado na mochila");
+        }
     }
     /**
      * Tenta ir em uma direcao. Se existe uma saída para lá entra no novo ambiente,

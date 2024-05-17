@@ -33,6 +33,7 @@ public class Ambiente {
     public Ambiente(String descricao) {
         this.descricao = descricao;
         saidas = new HashMap<>();
+        ItemAmbiente = new ArrayList<>();
     }
 
     public Ambiente(String descricao, ArrayList<Item> ItemAmbiente) {
@@ -89,13 +90,13 @@ public class Ambiente {
      */
     public String getDescricaoLonga() {
         String desc = "Você está " + getDescricao() + "\n";
-        if(temItem()) {
+        if (temItem()) {
             desc += "Você avistou";
-            for(int i = 0; i < ItemAmbiente.size(); i++){
-                if(i > 0 && i == ItemAmbiente.size() - 1) {
+            for (int i = 0; i < ItemAmbiente.size(); i++){
+                if (i > 0 && i == ItemAmbiente.size() - 1) {
                     desc += " e";
                 }
-                else if(i > 0 && i < ItemAmbiente.size()) {
+                else if (i > 0 && i < ItemAmbiente.size()) {
                     desc += ",";
                 }
                 desc += ItemAmbiente.get(i).getDescricao() + " cujo nome é " + ItemAmbiente.get(i).getNome();
@@ -125,8 +126,8 @@ public class Ambiente {
 
     public Item coletarItemAmbiente(String nome){
         Item aux = null;
-        for(int i = 0; i < ItemAmbiente.size(); i++) {
-            if(ItemAmbiente.get(i).getNome().equals(nome)) {
+        for (int i = 0; i < ItemAmbiente.size(); i++) {
+            if (ItemAmbiente.get(i).getNome().equals(nome)) {
                 aux = ItemAmbiente.get(i);
                 ItemAmbiente.remove(i);
             }
@@ -138,5 +139,7 @@ public class Ambiente {
         ItemAmbiente.remove(item);
     }
 
-    
+    public void largarItem(Item item) {
+        ItemAmbiente.add(item);
+    }
 }
