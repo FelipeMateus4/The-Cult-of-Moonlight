@@ -68,9 +68,6 @@ public class Jogador {
     public Item getItemEspecifico(String nome) {
         Item aux = null;
         aux = mochila.get(nome);
-        if (aux != null) {
-            mochila.remove(nome);
-        }
         return aux;
     }
 }
