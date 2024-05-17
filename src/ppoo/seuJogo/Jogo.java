@@ -123,6 +123,9 @@ public class Jogo {
         else if (palavraDeComando == PalavraDeComando.PEGAR) {
             pegar(comando);
         }
+        else if (palavraDeComando == PalavraDeComando.INVENTARIO) {
+            System.out.println(jogador.getItensCarregados());
+        }
         else if (palavraDeComando == PalavraDeComando.SAIR) {
             querSair = sair(comando);
         }
