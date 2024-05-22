@@ -49,6 +49,7 @@ public class Jogo {
         itenspraca.add(new Espada("Aguablade", " uma espada lendaria da agua", 900, 200));
         itenspraca.add(new Espada("Sunblade", " uma espada lendaria do sol", 900, 200));
         itenspraca.add(new Carta("Carta", " uma carta velha", "Beba águaaaaaa"));
+        itenspraca.add(new Pocao("Pocao", "uma pocao que recupera vida", 50, 1));
         itensbeco.add(new Consumivel("Chave_Dourada", " uma chave de ouro com runas antigas gravadas", 1));
 
         
@@ -140,6 +141,9 @@ public class Jogo {
         else if (palavraDeComando == PalavraDeComando.SAIR) {
             querSair = sair(comando);
         }
+        else if(palavraDeComando == PalavraDeComando.BEBER) {
+                beber(comando);
+        }
         return querSair;
     }
 
@@ -210,6 +214,28 @@ public class Jogo {
             System.out.println("Item nao encontrado na mochila");
         }
     }
+
+    private void beber(Comando comando) {
+        if (!comando.temSegundaPalavra()) {
+            System.out.println("Beber o que?");
+            return;
+        }
+        String nomeItem = comando.getSegundaPalavra();
+    
+        Item itemProcurado = jogador.getItemEspecifico(nomeItem);
+    
+        if (itemProcurado == null) {
+            System.out.println("O item não foi encontrado.");
+            return;
+        }
+    
+        if (itemProcurado instanceof Bebivel) {
+            Bebivel bebivel = (Bebivel) itemProcurado;
+            bebivel.beberPocao(jogador);
+        } else {
+            System.out.println("O item " + nomeItem + " não pode ser bebido.");
+        }
+    }
     /**
      * Tenta ir em uma direcao. Se existe uma saída para lá entra no novo ambiente,
      * caso contrário imprime mensagem de erro.
@@ -222,7 +248,7 @@ public class Jogo {
         }
 
         Direcao direcao = Direcao.pelaString(comando.getSegundaPalavra());
-
+        
         // Tenta sair do ambiente atual
         Ambiente proximoAmbiente = jogador.getLocalizacaoAtual().getSaida(direcao);
 

@@ -70,4 +70,9 @@ public class Jogador {
         aux = mochila.get(nome);
         return aux;
     }
+
+    public double beber(Pocao pocao) {
+        vida +=  pocao.getVidaDada();
+        return pocao.getVidaDada();
+    }
 }

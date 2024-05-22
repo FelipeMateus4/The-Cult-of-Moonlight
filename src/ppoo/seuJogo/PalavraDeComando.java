@@ -18,7 +18,8 @@ public enum PalavraDeComando {
     LARGAR("largar"),
     USAR("usar"),
     LER("ler"),
-    INVENTARIO("inventario");
+    INVENTARIO("inventario"),
+    BEBER("beber");
 
     // Palavra de comando
     private String palavraDeComando;

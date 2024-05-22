@@ -11,4 +11,9 @@ public class Consumivel extends Item {
     public int getUsos() {
         return usos;
     }
+
+    public int setUsosDiminuir() {
+        usos = usos - 1;
+        return usos;
+    }
 }
