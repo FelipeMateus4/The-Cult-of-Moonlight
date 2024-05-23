@@ -6,13 +6,17 @@ public class Jogador {
     private String nome;
     private String classe;
     private Double vida;
+    private Arma armaAtual;
+    private Armadura armaduraAtual;
     private Ambiente localizacaoAtual;
     private Map<String, Item> mochila;
 
-    public Jogador(String nome, String classe, Double vida, Ambiente localizacaoAtual) {
+    public Jogador(String nome, String classe, Double vida, Arma armaAtual, Armadura armaduraAtual, Ambiente localizacaoAtual) {
         this.nome = nome;
         this.classe = classe;
         this.vida = vida;
+        this.armaAtual = armaAtual;
+        this.armaduraAtual = armaduraAtual;
         this.localizacaoAtual = localizacaoAtual;
         this.mochila = new HashMap<>();
     }
@@ -27,6 +31,14 @@ public class Jogador {
 
     public Double getVidaJogador() {
         return vida;
+    }
+
+    public Arma getArmaAtual() {
+        return armaAtual;
+    }
+
+    public Armadura getArmaduraAtual() {
+        return armaduraAtual;
     }
 
     public Ambiente getLocalizacaoAtual() {

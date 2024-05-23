@@ -1,6 +1,7 @@
 package ppoo.seuJogo;
 
 import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Essa é a classe principal da aplicacao "World of Zull". "World of Zuul" é um
@@ -25,6 +26,7 @@ public class Jogo {
     private Analisador analisador;
     // ambiente onde se encontra o jogador
     private Jogador jogador;
+    private int infinito = Integer.MAX_VALUE;
 
     /**
      * Cria o jogo e incializa seu mapa interno.
@@ -32,7 +34,7 @@ public class Jogo {
     public Jogo() {
         Ambiente inicial = criarAmbientes();
         analisador = new Analisador();
-        jogador = new Jogador("Jogador", "Guerreiro", 100.0, inicial);
+        jogador = new Jogador("Jogador", "Guerreiro", 100.0, new Mao("Mão", "Somente sua mão.", infinito), new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0), inicial);
     }
 
     /**
@@ -52,11 +54,12 @@ public class Jogo {
         itenspraca.add(new Pocao("Pocao", "uma poção que recupera 50 de vida", 50, 1));
         itensbeco.add(new Pocao("Pocao", "uma poção que recupera 50 de vida", 50, 1));
         itensbeco.add(new Consumivel("Chave_Dourada", "uma chave de ouro com runas antigas gravadas", 1));
+        itensigreja.add(new Cajado("Cajado_Sagrado", "um cajado benzido pelo PAPA IX", 90, 30));
 
         
         praca = new Ambiente("na praça central da cidade Moonlight.", itenspraca);
         pousada = new Ambiente("na pousada da bela cidade Moonlight.");
-        igreja = new Ambiente("na velha igreja da cidade Moonlight.");
+        igreja = new Ambiente("na velha igreja da cidade Moonlight.", itensigreja);
         beco = new Ambiente("em um beco escuro.", itensbeco);
         
         praca.ajustarSaida(Direcao.LESTE, pousada);
@@ -139,11 +142,14 @@ public class Jogo {
         else if (palavraDeComando == PalavraDeComando.LARGAR) {
             largar(comando);
         }
+        else if(palavraDeComando == PalavraDeComando.BEBER) {
+            beber(comando);
+        }
+        else if (palavraDeComando == PalavraDeComando.EQUIPADO) {
+            equipado(comando);
+        }
         else if (palavraDeComando == PalavraDeComando.SAIR) {
             querSair = sair(comando);
-        }
-        else if(palavraDeComando == PalavraDeComando.BEBER) {
-                beber(comando);
         }
         return querSair;
     }
@@ -237,6 +243,26 @@ public class Jogo {
             System.out.println("O item " + nomeItem + " não pode ser bebido.");
         }
     }
+
+    private void equipado(Comando comando) {
+        if (comando.temSegundaPalavra()) {
+            System.out.println("Não é possível equipar algo aqui. Para equipar algo, use o comando 'equipar' e o nome do item.");
+            return;
+        }
+        
+        Arma armaAtual = jogador.getArmaAtual();
+        Armadura armaduraAtual = jogador.getArmaduraAtual();
+        
+        Equipavel equipavel = (Equipavel) armaAtual;
+        equipavel.equipado(jogador);
+
+        Equipavel equipavel2 = (Equipavel) armaduraAtual;
+        equipavel2.equipado(jogador);
+
+    }
+
+
+
     /**
      * Tenta ir em uma direcao. Se existe uma saída para lá entra no novo ambiente,
      * caso contrário imprime mensagem de erro.

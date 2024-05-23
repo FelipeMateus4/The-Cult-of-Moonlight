@@ -1,14 +1,15 @@
 package ppoo.seuJogo;
 
 public class Arma extends Item {
-    private double durabilidade;
+    private int durabilidade;
 
-    public Arma(String nome, String descricao, double durabilidade) {
+    public Arma(String nome, String descricao, int durabilidade) {
         super(nome, descricao);
         this.durabilidade = durabilidade;
     }
 
-    public double getDurabilidade() {
+    public int getDurabilidade() {
         return durabilidade;
     }
+
 }
