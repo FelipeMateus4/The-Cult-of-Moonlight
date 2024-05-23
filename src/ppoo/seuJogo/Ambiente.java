@@ -112,10 +112,10 @@ public class Ambiente {
             desc += "Você avistou";
             for (int i = 0; i < ItemAmbiente.size(); i++){
                 if (i > 0 && i == ItemAmbiente.size() - 1) {
-                    desc += " e";
+                    desc += " e ";
                 }
                 else if (i > 0 && i < ItemAmbiente.size()) {
-                    desc += ",";
+                    desc += ", ";
                 }
                 desc += ItemAmbiente.get(i).getDescricao() + " cujo nome é " + ItemAmbiente.get(i).getNome();
             }

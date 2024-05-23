@@ -45,12 +45,12 @@ public class Jogo {
         ArrayList<Item> itenspousada = new ArrayList<>();
         ArrayList<Item> itensbeco = new ArrayList<>();
 
-        itenspraca.add(new Espada("Terrablade", " uma espada lendaria da terra", 900, 200));
-        itenspraca.add(new Espada("Aguablade", " uma espada lendaria da agua", 900, 200));
-        itenspraca.add(new Espada("Sunblade", " uma espada lendaria do sol", 900, 200));
-        itenspraca.add(new Carta("Carta", " uma carta velha", "Beba águaaaaaa"));
+        itenspraca.add(new Espada("Terrablade", "uma espada lendaria da terra", 900, 200));
+        itenspraca.add(new Espada("Aguablade", "uma espada lendaria da agua", 900, 200));
+        itenspraca.add(new Espada("Sunblade", "uma espada lendaria do sol", 900, 200));
+        itenspraca.add(new Carta("Carta", "uma carta velha", "Beba águaaaaaa"));
         itenspraca.add(new Pocao("Pocao", "uma pocao que recupera vida", 50, 1));
-        itensbeco.add(new Consumivel("Chave_Dourada", " uma chave de ouro com runas antigas gravadas", 1));
+        itensbeco.add(new Consumivel("Chave_Dourada", "uma chave de ouro com runas antigas gravadas", 1));
 
         
         praca = new Ambiente("na praça central da cidade Moonlight.", itenspraca);
@@ -291,17 +291,21 @@ public class Jogo {
         }
     
         String nomeItem = comando.getSegundaPalavra();
-    
-        if (jogador.temItem(nomeItem)) {
-            Item item = jogador.getItemEspecifico(nomeItem);
-            if (item instanceof Carta) {
-                System.out.println(((Carta) item).getTexto());
-            } else {
-                System.out.println("Esse item não pode ser lido.");
-            }
-        } else {
-            System.out.println("Você não possui esse item.");
+
+        Item itemProcurado = jogador.getItemEspecifico(nomeItem);
+        
+        if (itemProcurado == null) {
+            System.out.println("O item não foi encontrado.");
+            return;
         }
+    
+        if (itemProcurado instanceof Legivel) {
+            Legivel legivel = (Legivel) itemProcurado;
+            legivel.lerCarta(jogador);
+        } else {
+            System.out.println("O item " + nomeItem + " não pode ser lido.");
+        }
+        
     }
 
     /**

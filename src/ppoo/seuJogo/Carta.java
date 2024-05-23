@@ -1,6 +1,6 @@
 package ppoo.seuJogo;
 
-public class Carta extends Item {
+public class Carta extends Item implements Legivel{
     private String texto;
 
     public Carta(String nome, String descricao, String texto) {
@@ -10,5 +10,10 @@ public class Carta extends Item {
 
     public String getTexto() {
         return texto;
+    }
+
+    @Override
+    public void lerCarta(Jogador jogador) {
+        System.out.println("Voce leu a carta: " + getTexto());
     }
 }
