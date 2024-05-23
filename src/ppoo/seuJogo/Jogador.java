@@ -41,6 +41,14 @@ public class Jogador {
         return armaduraAtual;
     }
 
+    public void setArmaAtual(Arma armaAtual) {
+        this.armaAtual = armaAtual;
+    }
+
+    public void setArmaduraAtual(Armadura armaduraAtual) {
+        this.armaduraAtual = armaduraAtual;
+    }
+
     public Ambiente getLocalizacaoAtual() {
         return localizacaoAtual;
     }

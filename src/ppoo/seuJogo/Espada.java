@@ -4,7 +4,7 @@ public class Espada extends Arma implements Equipavel{
     private double danoCorte;
     
     public Espada(String nome, String descricao, int durabilidade, double danoCorte) {
-        super(nome, descricao, durabilidade);
+        super(nome, descricao, durabilidade, "Guerreiro");
         this.danoCorte = danoCorte;
     }
 
@@ -20,5 +20,15 @@ public class Espada extends Arma implements Equipavel{
         System.out.println("Você está equipado com a espada: " + nome);
         System.out.println("Durabilidade: " + durabilidade);
         System.out.println("Dano de corte: " + danoCorte);
+    }
+
+    @Override
+    public boolean equipar(Jogador jogador) {
+        if (jogador.getClasseJogador() != "Guerreiro") {
+            System.out.println("Você não pode equipar uma espada, pois não é um guerreiro.");
+            return false;
+        }
+        jogador.setArmaAtual(this);
+        return true;
     }
 }

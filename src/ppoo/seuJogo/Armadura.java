@@ -28,4 +28,10 @@ public class Armadura extends Item implements Equipavel{
         System.out.println("Defesa Física: " + defesaFisica);
         System.out.println("Defesa Mágica: " + defesaMagica);
     }
+
+    @Override
+    public boolean equipar(Jogador jogador) {
+        jogador.setArmaduraAtual(this);
+        return true;
+    }
 }

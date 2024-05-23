@@ -34,7 +34,7 @@ public class Jogo {
     public Jogo() {
         Ambiente inicial = criarAmbientes();
         analisador = new Analisador();
-        jogador = new Jogador("Jogador", "Guerreiro", 100.0, new Mao("Mão", "Somente sua mão.", infinito), new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0), inicial);
+        jogador = new Jogador("Jogador", "Ladrao", 100.0, new Mao("Mão", "Somente sua mão.", infinito), new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0), inicial);
     }
 
     /**
@@ -54,11 +54,13 @@ public class Jogo {
         itenspraca.add(new Pocao("Pocao", "uma poção que recupera 50 de vida", 50, 1));
         itensbeco.add(new Pocao("Pocao", "uma poção que recupera 50 de vida", 50, 1));
         itensbeco.add(new Consumivel("Chave_Dourada", "uma chave de ouro com runas antigas gravadas", 1));
+        itensbeco.add(new Adaga("Adaga", "uma adaga afiada", 100, 30.0));
         itensigreja.add(new Cajado("Cajado_Sagrado", "um cajado benzido pelo PAPA IX", 90, 30));
+        itenspousada.add(new Armadura("Armadura_de_Ferro", "uma armadura de ferro", 50, 10));
 
         
         praca = new Ambiente("na praça central da cidade Moonlight.", itenspraca);
-        pousada = new Ambiente("na pousada da bela cidade Moonlight.");
+        pousada = new Ambiente("na pousada da bela cidade Moonlight.", itenspousada);
         igreja = new Ambiente("na velha igreja da cidade Moonlight.", itensigreja);
         beco = new Ambiente("em um beco escuro.", itensbeco);
         
@@ -148,6 +150,9 @@ public class Jogo {
         else if (palavraDeComando == PalavraDeComando.EQUIPADO) {
             equipado(comando);
         }
+        else if (palavraDeComando == PalavraDeComando.EQUIPAR) {
+            equipar(comando);
+        }
         else if (palavraDeComando == PalavraDeComando.SAIR) {
             querSair = sair(comando);
         }
@@ -215,6 +220,10 @@ public class Jogo {
         if (itemProcurado != null) {
             jogador.removerItem(nomeItem);
             jogador.getLocalizacaoAtual().largarItem(itemProcurado);
+            if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) 
+                jogador.setArmaAtual(new Mao("Mão", "mãos com socos fortes.", infinito));
+            else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) 
+                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0));
             System.out.println("Você largou " + nomeItem + " no chão.");
         }
         else {
@@ -261,6 +270,31 @@ public class Jogo {
 
     }
 
+    private void equipar(Comando comando) {
+        if (!comando.temSegundaPalavra()) {
+            System.out.println("Equipar o que?");
+            return;
+        }
+
+        String nomeItem = comando.getSegundaPalavra();
+
+        Item itemProcurado = jogador.getItemEspecifico(nomeItem);
+
+        if (itemProcurado == null) {
+            System.out.println("O item não foi encontrado.");
+            return;
+        }
+
+        if (itemProcurado instanceof Equipavel) {
+            Equipavel equipavel = (Equipavel) itemProcurado;
+            boolean bool = equipavel.equipar(jogador);
+            if (bool) {
+                System.out.println("Item equipado.");
+            }
+        } else {
+            System.out.println("O item " + nomeItem + " não pode ser equipado.");
+        }
+    }
 
 
     /**
