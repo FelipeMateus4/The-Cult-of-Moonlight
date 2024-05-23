@@ -135,7 +135,7 @@ public class Ambiente {
     }
 
     public boolean temItem() {
-        return ItemAmbiente != null;        
+        return !ItemAmbiente.isEmpty();
     }
 
     public List<Item> getitens() {
