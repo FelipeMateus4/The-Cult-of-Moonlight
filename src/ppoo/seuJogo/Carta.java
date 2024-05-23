@@ -14,6 +14,6 @@ public class Carta extends Item implements Legivel{
 
     @Override
     public void lerCarta(Jogador jogador) {
-        System.out.println("Voce leu a carta: " + getTexto());
+        System.out.println("Você leu a carta: " + getTexto());
     }
 }

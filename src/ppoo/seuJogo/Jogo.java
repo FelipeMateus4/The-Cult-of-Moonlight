@@ -49,7 +49,8 @@ public class Jogo {
         itenspraca.add(new Espada("Aguablade", "uma espada lendaria da agua", 900, 200));
         itenspraca.add(new Espada("Sunblade", "uma espada lendaria do sol", 900, 200));
         itenspraca.add(new Carta("Carta", "uma carta velha", "Beba águaaaaaa"));
-        itenspraca.add(new Pocao("Pocao", "uma pocao que recupera vida", 50, 1));
+        itenspraca.add(new Pocao("Pocao", "uma poção que recupera 50 de vida", 50, 1));
+        itensbeco.add(new Pocao("Pocao", "uma poção que recupera 50 de vida", 50, 1));
         itensbeco.add(new Consumivel("Chave_Dourada", "uma chave de ouro com runas antigas gravadas", 1));
 
         

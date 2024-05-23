@@ -109,7 +109,7 @@ public class Ambiente {
     public String getDescricaoLonga() {
         String desc = "Você está " + getDescricao() + "\n";
         if (temItem()) {
-            desc += "Você avistou";
+            desc += "Você avistou ";
             for (int i = 0; i < ItemAmbiente.size(); i++){
                 if (i > 0 && i == ItemAmbiente.size() - 1) {
                     desc += " e ";

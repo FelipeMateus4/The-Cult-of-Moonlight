@@ -72,7 +72,13 @@ public class Jogador {
     }
 
     public double beber(Pocao pocao) {
-        vida +=  pocao.getVidaDada();
-        return pocao.getVidaDada();
+        if (vida + pocao.getVidaDada() > 100) {
+            vida = 100.0;
+        }
+        else {
+            vida += pocao.getVidaDada();
+        }
+        System.out.println(vida);
+        return vida;
     }
 }
