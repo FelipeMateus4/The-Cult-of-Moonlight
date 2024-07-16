@@ -18,16 +18,13 @@ public class Pocao extends Consumivel implements Bebivel {
 
     @Override
     public void beberPocao(Jogador jogador) {
-        if(this.getUsos() >= 1) {
+        if (this.getUsos() >= 1 && jogador.getVidaJogador() < 100) {
             jogador.beber(this);
-            System.out.println("Você bebeu a poção e recuperou " + getVidaDada() + " de vida");
             this.setvidaDada();
             this.setUsosDiminuir();
-
         } 
         else { 
             System.out.println(" não pode ser bebido pois está vazio");
         }
     }
-
 }
