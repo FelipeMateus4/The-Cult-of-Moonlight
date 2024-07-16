@@ -41,7 +41,7 @@ public class Jogo {
      * Cria todos os ambientes e liga as saidas deles
      */
     private Ambiente criarAmbientes() {
-        Ambiente igreja, pousada, beco, praca;
+        Ambiente igreja, pousada, beco, praca, floresta, cemiterio, cabana, esgoto, tunelEsgoto1, tunelEsgoto2, tunelEsgoto3, tunelEsgoto4, tunelEsgoto5, tunelEsgoto6, tunelEsgoto7, tunelEsgoto8, tunelEsgoto9, salaoEspera, taverna, salaBoss, salaTesouro;
         ArrayList<Item> itenspraca = new ArrayList<>();
         ArrayList<Item> itensigreja = new ArrayList<>();
         ArrayList<Item> itenspousada = new ArrayList<>();
@@ -63,6 +63,23 @@ public class Jogo {
         pousada = new Ambiente("na pousada da bela cidade Moonlight.", itenspousada);
         igreja = new Ambiente("na velha igreja da cidade Moonlight.", itensigreja);
         beco = new Ambiente("em um beco escuro.", itensbeco);
+        floresta = new Ambiente("na floresta");
+        cemiterio = new Ambiente("no cemitério");
+        cabana = new Ambiente("na cabana");
+        esgoto = new Ambiente("no esgoto");
+        tunelEsgoto1 = new Ambiente("no tunel do esgoto");
+        tunelEsgoto2 = new Ambiente("no tunel do esgoto");
+        tunelEsgoto3 = new Ambiente("no tunel do esgoto");
+        tunelEsgoto4 = new Ambiente("no tunel do esgoto");
+        tunelEsgoto5 = new Ambiente("no tunel do esgoto");
+        tunelEsgoto6 = new Ambiente("no tunel do esgoto");
+        tunelEsgoto7 = new Ambiente("no tunel do esgoto");
+        tunelEsgoto8 = new Ambiente("no tunel do esgoto");
+        tunelEsgoto9 = new Ambiente("no tunel do esgoto");
+        salaoEspera = new Ambiente("no salão de espera");
+        taverna = new Ambiente("na taverna");
+        salaBoss = new Ambiente("na sala do boss");
+        salaTesouro = new Ambiente("na sala do tesouro");
         
         praca.ajustarSaida(Direcao.LESTE, pousada);
         praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada", "Os capitalistas do oeste bloquearam a saida");
@@ -70,6 +87,15 @@ public class Jogo {
         pousada.ajustarSaida(Direcao.OESTE, praca);
         igreja.ajustarSaida(Direcao.SUL, praca);
         beco.ajustarSaida(Direcao.NORTE, praca);
+        floresta.ajustarSaida(Direcao.LESTE, praca);
+        cemiterio.ajustarSaida(Direcao.SUL, floresta);
+        cabana.ajustarSaida(Direcao.LESTE, floresta);
+        esgoto.ajustarSaida(Direcao.CIMA, beco);
+        salaoEspera.ajustarSaida(Direcao.SUL, esgoto);
+        taverna.ajustarSaida(Direcao.SUDOESTE, praca);
+        salaBoss.ajustarSaida(Direcao.SUL, salaoEspera);
+        salaTesouro.ajustarSaida(Direcao.LESTE, tunelEsgoto4);
+
         // cria os ambientes
         return praca;
     }
