@@ -313,6 +313,9 @@ public class Jogo {
         // Tenta sair do ambiente atual
         Ambiente proximoAmbiente = jogador.getLocalizacaoAtual().getSaida(direcao);
 
+        if (proximoAmbiente == jogador.getLocalizacaoAtual()) {
+            System.out.println("passagem interrompida");
+        }
         if (proximoAmbiente == null) {
             System.out.println("Não há passagem!");
         }

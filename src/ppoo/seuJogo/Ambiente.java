@@ -81,6 +81,8 @@ public class Ambiente {
         Saida saida = saidas.get(direcao);
         if (saida != null && !saida.estaTrancado()) {
             return saida.getDestino();
+        } else if (saida != null && saida.estaTrancado()){
+            return this;
         } else {
             return null;
         }
