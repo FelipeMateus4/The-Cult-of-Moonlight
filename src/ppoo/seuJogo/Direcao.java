@@ -7,6 +7,10 @@ public enum Direcao {
     OESTE("oeste"),
     BAIXO("baixo"),
     CIMA("cima"),
+    SUDOESTE("sudoeste"),
+    SUDESTE("sudeste"),
+    NOROESTE("noroeste"),
+    NORDESTE("nordeste"),
     DESCONHECIDA("?"); // usada quando a direção é inválida
 
     // Atributo string com a representação do enumerador como String.
