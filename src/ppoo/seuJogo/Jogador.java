@@ -10,6 +10,7 @@ public class Jogador {
     private Armadura armaduraAtual;
     private Ambiente localizacaoAtual;
     private Map<String, Item> mochila;
+    private static final int LIMITE_MOCHILA = 8;
 
     public Jogador(String nome, String classe, Double vida, Arma armaAtual, Armadura armaduraAtual, Ambiente localizacaoAtual) {
         this.nome = nome;
@@ -61,8 +62,12 @@ public class Jogador {
         this.localizacaoAtual = localizacaoAtual;
     }
 
-    public void adicionarItem(Item item) {
+    public boolean adicionarItem(Item item) {
+        if (mochila.size() >= LIMITE_MOCHILA) {
+            return false;
+        }
         mochila.put(item.getNome(), item);
+        return true;
     }
 
     public Item removerItem(String nomeItem) {

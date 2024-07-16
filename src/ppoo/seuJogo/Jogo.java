@@ -203,8 +203,12 @@ public class Jogo {
             System.out.println("Não existe esse item aqui.");
         }
         else {
-            jogador.adicionarItem(item);
-            System.out.println("Item coletado.");
+            Boolean verificar = jogador.adicionarItem(item);
+            if (verificar) {
+                System.out.println("Item coletado.");
+            } else {
+                System.out.println("Mochila cheia. Remova um item com o comando largar para adicionar outro.");
+            }
         }
     }
 
