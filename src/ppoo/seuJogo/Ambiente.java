@@ -60,8 +60,8 @@ public class Ambiente {
         saidas.put(direcao, new Saida(saida));
     }
 
-    public void ajustarSaidaBloqueada(Direcao direcao, Ambiente saida, String chave) {
-        saidas.put(direcao, new Saida(saida, true, chave));
+    public void ajustarSaidaBloqueada(Direcao direcao, Ambiente saida, String chave, String motivo) {
+        saidas.put(direcao, new Saida(saida, true, chave, motivo));
     }
 
     /**
@@ -161,5 +161,10 @@ public class Ambiente {
 
     public void largarItem(Item item) {
         ItemAmbiente.add(item);
+    }
+    public String getMotivo(Direcao direcao) {
+        Saida saida = saidas.get(direcao);
+        String motivo =  saida.getMotivoBloqueio();
+        return motivo;
     }
 }

@@ -5,15 +5,17 @@ public class Saida {
     private Ambiente destino;
     private boolean trancado;
     private String chave;
+    private String motivoBloqueio;
 
-    public Saida(Ambiente destino, boolean trancado, String chave) {
+    public Saida(Ambiente destino, boolean trancado, String chave, String motivoBloqueio) {
         this.destino = destino;
         this.trancado = trancado;
         this.chave = chave;
+        this.motivoBloqueio = motivoBloqueio;
     }
 
     public Saida(Ambiente destino) {
-        this(destino, false, null);
+        this(destino, false, null, null);
     }
 
     public Ambiente getDestino() {
@@ -30,5 +32,9 @@ public class Saida {
 
     public void desbloquear() {
         trancado = false;
+    }
+
+    public String getMotivoBloqueio() {
+        return motivoBloqueio;
     }
 }

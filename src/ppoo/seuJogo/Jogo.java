@@ -65,7 +65,7 @@ public class Jogo {
         beco = new Ambiente("em um beco escuro.", itensbeco);
         
         praca.ajustarSaida(Direcao.LESTE, pousada);
-        praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada");
+        praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada", "Os capitalistas do oeste bloquearam a saida");
         praca.ajustarSaida(Direcao.SUL, beco);
         pousada.ajustarSaida(Direcao.OESTE, praca);
         igreja.ajustarSaida(Direcao.SUL, praca);
@@ -314,7 +314,7 @@ public class Jogo {
         Ambiente proximoAmbiente = jogador.getLocalizacaoAtual().getSaida(direcao);
 
         if (proximoAmbiente == jogador.getLocalizacaoAtual()) {
-            System.out.println("passagem interrompida");
+            System.out.println(proximoAmbiente.getMotivo(direcao));
         }
         if (proximoAmbiente == null) {
             System.out.println("Não há passagem!");
