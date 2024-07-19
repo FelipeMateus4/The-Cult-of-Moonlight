@@ -252,9 +252,14 @@ public class Jogo {
         if (itemProcurado instanceof Bebivel) {
             Bebivel bebivel = (Bebivel) itemProcurado;
             double vidaAntiga = jogador.getVidaJogador();
-            bebivel.beberPocao(jogador);
+            boolean RecuperouVida = bebivel.beberPocao(jogador);
             double vidaNova = jogador.getVidaJogador();
-            System.out.println("Voce recuperou " + (vidaNova - vidaAntiga) + " de vida.");
+            if (RecuperouVida){
+                System.out.println("Voce recuperou " + (vidaNova - vidaAntiga) + " de vida.");
+            }
+            else {
+                System.out.println(itemProcurado + " não pode ser bebido pois está vazio");
+            }
         } else {
             System.out.println("O item " + nomeItem + " não pode ser bebido.");
         }
