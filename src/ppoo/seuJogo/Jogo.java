@@ -41,7 +41,10 @@ public class Jogo {
      * Cria todos os ambientes e liga as saidas deles
      */
     private Ambiente criarAmbientes() {
-        Ambiente igreja, pousada, beco, praca, floresta, cemiterio, cabana, esgoto, tunelEsgoto1, tunelEsgoto2, tunelEsgoto3, tunelEsgoto4, tunelEsgoto5, tunelEsgoto6, tunelEsgoto7, tunelEsgoto8, tunelEsgoto9, salaoEspera, taverna, salaBoss, salaTesouro;
+        Ambiente igreja, pousada, beco, praca, floresta, cemiterio, cabana, 
+        esgoto, tunelEsgoto1, tunelEsgoto2, tunelEsgoto3, tunelEsgoto4, tunelEsgoto5, tunelEsgoto6, tunelEsgoto7, tunelEsgoto8, tunelEsgoto9, 
+        salaoEspera, taverna, salaBoss, salaTesouro;
+        
         ArrayList<Item> itenspraca = new ArrayList<>();
         ArrayList<Item> itensigreja = new ArrayList<>();
         ArrayList<Item> itenspousada = new ArrayList<>();
@@ -67,15 +70,15 @@ public class Jogo {
         cemiterio = new Ambiente("no cemitério");
         cabana = new Ambiente("na cabana");
         esgoto = new Ambiente("no esgoto");
-        tunelEsgoto1 = new Ambiente("no tunel do esgoto");
-        tunelEsgoto2 = new Ambiente("no tunel do esgoto");
-        tunelEsgoto3 = new Ambiente("no tunel do esgoto");
-        tunelEsgoto4 = new Ambiente("no tunel do esgoto");
-        tunelEsgoto5 = new Ambiente("no tunel do esgoto");
-        tunelEsgoto6 = new Ambiente("no tunel do esgoto");
-        tunelEsgoto7 = new Ambiente("no tunel do esgoto");
-        tunelEsgoto8 = new Ambiente("no tunel do esgoto");
-        tunelEsgoto9 = new Ambiente("no tunel do esgoto");
+        tunelEsgoto1 = new Ambiente("em um túnel do esgoto");
+        tunelEsgoto2 = new Ambiente("em um túnel do esgoto");
+        tunelEsgoto3 = new Ambiente("em um túnel do esgoto");
+        tunelEsgoto4 = new Ambiente("em um túnel do esgoto");
+        tunelEsgoto5 = new Ambiente("em um túnel do esgoto");
+        tunelEsgoto6 = new Ambiente("em um túnel do esgoto");
+        tunelEsgoto7 = new Ambiente("em um túnel do esgoto");
+        tunelEsgoto8 = new Ambiente("em um túnel do esgoto");
+        tunelEsgoto9 = new Ambiente("em um túnel do esgoto");
         salaoEspera = new Ambiente("no salão de espera");
         taverna = new Ambiente("na taverna");
         salaBoss = new Ambiente("na sala do boss");
@@ -84,17 +87,89 @@ public class Jogo {
         praca.ajustarSaida(Direcao.LESTE, pousada);
         praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada", "Os capitalistas do oeste bloquearam a saida");
         praca.ajustarSaida(Direcao.SUL, beco);
-        pousada.ajustarSaida(Direcao.OESTE, praca);
-        igreja.ajustarSaida(Direcao.SUL, praca);
-        beco.ajustarSaida(Direcao.NORTE, praca);
-        floresta.ajustarSaida(Direcao.LESTE, praca);
-        cemiterio.ajustarSaida(Direcao.SUL, floresta);
-        cabana.ajustarSaida(Direcao.LESTE, floresta);
-        esgoto.ajustarSaida(Direcao.CIMA, beco);
-        salaoEspera.ajustarSaida(Direcao.SUL, esgoto);
+        praca.ajustarSaida(Direcao.OESTE, floresta);
+        praca.ajustarSaida(Direcao.NORDESTE, taverna);
+
         taverna.ajustarSaida(Direcao.SUDOESTE, praca);
+        taverna.ajustarSaida(Direcao.SUL, pousada);
+
+        pousada.ajustarSaida(Direcao.OESTE, praca);
+        pousada.ajustarSaida(Direcao.NORTE, taverna);
+
+        igreja.ajustarSaida(Direcao.SUL, praca);
+
+        beco.ajustarSaida(Direcao.NORTE, praca);
+
+        floresta.ajustarSaida(Direcao.LESTE, praca);
+
+        cemiterio.ajustarSaida(Direcao.SUL, floresta);
+
+        cabana.ajustarSaida(Direcao.LESTE, floresta);
+
+        esgoto.ajustarSaida(Direcao.CIMA, beco);
+        esgoto.ajustarSaida(Direcao.NOROESTE, tunelEsgoto1);
+        esgoto.ajustarSaida(Direcao.NORTE, tunelEsgoto2);
+        esgoto.ajustarSaida(Direcao.NORDESTE, tunelEsgoto3);
+
+        tunelEsgoto1.ajustarSaida(Direcao.SUDESTE, esgoto);
+        tunelEsgoto1.ajustarSaida(Direcao.LESTE, tunelEsgoto2);
+        tunelEsgoto1.ajustarSaida(Direcao.NORDESTE, tunelEsgoto5);
+        tunelEsgoto1.ajustarSaida(Direcao.NORTE, tunelEsgoto4);
+
+        tunelEsgoto2.ajustarSaida(Direcao.OESTE, tunelEsgoto1);
+        tunelEsgoto2.ajustarSaida(Direcao.NORTE, tunelEsgoto5);
+        tunelEsgoto2.ajustarSaida(Direcao.NORDESTE, tunelEsgoto6);
+        tunelEsgoto2.ajustarSaida(Direcao.LESTE, tunelEsgoto3);
+        tunelEsgoto2.ajustarSaida(Direcao.SUL, esgoto);
+        tunelEsgoto2.ajustarSaida(Direcao.NOROESTE, tunelEsgoto4);
+
+        tunelEsgoto3.ajustarSaida(Direcao.OESTE, tunelEsgoto2);
+        tunelEsgoto3.ajustarSaida(Direcao.NOROESTE, tunelEsgoto5);
+        tunelEsgoto3.ajustarSaida(Direcao.NORTE, tunelEsgoto6);
+
+        tunelEsgoto4.ajustarSaida(Direcao.SUL, tunelEsgoto1);
+        tunelEsgoto4.ajustarSaida(Direcao.SUDESTE, tunelEsgoto2);
+        tunelEsgoto4.ajustarSaida(Direcao.NORTE, tunelEsgoto7);
+        tunelEsgoto4.ajustarSaida(Direcao.NORDESTE, tunelEsgoto8);
+        tunelEsgoto4.ajustarSaida(Direcao.LESTE, tunelEsgoto5);
+        tunelEsgoto4.ajustarSaida(Direcao.OESTE, salaTesouro);
+
+        tunelEsgoto5.ajustarSaida(Direcao.OESTE, tunelEsgoto4);
+        tunelEsgoto5.ajustarSaida(Direcao.SUL, tunelEsgoto2);
+        tunelEsgoto5.ajustarSaida(Direcao.SUDESTE, tunelEsgoto3);
+        tunelEsgoto5.ajustarSaida(Direcao.NORTE, tunelEsgoto8);
+        tunelEsgoto5.ajustarSaida(Direcao.NORDESTE, tunelEsgoto9);
+        tunelEsgoto5.ajustarSaida(Direcao.LESTE, tunelEsgoto6);
+        tunelEsgoto5.ajustarSaida(Direcao.NOROESTE, tunelEsgoto7);
+        tunelEsgoto5.ajustarSaida(Direcao.SUDOESTE, tunelEsgoto1);
+
+        tunelEsgoto6.ajustarSaida(Direcao.OESTE, tunelEsgoto5);
+        tunelEsgoto6.ajustarSaida(Direcao.SUL, tunelEsgoto3);
+        tunelEsgoto6.ajustarSaida(Direcao.SUDOESTE, tunelEsgoto2);
+        tunelEsgoto6.ajustarSaida(Direcao.NORTE, tunelEsgoto9);
+
+        tunelEsgoto7.ajustarSaida(Direcao.SUL, tunelEsgoto4);
+        tunelEsgoto7.ajustarSaida(Direcao.SUDESTE, tunelEsgoto5);
+        tunelEsgoto7.ajustarSaida(Direcao.LESTE, tunelEsgoto8);
+
+        tunelEsgoto8.ajustarSaida(Direcao.OESTE, tunelEsgoto7);
+        tunelEsgoto8.ajustarSaida(Direcao.SUDOESTE, tunelEsgoto4);
+        tunelEsgoto8.ajustarSaida(Direcao.SUL, tunelEsgoto5);
+        tunelEsgoto8.ajustarSaida(Direcao.SUDESTE, tunelEsgoto6);
+        tunelEsgoto8.ajustarSaida(Direcao.LESTE, tunelEsgoto9);
+
+        tunelEsgoto9.ajustarSaida(Direcao.OESTE, tunelEsgoto8);
+        tunelEsgoto9.ajustarSaida(Direcao.SUDOESTE, tunelEsgoto5);
+        tunelEsgoto9.ajustarSaida(Direcao.SUL, tunelEsgoto6);
+        tunelEsgoto8.ajustarSaida(Direcao.NORDESTE, salaoEspera);
+
+        salaoEspera.ajustarSaida(Direcao.SUL, tunelEsgoto9);
+        salaoEspera.ajustarSaida(Direcao.NORTE, salaBoss);
+
         salaBoss.ajustarSaida(Direcao.SUL, salaoEspera);
+
         salaTesouro.ajustarSaida(Direcao.LESTE, tunelEsgoto4);
+
 
         // cria os ambientes
         return praca;
