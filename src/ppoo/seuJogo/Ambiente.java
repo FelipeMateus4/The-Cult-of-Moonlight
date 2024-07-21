@@ -21,8 +21,9 @@ public class Ambiente {
     private String descricao;
     // ambientes vizinhos de acordo com a direção
     private HashMap<Direcao, Saida> saidas;
-
     private ArrayList<Item> ItemAmbiente;
+    private boolean escuro;
+
 
     /**
      * Cria um ambiente com a "descricao" passada. Inicialmente, ele não tem saidas.
@@ -30,14 +31,15 @@ public class Ambiente {
      * 
      * @param descricao A descrição do ambiente.
      */
-    public Ambiente(String descricao) {
+    public Ambiente(String descricao, boolean escuro) {
         this.descricao = descricao;
         saidas = new HashMap<>();
         ItemAmbiente = new ArrayList<>();
+        this.escuro = escuro;
     }
 
-    public Ambiente(String descricao, ArrayList<Item> ItemAmbiente) {
-        this(descricao);
+    public Ambiente(String descricao, boolean escuro, ArrayList<Item> ItemAmbiente) {
+        this(descricao, escuro);
         this.ItemAmbiente = ItemAmbiente;
     }
 
@@ -110,24 +112,30 @@ public class Ambiente {
      */
     public String getDescricaoLonga() {
         String desc = "Você está " + getDescricao() + "\n";
-        if (temItem()) {
-            desc += "Você avistou ";
-            for (int i = 0; i < ItemAmbiente.size(); i++){
-                if (i > 0 && i == ItemAmbiente.size() - 1) {
-                    desc += " e ";
+        if (!escuro) {
+            if (temItem()) {
+                desc += "Você avistou ";
+                for (int i = 0; i < ItemAmbiente.size(); i++){
+                    if (i > 0 && i == ItemAmbiente.size() - 1) {
+                        desc += " e ";
+                    }
+                    else if (i > 0 && i < ItemAmbiente.size()) {
+                        desc += ", ";
+                    }
+                    desc += ItemAmbiente.get(i).getDescricao() + " cujo nome é " + ItemAmbiente.get(i).getNome();
                 }
-                else if (i > 0 && i < ItemAmbiente.size()) {
-                    desc += ", ";
-                }
-                desc += ItemAmbiente.get(i).getDescricao() + " cujo nome é " + ItemAmbiente.get(i).getNome();
+                desc += "." + "\n";
             }
-            desc += "." + "\n";
+            else {
+                desc += "Nao há nada de especial aqui.\n";
+            }
+            desc += "Saídas: " + direcoesDeSaida();
+            return desc;
         }
         else {
-            desc += "Nao há nada de especial aqui.\n";
+            desc = "O ambiente esta escuro, voce nao consegue ver nada";
+            return desc;
         }
-        desc += "Saídas: " + direcoesDeSaida();
-        return desc;
     }
 
     public String getDescricaoPequena() {
@@ -166,5 +174,16 @@ public class Ambiente {
         Saida saida = saidas.get(direcao);
         String motivo =  saida.getMotivoBloqueio();
         return motivo;
+    }
+
+    public boolean getEscuro() {
+        return escuro;
+    }
+    public void setClarear() {
+        escuro = false;
+    }
+
+    public void setEscurecer() {
+        escuro = true;
     }
 }

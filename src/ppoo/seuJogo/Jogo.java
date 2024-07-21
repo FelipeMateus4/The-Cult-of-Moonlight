@@ -62,27 +62,27 @@ public class Jogo {
         itenspousada.add(new Armadura("Armadura_de_Ferro", "uma armadura de ferro", 50, 10));
 
         
-        praca = new Ambiente("na praça central da cidade Moonlight.", itenspraca);
-        pousada = new Ambiente("na pousada da bela cidade Moonlight.", itenspousada);
-        igreja = new Ambiente("na velha igreja da cidade Moonlight.", itensigreja);
-        beco = new Ambiente("em um beco escuro.", itensbeco);
-        floresta = new Ambiente("na floresta");
-        cemiterio = new Ambiente("no cemitério");
-        cabana = new Ambiente("na cabana");
-        esgoto = new Ambiente("no esgoto");
-        tunelEsgoto1 = new Ambiente("em um túnel do esgoto");
-        tunelEsgoto2 = new Ambiente("em um túnel do esgoto");
-        tunelEsgoto3 = new Ambiente("em um túnel do esgoto");
-        tunelEsgoto4 = new Ambiente("em um túnel do esgoto");
-        tunelEsgoto5 = new Ambiente("em um túnel do esgoto");
-        tunelEsgoto6 = new Ambiente("em um túnel do esgoto");
-        tunelEsgoto7 = new Ambiente("em um túnel do esgoto");
-        tunelEsgoto8 = new Ambiente("em um túnel do esgoto");
-        tunelEsgoto9 = new Ambiente("em um túnel do esgoto");
-        salaoEspera = new Ambiente("no salão de espera");
-        taverna = new Ambiente("na taverna");
-        salaBoss = new Ambiente("na sala do boss");
-        salaTesouro = new Ambiente("na sala do tesouro");
+        praca = new Ambiente("na praça central da cidade Moonlight.", false, itenspraca);
+        pousada = new Ambiente("na pousada da bela cidade Moonlight.", false, itenspousada);
+        igreja = new Ambiente("na velha igreja da cidade Moonlight.", false, itensigreja);
+        beco = new Ambiente("em um beco escuro.",true, itensbeco);
+        floresta = new Ambiente("na floresta",false);
+        cemiterio = new Ambiente("no cemitério", false);
+        cabana = new Ambiente("na cabana", false);
+        esgoto = new Ambiente("no esgoto", false);
+        tunelEsgoto1 = new Ambiente("em um túnel do esgoto", false);
+        tunelEsgoto2 = new Ambiente("em um túnel do esgoto", false);
+        tunelEsgoto3 = new Ambiente("em um túnel do esgoto", false);
+        tunelEsgoto4 = new Ambiente("em um túnel do esgoto", false);
+        tunelEsgoto5 = new Ambiente("em um túnel do esgoto", false);
+        tunelEsgoto6 = new Ambiente("em um túnel do esgoto", false);
+        tunelEsgoto7 = new Ambiente("em um túnel do esgoto", false);
+        tunelEsgoto8 = new Ambiente("em um túnel do esgoto", false);
+        tunelEsgoto9 = new Ambiente("em um túnel do esgoto", false);
+        salaoEspera = new Ambiente("no salão de espera", false);
+        taverna = new Ambiente("na taverna", false);
+        salaBoss = new Ambiente("na sala do boss", false);
+        salaTesouro = new Ambiente("na sala do tesouro", false);
         
         praca.ajustarSaida(Direcao.LESTE, pousada);
         praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada", "Os capitalistas do oeste bloquearam a saida");
@@ -374,6 +374,7 @@ public class Jogo {
         
         Arma armaAtual = jogador.getArmaAtual();
         Armadura armaduraAtual = jogador.getArmaduraAtual();
+        Acessorio acessorioAtual = jogador.getAcessorioAtual();
         
         Equipavel equipavel = (Equipavel) armaAtual;
         equipavel.equipado(jogador);
@@ -381,6 +382,8 @@ public class Jogo {
         Equipavel equipavel2 = (Equipavel) armaduraAtual;
         equipavel2.equipado(jogador);
 
+        Equipavel equipavel3 = (Equipavel) acessorioAtual;
+        equipavel3.equipado(jogador);
     }
 
     private void equipar(Comando comando) {

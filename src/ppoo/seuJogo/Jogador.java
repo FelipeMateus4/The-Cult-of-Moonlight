@@ -11,6 +11,7 @@ public class Jogador {
     private Ambiente localizacaoAtual;
     private Map<String, Item> mochila;
     private static final int LIMITE_MOCHILA = 8;
+    private Acessorio acessorioAtual;
 
     public Jogador(String nome, String classe, Double vida, Arma armaAtual, Armadura armaduraAtual, Ambiente localizacaoAtual) {
         this.nome = nome;
@@ -105,5 +106,13 @@ public class Jogador {
         }
         System.out.println(vida);
         return vida;
+    }
+
+    public Acessorio getAcessorioAtual() {
+        return acessorioAtual;
+    }
+
+    public void setAcessorioAtual(Acessorio acessorioAtual) {
+        this.acessorioAtual =  acessorioAtual;
     }
 }
