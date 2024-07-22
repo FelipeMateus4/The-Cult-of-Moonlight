@@ -34,7 +34,9 @@ public class Jogo {
     public Jogo() {
         Ambiente inicial = criarAmbientes();
         analisador = new Analisador();
-        jogador = new Jogador("Jogador", "Ladrao", 100.0, new Mao("Mão", "Somente sua mão.", infinito), new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0), inicial);
+        jogador = new Jogador("Jogador", "Ladrao", 100.0, new Mao("Mão", "Somente sua mão.", infinito), 
+        new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0), 
+        new Acessorio("pulseira elegante", "uma bela pulseira que voce ganhou de sua tia Gilda", "de te deixar feliz"), inicial);
     }
 
     /**
@@ -49,7 +51,7 @@ public class Jogo {
         ArrayList<Item> itensigreja = new ArrayList<>();
         ArrayList<Item> itenspousada = new ArrayList<>();
         ArrayList<Item> itensbeco = new ArrayList<>();
-
+        itenspraca.add(new Acessorio("lampiao", "ola amigo", "iluminar"));
         itenspraca.add(new Espada("Terrablade", "uma espada lendaria da terra", 900, 200));
         itenspraca.add(new Espada("Aguablade", "uma espada lendaria da agua", 900, 200));
         itenspraca.add(new Espada("Sunblade", "uma espada lendaria do sol", 900, 200));
@@ -303,6 +305,9 @@ public class Jogo {
         if (item == null) {
             System.out.println("Não existe esse item aqui.");
         }
+        else if(jogador.getLocalizacaoAtual().getEscuro() && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
+            System.out.println("voce nao consegue pegar nenhum item, pois esta escuro");
+        }
         else {
             Boolean verificar = jogador.adicionarItem(item);
             if (verificar) {
@@ -329,7 +334,9 @@ public class Jogo {
                 jogador.setArmaAtual(new Mao("Mão", "mãos com socos fortes.", infinito));
             else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) 
                 jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0));
-            System.out.println("Você largou " + nomeItem + " no chão.");
+            else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) 
+                jogador.setAcessorioAtual(new Acessorio("pulseira elegante", "uma bela pulseira que voce ganhou de sua tia Gilda", "de te deixar feliz"));;
+                System.out.println("Você largou " + nomeItem + " no chão.");
         }
         else {
             System.out.println("Item nao encontrado na mochila");
@@ -497,7 +504,7 @@ public class Jogo {
     }
 
     private void imprimirDescricaoLonga() {
-        System.out.println(jogador.getLocalizacaoAtual().getDescricaoLonga());
+        System.out.println(jogador.getLocalizacaoAtual().getDescricaoLonga(jogador));
         System.out.println();
     }
 

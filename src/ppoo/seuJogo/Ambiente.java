@@ -110,9 +110,14 @@ public class Ambiente {
      * 
      * @return Uma descrição longa do ambiente, incluindo saídas.
      */
-    public String getDescricaoLonga() {
+    public String getDescricaoLonga(Jogador jogador) {
         String desc = "Você está " + getDescricao() + "\n";
-        if (!escuro) {
+        Acessorio acessorioAtual = jogador.getAcessorioAtual();
+        if (acessorioAtual == null && escuro) {
+            desc = "O ambiente esta escuro, voce nao consegue ver nada";
+            return desc;
+        }
+        else if (!escuro || acessorioAtual.getEfeito().equals("iluminar")) {
             if (temItem()) {
                 desc += "Você avistou ";
                 for (int i = 0; i < ItemAmbiente.size(); i++){

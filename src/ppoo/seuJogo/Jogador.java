@@ -13,12 +13,13 @@ public class Jogador {
     private static final int LIMITE_MOCHILA = 8;
     private Acessorio acessorioAtual;
 
-    public Jogador(String nome, String classe, Double vida, Arma armaAtual, Armadura armaduraAtual, Ambiente localizacaoAtual) {
+    public Jogador(String nome, String classe, Double vida, Arma armaAtual, Armadura armaduraAtual, Acessorio acessorioAtual, Ambiente localizacaoAtual) {
         this.nome = nome;
         this.classe = classe;
         this.vida = vida;
         this.armaAtual = armaAtual;
         this.armaduraAtual = armaduraAtual;
+        this.acessorioAtual = acessorioAtual;
         this.localizacaoAtual = localizacaoAtual;
         this.mochila = new HashMap<>();
     }
