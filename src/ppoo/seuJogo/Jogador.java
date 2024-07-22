@@ -10,8 +10,9 @@ public class Jogador {
     private Armadura armaduraAtual;
     private Ambiente localizacaoAtual;
     private Map<String, Item> mochila;
-    private static final int LIMITE_MOCHILA = 8;
     private Acessorio acessorioAtual;
+    private Acessorio acessorioAtual2;
+    private static final int LIMITE_MOCHILA = 8;
 
     public Jogador(String nome, String classe, Double vida, Arma armaAtual, Armadura armaduraAtual, Acessorio acessorioAtual, Ambiente localizacaoAtual) {
         this.nome = nome;
@@ -42,6 +43,10 @@ public class Jogador {
 
     public Armadura getArmaduraAtual() {
         return armaduraAtual;
+    }
+
+    public void setVidaJogador(Double vida) {
+        this.vida = vida;
     }
 
     public void setArmaAtual(Arma armaAtual) {
@@ -116,4 +121,12 @@ public class Jogador {
     public void setAcessorioAtual(Acessorio acessorioAtual) {
         this.acessorioAtual =  acessorioAtual;
     }
+
+    public void perderVida(double quantidade) {
+        this.vida -= quantidade;
+        if (this.vida < 0) {
+            this.vida = 0.0;
+        }
+    }
+
 }

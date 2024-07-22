@@ -23,6 +23,7 @@ public class Ambiente {
     private HashMap<Direcao, Saida> saidas;
     private ArrayList<Item> ItemAmbiente;
     private boolean escuro;
+    private boolean toxico;
 
 
     /**
@@ -31,15 +32,16 @@ public class Ambiente {
      * 
      * @param descricao A descrição do ambiente.
      */
-    public Ambiente(String descricao, boolean escuro) {
+    public Ambiente(String descricao, boolean escuro, boolean toxico) {
         this.descricao = descricao;
         saidas = new HashMap<>();
         ItemAmbiente = new ArrayList<>();
         this.escuro = escuro;
+        this.toxico = toxico;
     }
 
-    public Ambiente(String descricao, boolean escuro, ArrayList<Item> ItemAmbiente) {
-        this(descricao, escuro);
+    public Ambiente(String descricao, boolean escuro, boolean toxico, ArrayList<Item> ItemAmbiente) {
+        this(descricao, escuro, toxico);
         this.ItemAmbiente = ItemAmbiente;
     }
 
@@ -112,12 +114,7 @@ public class Ambiente {
      */
     public String getDescricaoLonga(Jogador jogador) {
         String desc = "Você está " + getDescricao() + "\n";
-        Acessorio acessorioAtual = jogador.getAcessorioAtual();
-        if (acessorioAtual == null && escuro) {
-            desc = "O ambiente esta escuro, voce nao consegue ver nada";
-            return desc;
-        }
-        else if (!escuro || acessorioAtual.getEfeito().equals("iluminar")) {
+        if (!escuro || jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
             if (temItem()) {
                 desc += "Você avistou ";
                 for (int i = 0; i < ItemAmbiente.size(); i++){
@@ -137,15 +134,21 @@ public class Ambiente {
             desc += "Saídas: " + direcoesDeSaida();
             return desc;
         }
-        else {
-            desc = "O ambiente esta escuro, voce nao consegue ver nada";
-            return desc;
+        if (escuro && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
+            desc += "Você não consegue ver nada, está escuro demais." + "\n";
         }
+        if (toxico && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
+            desc += "O ambiente é tóxico, você não pode ficar aqui." + "\n";
+        }
+        return desc;
     }
 
-    public String getDescricaoPequena() {
+    public String getDescricaoPequena(Jogador jogador) {
         String desc = "Você está " + getDescricao() + "\n";
         desc += "Saídas: " + direcoesDeSaida();
+        if (toxico && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
+            desc += "\n" + "O ambiente é tóxico, você não pode ficar aqui.";
+        }
         return desc;
     }
 
@@ -190,5 +193,9 @@ public class Ambiente {
 
     public void setEscurecer() {
         escuro = true;
+    }
+
+    public boolean getToxico() {
+        return toxico;
     }
 }
