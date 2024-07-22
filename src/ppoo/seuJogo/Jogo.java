@@ -67,27 +67,27 @@ public class Jogo {
         itenspousada.add(new Armadura("Armadura_de_Ferro", "uma armadura de ferro", 50, 10));
 
         
-        praca = new Ambiente("na praça central da cidade Moonlight.", false, false, itenspraca);
-        pousada = new Ambiente("na pousada da bela cidade Moonlight.", false,false, itenspousada);
-        igreja = new Ambiente("na velha igreja da cidade Moonlight.", false,false, itensigreja);
-        beco = new Ambiente("em um beco escuro.",true,false, itensbeco);
-        floresta = new Ambiente("na floresta",false, false);
-        cemiterio = new Ambiente("no cemitério", false, false);
-        cabana = new Ambiente("na cabana", false, false);
-        esgoto = new Ambiente("no esgoto", false, true);
-        tunelEsgoto1 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto2 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto3 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto4 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto5 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto6 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto7 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto8 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto9 = new Ambiente("em um túnel do esgoto", true, false);
-        salaoEspera = new Ambiente("no salão de espera", true, false);
-        taverna = new Ambiente("na taverna", true, false);
-        salaBoss = new Ambiente("na sala do boss", false, false);
-        salaTesouro = new Ambiente("na sala do tesouro", true, false);
+        praca = new Ambiente("na praça central da cidade Moonlight.", itenspraca, "normal");
+        pousada = new Ambiente("na pousada da bela cidade Moonlight.", itenspousada, "normal");
+        igreja = new Ambiente("na velha igreja da cidade Moonlight.", itensigreja, "normal");
+        beco = new Ambiente("em um beco escuro.", itensbeco, "normal");
+        floresta = new Ambiente("na floresta", "normal");
+        cemiterio = new Ambiente("no cemitério", "normal");
+        cabana = new Ambiente("na cabana", "normal");
+        esgoto = new Ambiente("no esgoto", "normal");
+        tunelEsgoto1 = new Ambiente("em um túnel do esgoto", "normal");
+        tunelEsgoto2 = new Ambiente("em um túnel do esgoto", "normal");
+        tunelEsgoto3 = new Ambiente("em um túnel do esgoto", "normal");
+        tunelEsgoto4 = new Ambiente("em um túnel do esgoto", "normal");
+        tunelEsgoto5 = new Ambiente("em um túnel do esgoto", "normal");
+        tunelEsgoto6 = new Ambiente("em um túnel do esgoto", "normal");
+        tunelEsgoto7 = new Ambiente("em um túnel do esgoto", "normal");
+        tunelEsgoto8 = new Ambiente("em um túnel do esgoto", "normal");
+        tunelEsgoto9 = new Ambiente("em um túnel do esgoto", "normal");
+        salaoEspera = new Ambiente("no salão de espera", "normal");
+        taverna = new Ambiente("na taverna", "normal");
+        salaBoss = new Ambiente("na sala do boss", "normal");
+        salaTesouro = new Ambiente("na sala do tesouro", "normal");
         
         praca.ajustarSaida(Direcao.LESTE, pousada);
         praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada", "A igreja está trancada. Talvez você precise de uma chave.");

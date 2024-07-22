@@ -22,8 +22,7 @@ public class Ambiente {
     // ambientes vizinhos de acordo com a direção
     private HashMap<Direcao, Saida> saidas;
     private ArrayList<Item> ItemAmbiente;
-    private boolean escuro;
-    private boolean toxico;
+    private String tipoAmbiente;
 
 
     /**
@@ -32,17 +31,20 @@ public class Ambiente {
      * 
      * @param descricao A descrição do ambiente.
      */
-    public Ambiente(String descricao, boolean escuro, boolean toxico) {
+    public Ambiente(String descricao, String tipoAmbiente) {
         this.descricao = descricao;
         saidas = new HashMap<>();
         ItemAmbiente = new ArrayList<>();
-        this.escuro = escuro;
-        this.toxico = toxico;
+        this.tipoAmbiente = tipoAmbiente;
     }
 
-    public Ambiente(String descricao, boolean escuro, boolean toxico, ArrayList<Item> ItemAmbiente) {
-        this(descricao, escuro, toxico);
+    public Ambiente(String descricao, ArrayList<Item> ItemAmbiente, String tipoAmbiente) {
+        this(descricao, tipoAmbiente );
         this.ItemAmbiente = ItemAmbiente;
+    }
+
+    public String getTipoAmbiente() {
+        return tipoAmbiente;
     }
 
     public Saida getSaidaBloqueada(String nomeItem) {
@@ -112,43 +114,31 @@ public class Ambiente {
      * 
      * @return Uma descrição longa do ambiente, incluindo saídas.
      */
-    public String getDescricaoLonga(Jogador jogador) {
+    public String getDescricaoLonga() {
         String desc = "Você está " + getDescricao() + "\n";
-        if (!escuro || jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
-            if (temItem()) {
-                desc += "Você avistou ";
-                for (int i = 0; i < ItemAmbiente.size(); i++){
-                    if (i > 0 && i == ItemAmbiente.size() - 1) {
-                        desc += " e ";
-                    }
-                    else if (i > 0 && i < ItemAmbiente.size()) {
-                        desc += ", ";
-                    }
-                    desc += ItemAmbiente.get(i).getDescricao() + " cujo nome é " + ItemAmbiente.get(i).getNome();
+        if (temItem()) {
+            desc += "Você avistou ";
+            for (int i = 0; i < ItemAmbiente.size(); i++){
+                if (i > 0 && i == ItemAmbiente.size() - 1) {
+                    desc += " e ";
                 }
-                desc += "." + "\n";
+                else if (i > 0 && i < ItemAmbiente.size()) {
+                    desc += ", ";
+                }
+                desc += ItemAmbiente.get(i).getDescricao() + " cujo nome é " + ItemAmbiente.get(i).getNome();
             }
-            else {
-                desc += "Nao há nada de especial aqui.\n";
-            }
-            desc += "Saídas: " + direcoesDeSaida();
-            return desc;
+            desc += "." + "\n";
         }
-        if (escuro && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
-            desc += "Você não consegue ver nada, está escuro demais." + "\n";
+        else {
+            desc += "Nao há nada de especial aqui.\n";
         }
-        if (toxico && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
-            desc += "O ambiente é tóxico, você não pode ficar aqui." + "\n";
-        }
+        desc += "Saídas: " + direcoesDeSaida();
         return desc;
     }
 
-    public String getDescricaoPequena(Jogador jogador) {
+    public String getDescricaoPequena() {
         String desc = "Você está " + getDescricao() + "\n";
         desc += "Saídas: " + direcoesDeSaida();
-        if (toxico && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
-            desc += "\n" + "O ambiente é tóxico, você não pode ficar aqui.";
-        }
         return desc;
     }
 
@@ -184,20 +174,5 @@ public class Ambiente {
         Saida saida = saidas.get(direcao);
         String motivo =  saida.getMotivoBloqueio();
         return motivo;
-    }
-
-    public boolean getEscuro() {
-        return escuro;
-    }
-    public void setClarear() {
-        escuro = false;
-    }
-
-    public void setEscurecer() {
-        escuro = true;
-    }
-
-    public boolean getToxico() {
-        return toxico;
     }
 }
