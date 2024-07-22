@@ -44,9 +44,9 @@ public class Jogo {
      * Cria todos os ambientes e liga as saidas deles
      */
     private Ambiente criarAmbientes() {
-        Ambiente igreja, pousada, beco, praca, floresta, cemiterio, cabana, 
-        esgoto, tunelEsgoto1, tunelEsgoto2, tunelEsgoto3, tunelEsgoto4, tunelEsgoto5, tunelEsgoto6, tunelEsgoto7, tunelEsgoto8, tunelEsgoto9, 
-        salaoEspera, taverna, salaBoss, salaTesouro;
+        Ambiente igreja, pousada, praca, floresta, cemiterio, cabana, salaBoss, salaTesouro;
+        AmbienteEscuro beco, salaoEspera, taverna, tunelEsgoto1, tunelEsgoto2, tunelEsgoto3, tunelEsgoto4, tunelEsgoto5, tunelEsgoto6, tunelEsgoto7, tunelEsgoto8, tunelEsgoto9;
+        AmbienteToxico esgoto;
         
         ArrayList<Item> itenspraca = new ArrayList<>();
         ArrayList<Item> itensigreja = new ArrayList<>();
@@ -57,7 +57,7 @@ public class Jogo {
         itenspraca.add(new Espada("Terrablade", "uma espada lendária da terra", 900, 200));
         itenspraca.add(new Espada("Aguablade", "uma espada lendária da agua", 900, 200));
         itenspraca.add(new Espada("Sunblade", "uma espada lendária do sol", 900, 200));
-        itenspousada.add(new Carta("Carta", "uma carta velha", "A carta diz: 'O tesouro está no tÚnel'"));
+        itenspousada.add(new Carta("Carta", "uma carta velha", "A carta diz: 'O tesouro está no túnel'"));
         itensigreja.add(new Pocao("Pocao_Grande", "uma poção que recupera 50 de vida", 50, 2));
         itensbeco.add(new Pocao("Pocao_Pequena", "uma poção que recupera 50 de vida", 20, 5));
         itenspraca.add(new Pocao("Pocao_Media", "uma poção que recupera 50 de vida", 50, 3));
@@ -67,27 +67,27 @@ public class Jogo {
         itenspousada.add(new Armadura("Armadura_de_Ferro", "uma armadura de ferro", 50, 10));
 
         
-        praca = new Ambiente("na praça central da cidade Moonlight.", false, false, itenspraca);
-        pousada = new Ambiente("na pousada da bela cidade Moonlight.", false,false, itenspousada);
-        igreja = new Ambiente("na velha igreja da cidade Moonlight.", false,false, itensigreja);
-        beco = new Ambiente("em um beco escuro.",true,false, itensbeco);
-        floresta = new Ambiente("na floresta",false, false);
-        cemiterio = new Ambiente("no cemitério", false, false);
-        cabana = new Ambiente("na cabana", false, false);
-        esgoto = new Ambiente("no esgoto", false, true);
-        tunelEsgoto1 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto2 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto3 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto4 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto5 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto6 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto7 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto8 = new Ambiente("em um túnel do esgoto", true, false);
-        tunelEsgoto9 = new Ambiente("em um túnel do esgoto", true, false);
-        salaoEspera = new Ambiente("no salão de espera", true, false);
-        taverna = new Ambiente("na taverna", true, false);
-        salaBoss = new Ambiente("na sala do boss", false, false);
-        salaTesouro = new Ambiente("na sala do tesouro", true, false);
+        praca = new Ambiente("na praça central da cidade Moonlight.", itenspraca);
+        pousada = new Ambiente("na pousada da bela cidade Moonlight.", itenspousada);
+        igreja = new Ambiente("na velha igreja da cidade Moonlight.", itensigreja);
+        beco = new AmbienteEscuro("em um beco escuro.", itensbeco);
+        floresta = new Ambiente("na floresta");
+        cemiterio = new Ambiente("no cemitério");
+        cabana = new Ambiente("na cabana");
+        esgoto = new AmbienteToxico("no esgoto");
+        tunelEsgoto1 = new AmbienteEscuro("em um túnel do esgoto");
+        tunelEsgoto2 = new AmbienteEscuro("em um túnel do esgoto");
+        tunelEsgoto3 = new AmbienteEscuro("em um túnel do esgoto");
+        tunelEsgoto4 = new AmbienteEscuro("em um túnel do esgoto");
+        tunelEsgoto5 = new AmbienteEscuro("em um túnel do esgoto");
+        tunelEsgoto6 = new AmbienteEscuro("em um túnel do esgoto");
+        tunelEsgoto7 = new AmbienteEscuro("em um túnel do esgoto");
+        tunelEsgoto8 = new AmbienteEscuro("em um túnel do esgoto");
+        tunelEsgoto9 = new AmbienteEscuro("em um túnel do esgoto");
+        salaoEspera = new AmbienteEscuro("no salão de espera");
+        taverna = new AmbienteEscuro("na taverna");
+        salaBoss = new Ambiente("na sala do boss");
+        salaTesouro = new Ambiente("na sala do tesouro");
         
         praca.ajustarSaida(Direcao.LESTE, pousada);
         praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada", "A igreja está trancada. Talvez você precise de uma chave.");
@@ -314,7 +314,7 @@ public class Jogo {
         if (item == null) {
             System.out.println("Não existe esse item aqui.");
         }
-        else if(jogador.getLocalizacaoAtual().getEscuro() && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
+        else if(jogador.getLocalizacaoAtual() instanceof AmbienteEscuro && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
             System.out.println("você não consegue pegar nenhum item, pois esta escuro");
         }
         else {
@@ -476,7 +476,7 @@ public class Jogo {
         }
         else {
             jogador.setLocalizacaoAtual(proximoAmbiente);
-            if (jogador.getLocalizacaoAtual().getToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
+            if (jogador.getLocalizacaoAtual() instanceof AmbienteToxico && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
                 // Quero que o jogador perca 10 de vida a cada 5 segundos
                 iniciarControleAmbienteToxico();
             }
@@ -561,7 +561,7 @@ public class Jogo {
     }
 
     private void verificarAmbienteToxico() {
-        boolean ambienteToxicoAtual = jogador.getLocalizacaoAtual().getToxico(); // Atualiza o estado atual
+        boolean ambienteToxicoAtual = jogador.getLocalizacaoAtual() instanceof AmbienteToxico; // Atualiza o estado atual
         
         // Verifica se houve mudança no estado do ambiente
         if (ambienteToxicoAtual && !estavaToxico) {
@@ -581,7 +581,7 @@ public class Jogo {
         task = new TimerTask() {
             @Override
             public void run() {
-                if (jogador.getLocalizacaoAtual().getToxico() && !jogador.getAcessorioAtual().getNome().equals("Mascara_Respiratoria")) {
+                if (jogador.getLocalizacaoAtual() instanceof AmbienteToxico && !jogador.getAcessorioAtual().getNome().equals("Mascara_Respiratoria")) {
                     jogador.perderVida(20);
                     System.out.println("Você está em um ambiente tóxico e perdeu 20 de vida! Em 25 segundos, perderá mais 20 de vida.");
                     System.out.println("Vida atual: " + jogador.getVidaJogador());
