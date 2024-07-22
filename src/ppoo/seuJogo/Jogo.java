@@ -366,13 +366,20 @@ public class Jogo {
         Item itemProcurado = jogador.getItemEspecifico(nomeItem);
 
         if (itemProcurado != null) {
-            if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) 
+            if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
                 jogador.setArmaAtual(new Mao("Mão", "mãos com socos fortes.", infinito));
-            else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) 
-                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0));
-            else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) 
-                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"));;
                 System.out.println("Você desequipou " + nomeItem + ".");
+            }
+            else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
+                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0));
+                System.out.println("Você desequipou " + nomeItem + ".");
+            }
+            else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
+                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"));
+                System.out.println("Você desequipou " + nomeItem + ".");
+            } else {
+                System.out.println("Item não equipado");
+            }
         }
         else {
             System.out.println("Item não equipado");
