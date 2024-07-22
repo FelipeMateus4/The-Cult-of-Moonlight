@@ -44,7 +44,11 @@ Quais são os tipos de itens e para que cada tipo é usado?
 
 Quais são os tipos de ambientes e quais são suas funções específicas?
 
-> digite aqui
+> Ambiente: Locais para acesso do jogador, podendo ou não ter saídas bloqueadas. 
+> AmbienteEscuto: Herda de Ambiente, com adição da funcionalidade que itens não podem ser vistos ou pegos sem a utilização de um Acessório com
+> efeito de iluminar.
+> AmbienteToxico: Herda de Ambiente, com adição da funcionalidade que o jogador perde vida ao decorrer do tempo, quando não está utilizando um
+> Acessório com efeito de proteger.
 
 (Na entrega final) Quais são os personagens (NPCs) do jogo e o que eles fazem?
 
