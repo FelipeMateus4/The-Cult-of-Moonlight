@@ -19,7 +19,7 @@ public class AmbienteToxico extends Ambiente {
     public String getDescricaoLonga(Jogador jogador) {
         String desc = super.getDescricaoLonga(jogador);
         if (toxico && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
-            desc += "O ambiente é tóxico, você não pode ficar aqui.\n";
+            desc += "\nO ambiente é tóxico, você não pode ficar aqui.\n";
         }
         return desc;
     }
@@ -35,5 +35,15 @@ public class AmbienteToxico extends Ambiente {
 
     public boolean getToxico() {
         return toxico;
+    }
+
+    @Override
+    public boolean isToxico() {
+        return true;
+    }
+
+    @Override
+    public boolean isEscuro() {
+        return false;
     }
 }

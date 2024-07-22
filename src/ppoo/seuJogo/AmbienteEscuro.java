@@ -25,10 +25,7 @@ public class AmbienteEscuro extends Ambiente {
 
     @Override
     public String getDescricaoPequena(Jogador jogador) {
-        if (!escuro || jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
-            return super.getDescricaoPequena(jogador);
-        }
-        return "Você não consegue ver nada, está escuro demais.\n";
+        return "Está escuro demais, com dificuldade você apenas as saídas.\n" + super.getDescricaoPequena(jogador);
     }
 
     public boolean getEscuro() {
@@ -41,5 +38,15 @@ public class AmbienteEscuro extends Ambiente {
 
     public void setEscurecer() {
         escuro = true;
+    }
+
+    @Override
+    public boolean isToxico() {
+        return false;
+    }
+
+    @Override
+    public boolean isEscuro() {
+        return true;
     }
 }

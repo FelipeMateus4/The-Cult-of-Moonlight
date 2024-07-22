@@ -2,7 +2,7 @@ package ppoo.seuJogo;
 
 import java.util.*;
 
-public class Ambiente {
+public class Ambiente implements AmbienteModificado{
     private String descricao;
     private HashMap<Direcao, Saida> saidas;
     private ArrayList<Item> ItemAmbiente;
@@ -119,5 +119,14 @@ public class Ambiente {
         Saida saida = saidas.get(direcao);
         String motivo =  saida.getMotivoBloqueio();
         return motivo;
+    }
+    @Override
+    public boolean isToxico() {
+        return false;
+    }
+
+    @Override
+    public boolean isEscuro() {
+        return false;
     }
 }

@@ -53,6 +53,7 @@ public class Jogo {
         ArrayList<Item> itenspousada = new ArrayList<>();
         ArrayList<Item> itensbeco = new ArrayList<>();
         itenspraca.add(new Acessorio("Lampiao", "um lampião velho", "iluminar"));
+        itenspraca.add(new Acessorio("Lampiao", "um lampião velho", "iluminar"));
         itenspraca.add(new Acessorio("Mascara_Respiratoria", "uma mascara que protege contra gases tóxicos", "proteger"));
         itenspraca.add(new Espada("Terrablade", "uma espada lendária da terra", 900, 200));
         itenspraca.add(new Espada("Aguablade", "uma espada lendária da agua", 900, 200));
@@ -311,11 +312,11 @@ public class Jogo {
         String nomeItem = comando.getSegundaPalavra();
         Item item = jogador.getLocalizacaoAtual().getItem(nomeItem);
 
-        if (item == null) {
-            System.out.println("Não existe esse item aqui.");
-        }
-        else if(jogador.getLocalizacaoAtual() instanceof AmbienteEscuro && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
+        if(jogador.getLocalizacaoAtual().isEscuro() && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
             System.out.println("você não consegue pegar nenhum item, pois esta escuro");
+        }
+        else if (item == null) {
+            System.out.println("Não existe esse item aqui.");
         }
         else {
             Boolean verificar = jogador.adicionarItem(item);
@@ -476,7 +477,7 @@ public class Jogo {
         }
         else {
             jogador.setLocalizacaoAtual(proximoAmbiente);
-            if (jogador.getLocalizacaoAtual() instanceof AmbienteToxico && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
+            if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
                 // Quero que o jogador perca 10 de vida a cada 5 segundos
                 iniciarControleAmbienteToxico();
             }
@@ -561,7 +562,7 @@ public class Jogo {
     }
 
     private void verificarAmbienteToxico() {
-        boolean ambienteToxicoAtual = jogador.getLocalizacaoAtual() instanceof AmbienteToxico; // Atualiza o estado atual
+        boolean ambienteToxicoAtual = jogador.getLocalizacaoAtual().isToxico(); // Atualiza o estado atual
         
         // Verifica se houve mudança no estado do ambiente
         if (ambienteToxicoAtual && !estavaToxico) {
@@ -581,7 +582,7 @@ public class Jogo {
         task = new TimerTask() {
             @Override
             public void run() {
-                if (jogador.getLocalizacaoAtual() instanceof AmbienteToxico && !jogador.getAcessorioAtual().getNome().equals("Mascara_Respiratoria")) {
+                if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getNome().equals("Mascara_Respiratoria")) {
                     jogador.perderVida(20);
                     System.out.println("Você está em um ambiente tóxico e perdeu 20 de vida! Em 25 segundos, perderá mais 20 de vida.");
                     System.out.println("Vida atual: " + jogador.getVidaJogador());
