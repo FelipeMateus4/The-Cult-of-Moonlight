@@ -198,7 +198,9 @@ public class Jogo {
             verificarAmbienteToxico();
         }
         System.out.println("Obrigado por jogar. Até mais!");
-        timer.cancel(); // Para o timer quando o jogo termina
+        if (timer != null) { 
+            timer.cancel(); 
+        }
     }
 
     /**
