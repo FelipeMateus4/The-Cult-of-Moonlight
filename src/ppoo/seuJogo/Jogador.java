@@ -11,7 +11,6 @@ public class Jogador {
     private Ambiente localizacaoAtual;
     private Map<String, Item> mochila;
     private Acessorio acessorioAtual;
-    private Acessorio acessorioAtual2;
     private static final int LIMITE_MOCHILA = 8;
 
     public Jogador(String nome, String classe, Double vida, Arma armaAtual, Armadura armaduraAtual, Acessorio acessorioAtual, Ambiente localizacaoAtual) {

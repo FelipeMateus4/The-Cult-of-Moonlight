@@ -69,7 +69,7 @@ public class Jogo {
         praca = new Ambiente("na praça central da cidade Moonlight.", false, false, itenspraca);
         pousada = new Ambiente("na pousada da bela cidade Moonlight.", false,false, itenspousada);
         igreja = new Ambiente("na velha igreja da cidade Moonlight.", false,false, itensigreja);
-        beco = new Ambiente("em um beco escuro.",true,true, itensbeco);
+        beco = new Ambiente("em um beco escuro.",true,false, itensbeco);
         floresta = new Ambiente("na floresta",false, false);
         cemiterio = new Ambiente("no cemitério", false, false);
         cabana = new Ambiente("na cabana", false, false);
@@ -103,6 +103,7 @@ public class Jogo {
         igreja.ajustarSaida(Direcao.SUL, praca);
 
         beco.ajustarSaida(Direcao.NORTE, praca);
+        beco.ajustarSaida(Direcao.BAIXO, esgoto);
 
         floresta.ajustarSaida(Direcao.LESTE, praca);
 
@@ -260,6 +261,9 @@ public class Jogo {
         else if (palavraDeComando == PalavraDeComando.EQUIPAR) {
             equipar(comando);
         }
+        else if (palavraDeComando == PalavraDeComando.DESEQUIPAR) {
+            desequipar(comando);
+        }
         else if (palavraDeComando == PalavraDeComando.SAIR) {
             querSair = sair(comando);
         }
@@ -344,6 +348,29 @@ public class Jogo {
         }
         else {
             System.out.println("Item nao encontrado na mochila");
+        }
+    }
+
+    private void desequipar(Comando comando) {
+        if (!comando.temSegundaPalavra()) {
+            System.out.println("Desequipar o que?");
+            return;
+        } 
+        String nomeItem = comando.getSegundaPalavra();
+
+        Item itemProcurado = jogador.getItemEspecifico(nomeItem);
+
+        if (itemProcurado != null) {
+            if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) 
+                jogador.setArmaAtual(new Mao("Mão", "mãos com socos fortes.", infinito));
+            else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) 
+                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0));
+            else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) 
+                jogador.setAcessorioAtual(new Acessorio("pulseira elegante", "uma bela pulseira que voce ganhou de sua tia Gilda", "de te deixar feliz"));;
+                System.out.println("Você desequipou " + nomeItem + ".");
+        }
+        else {
+            System.out.println("Item nao equipado");
         }
     }
 
