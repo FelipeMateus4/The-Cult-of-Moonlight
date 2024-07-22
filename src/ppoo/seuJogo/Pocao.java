@@ -12,16 +12,15 @@ public class Pocao extends Consumivel implements Bebivel {
         return vidaDada;
     }
 
-    public void setvidaDada() {
-        vidaDada = 0.0;
-    }
-
     @Override
     public boolean beberPocao(Jogador jogador) {
-        if (this.getUsos() >= 1 && jogador.getVidaJogador() < 100) {
+        if (this.getUsos() >= 1) {
             jogador.beber(this);
-            this.setvidaDada();
             this.setUsosDiminuir();
+            if (this.getUsos() == 0) {
+                jogador.removerItem(this.getNome());
+                System.out.println("Seus usos acabaram. Você não tem mais " + this.getNome() + " na mochila.");
+            }
             return true;
         } 
         else { 

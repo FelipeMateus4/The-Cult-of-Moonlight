@@ -35,9 +35,9 @@ public class Jogo {
     public Jogo() {
         Ambiente inicial = criarAmbientes();
         analisador = new Analisador();
-        jogador = new Jogador("Jogador", "Ladrao", 100.0, new Mao("Mão", "Somente sua mão.", infinito), 
+        jogador = new Jogador("Radahn", "Guerreiro", 100.0, new Mao("Mão", "Somente sua mão.", infinito), 
         new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0), 
-        new Acessorio("pulseira elegante", "uma bela pulseira que voce ganhou de sua tia Gilda", "de te deixar feliz"), inicial);
+        new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"), inicial);
     }
 
     /**
@@ -52,17 +52,18 @@ public class Jogo {
         ArrayList<Item> itensigreja = new ArrayList<>();
         ArrayList<Item> itenspousada = new ArrayList<>();
         ArrayList<Item> itensbeco = new ArrayList<>();
-        itenspraca.add(new Acessorio("lampiao", "ola amigo", "iluminar"));
-        itenspraca.add(new Acessorio("Mascara_Respiratoria", "uma mascara que protege contra gases toxicos", "proteger"));
-        itenspraca.add(new Espada("Terrablade", "uma espada lendaria da terra", 900, 200));
-        itenspraca.add(new Espada("Aguablade", "uma espada lendaria da agua", 900, 200));
-        itenspraca.add(new Espada("Sunblade", "uma espada lendaria do sol", 900, 200));
-        itenspraca.add(new Carta("Carta", "uma carta velha", "Beba águaaaaaa"));
-        itenspraca.add(new Pocao("Pocao", "uma poção que recupera 50 de vida", 50, 1));
-        itensbeco.add(new Pocao("Pocao", "uma poção que recupera 50 de vida", 50, 1));
+        itenspraca.add(new Acessorio("Lampiao", "um lampião velho", "iluminar"));
+        itenspraca.add(new Acessorio("Mascara_Respiratoria", "uma mascara que protege contra gases tóxicos", "proteger"));
+        itenspraca.add(new Espada("Terrablade", "uma espada lendária da terra", 900, 200));
+        itenspraca.add(new Espada("Aguablade", "uma espada lendária da agua", 900, 200));
+        itenspraca.add(new Espada("Sunblade", "uma espada lendária do sol", 900, 200));
+        itenspousada.add(new Carta("Carta", "uma carta velha", "A carta diz: 'O tesouro está no tÚnel'"));
+        itensigreja.add(new Pocao("Pocao_Grande", "uma poção que recupera 50 de vida", 50, 2));
+        itensbeco.add(new Pocao("Pocao_Pequena", "uma poção que recupera 50 de vida", 20, 5));
+        itenspraca.add(new Pocao("Pocao_Media", "uma poção que recupera 50 de vida", 50, 3));
         itensbeco.add(new Consumivel("Chave_Dourada", "uma chave de ouro com runas antigas gravadas", 1));
         itensbeco.add(new Adaga("Adaga", "uma adaga afiada", 100, 30.0));
-        itensigreja.add(new Cajado("Cajado_Sagrado", "um cajado benzido pelo PAPA IX", 90, 30));
+        itensigreja.add(new Cajado("Cajado_Sagrado", "um cajado benzido pelo padre local", 90, 30));
         itenspousada.add(new Armadura("Armadura_de_Ferro", "uma armadura de ferro", 50, 10));
 
         
@@ -74,22 +75,22 @@ public class Jogo {
         cemiterio = new Ambiente("no cemitério", false, false);
         cabana = new Ambiente("na cabana", false, false);
         esgoto = new Ambiente("no esgoto", false, true);
-        tunelEsgoto1 = new Ambiente("em um túnel do esgoto", false, false);
-        tunelEsgoto2 = new Ambiente("em um túnel do esgoto", false, false);
-        tunelEsgoto3 = new Ambiente("em um túnel do esgoto", false, false);
-        tunelEsgoto4 = new Ambiente("em um túnel do esgoto", false, false);
-        tunelEsgoto5 = new Ambiente("em um túnel do esgoto", false, false);
-        tunelEsgoto6 = new Ambiente("em um túnel do esgoto", false, false);
-        tunelEsgoto7 = new Ambiente("em um túnel do esgoto", false, false);
-        tunelEsgoto8 = new Ambiente("em um túnel do esgoto", false, false);
-        tunelEsgoto9 = new Ambiente("em um túnel do esgoto", false, false);
-        salaoEspera = new Ambiente("no salão de espera", false, false);
-        taverna = new Ambiente("na taverna", false, false);
+        tunelEsgoto1 = new Ambiente("em um túnel do esgoto", true, false);
+        tunelEsgoto2 = new Ambiente("em um túnel do esgoto", true, false);
+        tunelEsgoto3 = new Ambiente("em um túnel do esgoto", true, false);
+        tunelEsgoto4 = new Ambiente("em um túnel do esgoto", true, false);
+        tunelEsgoto5 = new Ambiente("em um túnel do esgoto", true, false);
+        tunelEsgoto6 = new Ambiente("em um túnel do esgoto", true, false);
+        tunelEsgoto7 = new Ambiente("em um túnel do esgoto", true, false);
+        tunelEsgoto8 = new Ambiente("em um túnel do esgoto", true, false);
+        tunelEsgoto9 = new Ambiente("em um túnel do esgoto", true, false);
+        salaoEspera = new Ambiente("no salão de espera", true, false);
+        taverna = new Ambiente("na taverna", true, false);
         salaBoss = new Ambiente("na sala do boss", false, false);
-        salaTesouro = new Ambiente("na sala do tesouro", false, false);
+        salaTesouro = new Ambiente("na sala do tesouro", true, false);
         
         praca.ajustarSaida(Direcao.LESTE, pousada);
-        praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada", "Os capitalistas do oeste bloquearam a saida");
+        praca.ajustarSaidaBloqueada(Direcao.NORTE, igreja, "Chave_Dourada", "A igreja está trancada. Talvez você precise de uma chave.");
         praca.ajustarSaida(Direcao.SUL, beco);
         praca.ajustarSaida(Direcao.OESTE, floresta);
         praca.ajustarSaida(Direcao.NORDESTE, taverna);
@@ -205,7 +206,7 @@ public class Jogo {
     private void imprimirBoasVindas() {
         System.out.println();
         System.out.println("Bem-vindo a vila de Moonlight");
-        System.out.println("Voce foi contratado para descobrir o que ou quem esta causando a onda de assassinatos na cidade ");
+        System.out.println("Você foi contratado para descobrir o que ou quem está causando a onda de assassinatos na cidade ");
         System.out.println("Digite 'ajuda' se você precisar de ajuda.");
         System.out.println();
 
@@ -222,7 +223,7 @@ public class Jogo {
         boolean querSair = false;
 
         if (comando.ehDesconhecido()) {
-            System.out.println("Eu não entendi o que voce disse...");
+            System.out.println("Eu não entendi o que você disse...");
             return false;
         }
 
@@ -308,17 +309,18 @@ public class Jogo {
         } 
 
         String nomeItem = comando.getSegundaPalavra();
-        Item item = jogador.getLocalizacaoAtual().coletarItemAmbiente(nomeItem);
+        Item item = jogador.getLocalizacaoAtual().getItem(nomeItem);
 
         if (item == null) {
             System.out.println("Não existe esse item aqui.");
         }
         else if(jogador.getLocalizacaoAtual().getEscuro() && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
-            System.out.println("voce nao consegue pegar nenhum item, pois esta escuro");
+            System.out.println("você não consegue pegar nenhum item, pois esta escuro");
         }
         else {
             Boolean verificar = jogador.adicionarItem(item);
             if (verificar) {
+                jogador.getLocalizacaoAtual().removerItemAmbiente(nomeItem);
                 System.out.println("Item coletado.");
             } else {
                 System.out.println("Mochila cheia. Remova um item com o comando largar para adicionar outro.");
@@ -343,7 +345,7 @@ public class Jogo {
             else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) 
                 jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0));
             else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) 
-                jogador.setAcessorioAtual(new Acessorio("pulseira elegante", "uma bela pulseira que voce ganhou de sua tia Gilda", "de te deixar feliz"));;
+                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"));;
                 System.out.println("Você largou " + nomeItem + " no chão.");
         }
         else {
@@ -366,11 +368,11 @@ public class Jogo {
             else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) 
                 jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0));
             else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) 
-                jogador.setAcessorioAtual(new Acessorio("pulseira elegante", "uma bela pulseira que voce ganhou de sua tia Gilda", "de te deixar feliz"));;
+                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"));;
                 System.out.println("Você desequipou " + nomeItem + ".");
         }
         else {
-            System.out.println("Item nao equipado");
+            System.out.println("Item não equipado");
         }
     }
 
@@ -391,14 +393,13 @@ public class Jogo {
         if (itemProcurado instanceof Bebivel) {
             Bebivel bebivel = (Bebivel) itemProcurado;
             double vidaAntiga = jogador.getVidaJogador();
-            boolean RecuperouVida = bebivel.beberPocao(jogador);
+            if (jogador.getVidaJogador() == 100) {
+                System.out.println("Sua vida já está cheia.");
+                return;
+            }
+            bebivel.beberPocao(jogador);
             double vidaNova = jogador.getVidaJogador();
-            if (RecuperouVida){
-                System.out.println("Voce recuperou " + (vidaNova - vidaAntiga) + " de vida.");
-            }
-            else {
-                System.out.println(itemProcurado + " não pode ser bebido pois está vazio");
-            }
+            System.out.println("Você recuperou " + (vidaNova - vidaAntiga) + " de vida.");
         } else {
             System.out.println("O item " + nomeItem + " não pode ser bebido.");
         }

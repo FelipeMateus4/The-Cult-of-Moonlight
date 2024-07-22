@@ -10,21 +10,37 @@ As informações abaixo devem ser preenchidas na primeira entrega e depois devem
 
 Nome do jogo:
 
-> digite aqui
+> Cult of Moonlight
 
 Integrantes do grupo:
 
-> digite aqui
+> Felipe Mateus Maximiniano e Silva Ribeiro /
+> Gabriel Silva Duarte /
+> Harisson Alvarenga /
+> Ramon Damasceno Nascimento
 
 Descrição breve sobre o tema jogo:
 
+> O jogo é sobre um mercenário que foi contratado para descobrir o que ou quem está causando a onda de assassinatos na cidade Moonlight. Ele
+> envolve batalhas e enigmas, possuindo armas, classes e itens diferentes.
+
 Quem é o jogador/personagem principal do jogo e qual é seu objetivo?
 
-> digite aqui
+> O jogador (que foi criado inicialmente com o nome Radahn), é um mercenário cujo objetivo é coletar informações em diferentes locais, para que
+> desvende o mistério e derrote o culpado.
 
 Quais são os tipos de itens e para que cada tipo é usado?
 
-> digite aqui
+> Arma (Cajado, Adaga, Espada) : Usados para causar dano aos inimigos.
+> -> Cajado: Causa dano mágico.
+> -> Adaga: Causa dano perfurante.
+> -> Espada: Causa dano cortante.
+> Consumível (Chave, Poção ) : Itens que vão ser consumidos. Ex: Chave.
+> -> Poção: classe com atributos de recuperação de vida.
+> -> Chave: um consumível simples de uso único.
+> Armadura: Usados para defender o jogador. Possui defesa física e mágica.
+> Mao: "Arma" default usada na criação do personagem e quando desequipa a arma atual.
+> Carta: Usado para transmitir informações pertinentes ao jogador.
 
 Quais são os tipos de ambientes e quais são suas funções específicas?
 

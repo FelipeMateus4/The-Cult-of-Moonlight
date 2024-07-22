@@ -160,19 +160,21 @@ public class Ambiente {
         return Collections.unmodifiableList(ItemAmbiente);
     }
 
-    public Item coletarItemAmbiente(String nome){
-        Item aux = null;
+    public void removerItemAmbiente(String nome){
         for (int i = 0; i < ItemAmbiente.size(); i++) {
             if (ItemAmbiente.get(i).getNome().equals(nome)) {
-                aux = ItemAmbiente.get(i);
                 ItemAmbiente.remove(i);
             }
         }
-        return aux;
     }
 
-    public void removerItem(Item item) {
-        ItemAmbiente.remove(item);
+    public Item getItem(String nome) {
+        for (Item item : ItemAmbiente) {
+            if (item.getNome().equals(nome)) {
+                return item;
+            }
+        }
+        return null;
     }
 
     public void largarItem(Item item) {
