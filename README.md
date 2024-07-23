@@ -14,41 +14,37 @@ Nome do jogo:
 
 Integrantes do grupo:
 
-> Felipe Mateus Maximiniano e Silva Ribeiro /
-> Gabriel Silva Duarte /
-> Harisson Alvarenga /
-> Ramon Damasceno Nascimento
+> Felipe Mateus Maximiniano e Silva Ribeiro <br>
+> Gabriel Silva Duarte <br>
+> Harisson Alvarenga <br>
+> Ramon Damasceno Nascimento <br>
 
 Descrição breve sobre o tema jogo:
 
-> O jogo é sobre um mercenário que foi contratado para descobrir o que ou quem está causando a onda de assassinatos na cidade Moonlight. Ele
-> envolve batalhas e enigmas, possuindo armas, classes e itens diferentes.
+> O jogo é sobre um mercenário que foi contratado para descobrir o que ou quem está causando a onda de assassinatos na cidade Moonlight. Ele envolve batalhas e enigmas, possuindo armas, classes e itens diferentes. <br>
 
 Quem é o jogador/personagem principal do jogo e qual é seu objetivo?
 
-> O jogador (que foi criado inicialmente com o nome Radahn), é um mercenário cujo objetivo é coletar informações em diferentes locais, para que
-> desvende o mistério e derrote o culpado.
+> O jogador (que foi criado inicialmente com o nome Radahn), é um mercenário cujo objetivo é coletar informações em diferentes locais, para que desvende o mistério e derrote o culpado. <br>
 
 Quais são os tipos de itens e para que cada tipo é usado?
 
-> Arma (Cajado, Adaga, Espada) : Usados para causar dano aos inimigos.
-> -> Cajado: Causa dano mágico.
-> -> Adaga: Causa dano perfurante.
-> -> Espada: Causa dano cortante.
-> Consumível (Chave, Poção ) : Itens que vão ser consumidos. Ex: Chave.
-> -> Poção: classe com atributos de recuperação de vida.
-> -> Chave: um consumível simples de uso único.
-> Armadura: Usados para defender o jogador. Possui defesa física e mágica.
-> Mao: "Arma" default usada na criação do personagem e quando desequipa a arma atual.
-> Carta: Usado para transmitir informações pertinentes ao jogador.
+> Arma (Cajado, Adaga, Espada) : Usados para causar dano aos inimigos. <br>
+> -> Cajado: Causa dano mágico. <br>
+> -> Adaga: Causa dano perfurante. <br>
+> -> Espada: Causa dano cortante. <br>
+> Consumível (Chave, Poção ) : Itens que vão ser consumidos. Ex: Chave. <br>
+> -> Poção: classe com atributos de recuperação de vida. <br>
+> -> Chave: um consumível simples de uso único. <br>
+> Armadura: Usados para defender o jogador. Possui defesa física e mágica. <br>
+> Mao: "Arma" default usada na criação do personagem e quando desequipa a arma atual. <br>
+> Carta: Usado para transmitir informações pertinentes ao jogador. <br>
 
 Quais são os tipos de ambientes e quais são suas funções específicas?
 
-> Ambiente: Locais para acesso do jogador, podendo ou não ter saídas bloqueadas. 
-> AmbienteEscuto: Herda de Ambiente, com adição da funcionalidade que itens não podem ser vistos ou pegos sem a utilização de um Acessório com
-> efeito de iluminar.
-> AmbienteToxico: Herda de Ambiente, com adição da funcionalidade que o jogador perde vida ao decorrer do tempo, quando não está utilizando um
-> Acessório com efeito de proteger.
+> Ambiente: Locais para acesso do jogador, podendo ou não ter saídas bloqueadas. <br>
+> AmbienteEscuto: Herda de Ambiente, com adição da funcionalidade que itens não podem ser vistos ou pegos sem a utilização de um Acessório com efeito de iluminar. <br>
+> AmbienteToxico: Herda de Ambiente, com adição da funcionalidade que o jogador perde vida ao decorrer do tempo, quando não está utilizando um Acessório com efeito de proteger. <br>
 
 (Na entrega final) Quais são os personagens (NPCs) do jogo e o que eles fazem?
 
