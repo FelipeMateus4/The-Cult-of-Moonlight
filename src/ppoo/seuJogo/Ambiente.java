@@ -60,6 +60,8 @@ public class Ambiente implements AmbienteModificado{
         return texto;
     }
 
+
+    // Quero que imprima os Npcs do lugar também
     public String getDescricaoLonga(Jogador jogador) {
         String desc = "Você está " + getDescricao() + "\n";
         if (temItem()) {
@@ -75,7 +77,20 @@ public class Ambiente implements AmbienteModificado{
             }
             desc += "." + "\n";
         }
-        else {
+
+        if (!NpcAmbiente.isEmpty()) {
+            desc += "Você vê ";
+            for (int i = 0; i < NpcAmbiente.size(); i++) {
+                if (i > 0 && i == NpcAmbiente.size() - 1) {
+                    desc += " e ";
+                }
+                else if (i > 0 && i < NpcAmbiente.size()) {
+                    desc += ", ";
+                }
+                desc += NpcAmbiente.get(i).getDescricao() + " cujo nome é " + NpcAmbiente.get(i).getNome();
+            }
+            desc += "." + "\n";
+        } else {
             desc += "Nao há nada de especial aqui.\n";
         }
         desc += "Saídas: " + direcoesDeSaida();
