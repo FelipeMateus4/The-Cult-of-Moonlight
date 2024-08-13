@@ -29,6 +29,7 @@ public class Jogo {
     private Timer timer;
     private TimerTask task;
     private boolean estavaToxico;
+
     /**
      * Cria o jogo e incializa seu mapa interno.
      */
@@ -53,10 +54,9 @@ public class Jogo {
         ArrayList<Item> itenspousada = new ArrayList<>();
         ArrayList<Item> itensbeco = new ArrayList<>();
         itenspraca.add(new Acessorio("Lampiao", "um lampião velho", "iluminar"));
-        itenspraca.add(new Acessorio("Lampiao", "um lampião velho", "iluminar"));
         itenspraca.add(new Acessorio("Mascara_Respiratoria", "uma mascara que protege contra gases tóxicos", "proteger"));
         itenspraca.add(new Espada("Terrablade", 20.0, "uma espada lendária da terra", 100));
-        itenspraca.add(new Espada("Aguablade", 15.0, "uma espada lendária da agua",  100));
+        itenspraca.add(new Espada("Aguablade", 15.0, "uma espada lendária da água", 100));
         itenspraca.add(new Espada("Aeroblade", 10.0, "uma espada lendária do ar", 100));
         itenspousada.add(new Carta("Carta", "uma carta velha", "A carta diz: 'O tesouro está no túnel'"));
         itensigreja.add(new Pocao("Pocao_Grande", "uma poção que recupera 50 de vida", 50, 2));
@@ -179,9 +179,12 @@ public class Jogo {
 
         Npc padre = new Npc("Padre", "um padre idoso", "O padre diz: 'O segredo está na igreja, meu filho.'");
         Npc recepcionista = new Npc("Recepcionista", "uma recepcionista jovem", "A recepcionista diz: 'Bem-vindo à pousada!'");
-        Inimigo esqueleto = new Inimigo("Esqueleto", "um esqueleto", 2, 10);
-        Inimigo zumbi = new Inimigo("Zumbi", "um zumbi", 2, 15);
 
+        List<Item> itensDropEsqueleto = Arrays.asList(new Espada("Espada Enferrujada", 5.0, "Uma espada antiga e enferrujada", 50));
+        List<Item> itensDropZumbi = Arrays.asList(new Pocao("Pocao Pequena", "Recupera 10 de vida", 10, 1));
+
+        Inimigo esqueleto = new Inimigo("Esqueleto", "um esqueleto", 2, 10, itensDropEsqueleto);
+        Inimigo zumbi = new Inimigo("Zumbi", "um zumbi", 2, 15, itensDropZumbi);
 
         praca.adicionarNpc(padre);
         pousada.adicionarNpc(recepcionista);
@@ -362,7 +365,13 @@ public class Jogo {
             jogador.atacar(inimigo);
             if (inimigo.getVida() <= 0) {
                 System.out.println("Você derrotou " + nomeInimgo + ".");
+                List<Item> itensDrop = inimigo.getItensDrop();
+                for (Item item : itensDrop) {
+                    jogador.getLocalizacaoAtual().adicionarItem(item);
+                    System.out.println("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
+                }
                 jogador.getLocalizacaoAtual().removerInimigo(nomeInimgo);
+                inimigo.pararAtaque(); // Certifique-se de parar o ataque do inimigo ao ser derrotado
             }
         }
     }
@@ -513,7 +522,6 @@ public class Jogo {
         }
     }
 
-
     /**
      * Tenta ir em uma direcao. Se existe uma saída para lá entra no novo ambiente,
      * caso contrário imprime mensagem de erro.
@@ -526,23 +534,21 @@ public class Jogo {
         }
 
         Direcao direcao = Direcao.pelaString(comando.getSegundaPalavra());
-        
-        // Tenta sair do ambiente atual
-        Ambiente proximoAmbiente = jogador.getLocalizacaoAtual().getSaida(direcao);
 
-        if (proximoAmbiente == jogador.getLocalizacaoAtual()) {
+        Ambiente ambienteAtual = jogador.getLocalizacaoAtual();
+        Ambiente proximoAmbiente = ambienteAtual.getSaida(direcao);
+
+        if (proximoAmbiente == ambienteAtual) {
             System.out.println(proximoAmbiente.getMotivo(direcao));
-        }
-        if (proximoAmbiente == null) {
+        } else if (proximoAmbiente == null) {
             System.out.println("Não há passagem!");
-        }
-        else {
+        } else {
+            pararAtaquesInimigos(ambienteAtual); // Parar ataques de inimigos ao sair do ambiente atual
+
             jogador.setLocalizacaoAtual(proximoAmbiente);
             if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
-                // Quero que o jogador perca 10 de vida a cada 5 segundos
                 iniciarControleAmbienteToxico();
             }
-
 
             if (jogador.getLocalizacaoAtual().getInimigos().size() > 0) {
                 List<Inimigo> inimigos = jogador.getLocalizacaoAtual().getInimigos();
@@ -554,6 +560,12 @@ public class Jogo {
             }
 
             imprimirLocalizacaoAtual();
+        }
+    }
+
+    private void pararAtaquesInimigos(Ambiente ambiente) {
+        for (Inimigo inimigo : ambiente.getInimigos()) {
+            inimigo.pararAtaque();
         }
     }
 

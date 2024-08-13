@@ -1,5 +1,7 @@
 package ppoo.seuJogo;
 
+import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -8,12 +10,20 @@ public class Inimigo extends Individuo {
     private double dano;
     private boolean vivo;
     private Timer ataqueTimer;
+    private List<Item> itensDrop;
 
-    public Inimigo(String nome, String descricao, double vida, double dano) {
+    public Inimigo(String nome, String descricao, double vida, double dano, List<Item> itensDrop) {
         super(nome, descricao);
         this.vida = vida;
         this.dano = dano;
         this.vivo = true;
+        this.itensDrop = itensDrop;
+    }
+
+    // Getters e Setters
+
+    public List<Item> getItensDrop() {
+        return itensDrop;
     }
 
     public double getVida() {
@@ -54,17 +64,37 @@ public class Inimigo extends Individuo {
     }
 
     public void iniciarAtaquesPeriodicos(Jogador jogador) {
-        ataqueTimer = new Timer();
-        ataqueTimer.scheduleAtFixedRate(new TimerTask() {
+    ataqueTimer = new Timer();
+    Random random = new Random();
+    int delayInicial = 5000 + random.nextInt(20000); // Gera um valor entre 5000 e 25000 milissegundos (5 a 25 segundos)
+    scheduleNextAttack(jogador, random, delayInicial);
+    }
+
+    private void scheduleNextAttack(Jogador jogador, Random random, int delay) {
+        ataqueTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 if (vivo) {
-                    atacar(jogador);  // Chama o método atacar automaticamente a cada 5 segundos
+                    atacar(jogador);
+                    if (!jogador.getVivo()) {
+                        System.out.println("Você foi derrotado pelo inimigo " + getNome() + ".");
+                        System.exit(0); // Encerra o jogo se o jogador morrer
+                    }
+                    System.out.println("sua vida atual é: " + jogador.getVidaJogador());
+                    // Programa o próximo ataque com uma duração aleatória
+                    int nextDelay = 5000 + random.nextInt(20000); // Gera um valor entre 5000 e 25000 milissegundos (5 a 25 segundos)
+                    scheduleNextAttack(jogador, random, nextDelay);
                 } else {
-                    ataqueTimer.cancel();  // Cancela o timer se o inimigo não estiver mais vivo
+                    ataqueTimer.cancel();;
                 }
             }
-        }, 5000, 5000);  // 5000 milissegundos = 5 segundos
+        }, delay);
+    }
+
+    public void pararAtaque() {
+        if (ataqueTimer != null) {
+            ataqueTimer.cancel();
+        }
     }
 
     public double getDanoMultiplicador(String weaponType) {

@@ -140,5 +140,16 @@ public class Jogador {
         double dano = armaAtual.calcularDano(armaAtual.getDanoBase(), inimigo);
         inimigo.setVida(inimigo.getVida() - dano);
         System.out.println("Você atacou o inimigo " + inimigo.getNome() + " e causou " + dano + " de dano.");
+
+        if (inimigo.getVida() <= 0) {
+            System.out.println("Você derrotou " + inimigo.getNome() + ".");
+            List<Item> itensDrop = inimigo.getItensDrop();
+            for (Item item : itensDrop) {
+                getLocalizacaoAtual().adicionarItem(item);
+                System.out.println("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
+            }
+            getLocalizacaoAtual().removerInimigo(inimigo.getNome());
+            inimigo.pararAtaque(); // Certifique-se de parar o ataque do inimigo ao ser derrotado
+        }
     }
 }

@@ -152,6 +152,10 @@ public class Ambiente implements AmbienteModificado{
         ItemAmbiente.add(item);
     }
 
+    public void adicionarItem(Item item) {
+        ItemAmbiente.add(item);
+    }
+
     public String getMotivo(Direcao direcao) {
         Saida saida = saidas.get(direcao);
         String motivo =  saida.getMotivoBloqueio();
