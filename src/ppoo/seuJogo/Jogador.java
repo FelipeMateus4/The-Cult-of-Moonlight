@@ -137,7 +137,7 @@ public class Jogador {
     }
 
     public void atacar(Inimigo inimigo) {
-        double dano = armaAtual.calcularDano(armaAtual.getDurabilidade(), inimigo);
+        double dano = armaAtual.calcularDano(armaAtual.getDanoBase(), inimigo);
         inimigo.setVida(inimigo.getVida() - dano);
         System.out.println("Você atacou o inimigo " + inimigo.getNome() + " e causou " + dano + " de dano.");
     }

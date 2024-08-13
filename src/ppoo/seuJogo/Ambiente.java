@@ -7,12 +7,14 @@ public class Ambiente implements AmbienteModificado{
     private HashMap<Direcao, Saida> saidas;
     private ArrayList<Item> ItemAmbiente;
     private ArrayList<Npc> NpcAmbiente;
+    private ArrayList<Inimigo> InimigoAmbiente;
 
     public Ambiente(String descricao) {
         this.descricao = descricao;
         this.saidas = new HashMap<>();
         this.ItemAmbiente = new ArrayList<>();
         this.NpcAmbiente = new ArrayList<>();
+        this.InimigoAmbiente = new ArrayList<>();
     }
 
     public Ambiente(String descricao, ArrayList<Item> ItemAmbiente) {
@@ -90,6 +92,20 @@ public class Ambiente implements AmbienteModificado{
                 desc += NpcAmbiente.get(i).getDescricao() + " cujo nome é " + NpcAmbiente.get(i).getNome();
             }
             desc += "." + "\n";
+        }
+        
+        if (!InimigoAmbiente.isEmpty()) {
+            desc += "Você vê ";
+            for (int i = 0; i < InimigoAmbiente.size(); i++) {
+                if (i > 0 && i == InimigoAmbiente.size() - 1) {
+                    desc += " e ";
+                }
+                else if (i > 0 && i < InimigoAmbiente.size()) {
+                    desc += ", ";
+                }
+                desc += InimigoAmbiente.get(i).getDescricao() + " cujo nome é " + InimigoAmbiente.get(i).getNome();
+            }
+            desc += "." + "\n";
         } else {
             desc += "Nao há nada de especial aqui.\n";
         }
@@ -109,6 +125,10 @@ public class Ambiente implements AmbienteModificado{
 
     public List<Item> getitens() {
         return Collections.unmodifiableList(ItemAmbiente);
+    }
+
+    public List<Inimigo> getInimigos() {
+        return Collections.unmodifiableList(InimigoAmbiente);
     }
 
     public void removerItemAmbiente(String nome){
@@ -149,6 +169,27 @@ public class Ambiente implements AmbienteModificado{
             }
         }
         return null;
+    }
+
+    public void adicionarInimigo(Inimigo inimigo) {
+        InimigoAmbiente.add(inimigo);
+    }
+
+    public Inimigo getInimigo(String nome) {
+        for (Inimigo inimigo : InimigoAmbiente) {
+            if (inimigo.getNome().equals(nome)) {
+                return inimigo;
+            }
+        }
+        return null;
+    }
+
+    public void removerInimigo(String nome) {
+        for (int i = 0; i < InimigoAmbiente.size(); i++) {
+            if (InimigoAmbiente.get(i).getNome().equals(nome)) {
+                InimigoAmbiente.remove(i);
+            }
+        }
     }
 
     @Override

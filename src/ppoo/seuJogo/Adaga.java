@@ -1,16 +1,10 @@
 package ppoo.seuJogo;
 
 public class Adaga extends Arma implements Equipavel{
-    private Double danoPerfurante;
 
-    public Adaga(String nome, String descricao, Integer durabilidade, Double danoPerfurante) {
-        super(nome, descricao, durabilidade, "Ladrao");
-        this.danoPerfurante = danoPerfurante;
+    public Adaga(String nome, double danoBase, String descricao, Integer durabilidade) {
+        super(nome, danoBase, descricao, durabilidade, "Ladrao");
         this.danoStrategy = new  DanoDeAdagaStrategy();
-    }
-    
-    public Double getDanoPerfurante() {
-        return danoPerfurante;
     }
 
     @Override
@@ -20,7 +14,7 @@ public class Adaga extends Arma implements Equipavel{
         System.out.println("Adaga:");
         System.out.println("Você está equipado com a adaga: " + nome);
         System.out.println("Durabilidade: " + durabilidade);
-        System.out.println("Dano de corte: " + danoPerfurante);
+        System.out.println("Dano de corte: " + getDanoBase());
     }
 
     @Override

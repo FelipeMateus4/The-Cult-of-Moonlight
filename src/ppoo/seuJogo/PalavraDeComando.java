@@ -23,6 +23,7 @@ public enum PalavraDeComando {
     BEBER("beber"),
     EQUIPAR("equipar"),
     DESEQUIPAR("desequipar"),
+    ATACAR("atacar"),
     CONVERSAR("conversar");
 
     // Palavra de comando

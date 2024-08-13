@@ -1,17 +1,12 @@
 package ppoo.seuJogo;
 
 public class Cajado extends Arma implements Equipavel{
-    private double danoMagico;
 
-    public Cajado(String nome, String descricao, int durabilidade, double danoMagico) {
-        super(nome, descricao, durabilidade, "Mago");
-        this.danoMagico = danoMagico;
+    public Cajado(String nome, double danoBase, String descricao, int durabilidade) {
+        super(nome, danoBase, descricao, durabilidade, "Mago");
         this.danoStrategy = new  DanoDeCajadoStrategy();
     }
     
-    public double getDanoPerfurante() {
-        return danoMagico;
-    }
 
     @Override
     public void equipado(Jogador jogador) {
@@ -20,7 +15,7 @@ public class Cajado extends Arma implements Equipavel{
         System.out.println("Cajado:");
         System.out.println("Você está equipado com a cajado: " + nome);
         System.out.println("Durabilidade: " + durabilidade);
-        System.out.println("Dano de corte: " + danoMagico);
+        System.out.println("Dano de corte: " + getDanoBase());
     }
 
     @Override

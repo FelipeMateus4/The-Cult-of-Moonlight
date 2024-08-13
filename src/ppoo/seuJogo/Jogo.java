@@ -35,7 +35,7 @@ public class Jogo {
     public Jogo() {
         Ambiente inicial = criarAmbientes();
         analisador = new Analisador();
-        jogador = new Jogador("Radahn", "Guerreiro", 100.0, new Mao("Mão", "Somente sua mão.", infinito), 
+        jogador = new Jogador("Radahn", "Guerreiro", 100.0, new Mao("Mão", 1.0, "Somente sua mão.", infinito), 
         new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0), 
         new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"), inicial);
     }
@@ -55,16 +55,16 @@ public class Jogo {
         itenspraca.add(new Acessorio("Lampiao", "um lampião velho", "iluminar"));
         itenspraca.add(new Acessorio("Lampiao", "um lampião velho", "iluminar"));
         itenspraca.add(new Acessorio("Mascara_Respiratoria", "uma mascara que protege contra gases tóxicos", "proteger"));
-        itenspraca.add(new Espada("Terrablade", "uma espada lendária da terra", 900, 200));
-        itenspraca.add(new Espada("Aguablade", "uma espada lendária da agua", 900, 200));
-        itenspraca.add(new Espada("Sunblade", "uma espada lendária do sol", 900, 200));
+        itenspraca.add(new Espada("Terrablade", 20.0, "uma espada lendária da terra", 100));
+        itenspraca.add(new Espada("Aguablade", 15.0, "uma espada lendária da agua",  100));
+        itenspraca.add(new Espada("Aeroblade", 10.0, "uma espada lendária do ar", 100));
         itenspousada.add(new Carta("Carta", "uma carta velha", "A carta diz: 'O tesouro está no túnel'"));
         itensigreja.add(new Pocao("Pocao_Grande", "uma poção que recupera 50 de vida", 50, 2));
         itensbeco.add(new Pocao("Pocao_Pequena", "uma poção que recupera 50 de vida", 20, 5));
         itenspraca.add(new Pocao("Pocao_Media", "uma poção que recupera 50 de vida", 50, 3));
         itensbeco.add(new Consumivel("Chave_Dourada", "uma chave de ouro com runas antigas gravadas", 1));
-        itensbeco.add(new Adaga("Adaga", "uma adaga afiada", 100, 30.0));
-        itensigreja.add(new Cajado("Cajado_Sagrado", "um cajado benzido pelo padre local", 90, 30));
+        itensbeco.add(new Adaga("Adaga", 10.0, "uma adaga afiada", 100));
+        itensigreja.add(new Cajado("Cajado_Sagrado", 18.0, "um cajado benzido pelo padre local", 90));
         itenspousada.add(new Armadura("Armadura_de_Ferro", "uma armadura de ferro", 50, 10));
 
         
@@ -179,9 +179,15 @@ public class Jogo {
 
         Npc padre = new Npc("Padre", "um padre idoso", "O padre diz: 'O segredo está na igreja, meu filho.'");
         Npc recepcionista = new Npc("Recepcionista", "uma recepcionista jovem", "A recepcionista diz: 'Bem-vindo à pousada!'");
+        Inimigo esqueleto = new Inimigo("Esqueleto", "um esqueleto", 2, 10);
+        Inimigo zumbi = new Inimigo("Zumbi", "um zumbi", 2, 15);
+
 
         praca.adicionarNpc(padre);
         pousada.adicionarNpc(recepcionista);
+
+        praca.adicionarInimigo(esqueleto);
+        praca.adicionarInimigo(zumbi);
 
         // cria os ambientes
         return praca;
@@ -198,6 +204,7 @@ public class Jogo {
 
         boolean terminado = false;
         while (!terminado) {
+
             Comando comando = analisador.pegarComando();
             terminado = processarComando(comando);
             verificarAmbienteToxico();
@@ -275,8 +282,9 @@ public class Jogo {
         } 
         else if (palavraDeComando == PalavraDeComando.CONVERSAR) {
             conversar(comando);
-        }
-        else if (palavraDeComando == PalavraDeComando.SAIR) {
+        } else if (palavraDeComando == PalavraDeComando.ATACAR) {
+            atacar(comando);
+        } else if (palavraDeComando == PalavraDeComando.SAIR) {
             querSair = sair(comando);
         }
         return querSair;
@@ -323,7 +331,7 @@ public class Jogo {
         Item item = jogador.getLocalizacaoAtual().getItem(nomeItem);
 
         if(jogador.getLocalizacaoAtual().isEscuro() && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
-            System.out.println("você não consegue pegar nenhum item, pois esta escuro");
+            System.out.println("você não consegue pegar nenhum item, pois está escuro");
         }
         else if (item == null) {
             System.out.println("Não existe esse item aqui.");
@@ -335,6 +343,26 @@ public class Jogo {
                 System.out.println("Item coletado.");
             } else {
                 System.out.println("Mochila cheia. Remova um item com o comando largar para adicionar outro.");
+            }
+        }
+    }
+
+    private void atacar(Comando comando) {
+        if (!comando.temSegundaPalavra()) {
+            System.out.println("Atacar o que?");
+            return;
+        }
+
+        String nomeInimgo = comando.getSegundaPalavra();
+        Inimigo inimigo = jogador.getLocalizacaoAtual().getInimigo(nomeInimgo);
+
+        if (inimigo == null) {
+            System.out.println("Não existe esse NPC aqui.");
+        } else {
+            jogador.atacar(inimigo);
+            if (inimigo.getVida() <= 0) {
+                System.out.println("Você derrotou " + nomeInimgo + ".");
+                jogador.getLocalizacaoAtual().removerInimigo(nomeInimgo);
             }
         }
     }
@@ -368,7 +396,7 @@ public class Jogo {
             jogador.removerItem(nomeItem);
             jogador.getLocalizacaoAtual().largarItem(itemProcurado);
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) 
-                jogador.setArmaAtual(new Mao("Mão", "mãos com socos fortes.", infinito));
+                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito));
             else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) 
                 jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0));
             else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) 
@@ -391,7 +419,7 @@ public class Jogo {
 
         if (itemProcurado != null) {
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
-                jogador.setArmaAtual(new Mao("Mão", "mãos com socos fortes.", infinito));
+                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito));
                 System.out.println("Você desequipou " + nomeItem + ".");
             }
             else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
@@ -513,6 +541,16 @@ public class Jogo {
             if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
                 // Quero que o jogador perca 10 de vida a cada 5 segundos
                 iniciarControleAmbienteToxico();
+            }
+
+
+            if (jogador.getLocalizacaoAtual().getInimigos().size() > 0) {
+                List<Inimigo> inimigos = jogador.getLocalizacaoAtual().getInimigos();
+                System.out.println("Você encontrou um inimigo!");
+                for (Inimigo inimigo : inimigos) {
+                    System.out.println("Nome: " + inimigo.getNome() + " Vida: " + inimigo.getVida());
+                    inimigo.iniciarAtaquesPeriodicos(jogador);
+                }
             }
 
             imprimirLocalizacaoAtual();

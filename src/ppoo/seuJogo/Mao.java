@@ -1,10 +1,10 @@
 package ppoo.seuJogo;
 
 public class Mao extends Arma implements Equipavel{
-    private double danoSoco = 5;
+    private double danoSoco = 1.0;
 
-    public Mao(String nome, String descricao, int durabilidade) {
-        super(nome, descricao, durabilidade, "Nenhum");
+    public Mao(String nome, double baseDano, String descricao, int durabilidade) {
+        super(nome, baseDano, descricao, durabilidade, "Nenhum");
     }
 
     @Override

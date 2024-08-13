@@ -1,17 +1,11 @@
 package ppoo.seuJogo;
 
 public class Espada extends Arma implements Equipavel {
-    private double danoCorte;
 
 
-    public Espada(String nome, String descricao, int durabilidade, double danoCorte) {
-        super(nome, descricao, durabilidade, "Guerreiro");
-        this.danoCorte = danoCorte;
+    public Espada(String nome, double danoBase, String descricao, int durabilidade) {
+        super(nome, danoBase, descricao, durabilidade, "Guerreiro");
         this.danoStrategy = new DanoDeEspadaStrategy();
-    }
-
-    public double getDanoCorte() {
-        return danoCorte;
     }
 
     @Override
@@ -21,7 +15,7 @@ public class Espada extends Arma implements Equipavel {
         System.out.println("Espada:");
         System.out.println("Você está equipado com a espada: " + nome);
         System.out.println("Durabilidade: " + durabilidade);
-        System.out.println("Dano de corte: " + danoCorte);
+        System.out.println("Dano de corte: " + getDanoBase());
     }
 
     @Override
