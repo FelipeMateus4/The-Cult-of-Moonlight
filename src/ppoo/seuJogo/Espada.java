@@ -1,11 +1,13 @@
 package ppoo.seuJogo;
 
-public class Espada extends Arma implements Equipavel{
+public class Espada extends Arma implements Equipavel {
     private double danoCorte;
-    
+
+
     public Espada(String nome, String descricao, int durabilidade, double danoCorte) {
         super(nome, descricao, durabilidade, "Guerreiro");
         this.danoCorte = danoCorte;
+        this.danoStrategy = new DanoDeEspadaStrategy();
     }
 
     public double getDanoCorte() {
@@ -24,7 +26,7 @@ public class Espada extends Arma implements Equipavel{
 
     @Override
     public boolean equipar(Jogador jogador) {
-        if (jogador.getClasseJogador() != "Guerreiro") {
+        if (!jogador.getClasseJogador().equals("Guerreiro")) {
             System.out.println("Você não pode equipar uma espada, pois não é um guerreiro.");
             return false;
         }
@@ -32,3 +34,5 @@ public class Espada extends Arma implements Equipavel{
         return true;
     }
 }
+
+// Classes Adaga e Cajado seguem a mesma estrutura, com estratégias de dano apropriadas.

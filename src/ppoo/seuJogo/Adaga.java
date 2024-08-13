@@ -6,6 +6,7 @@ public class Adaga extends Arma implements Equipavel{
     public Adaga(String nome, String descricao, Integer durabilidade, Double danoPerfurante) {
         super(nome, descricao, durabilidade, "Ladrao");
         this.danoPerfurante = danoPerfurante;
+        this.danoStrategy = new  DanoDeAdagaStrategy();
     }
     
     public Double getDanoPerfurante() {

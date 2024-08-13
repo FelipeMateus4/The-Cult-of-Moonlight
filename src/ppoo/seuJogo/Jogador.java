@@ -11,6 +11,7 @@ public class Jogador {
     private Ambiente localizacaoAtual;
     private Map<String, Item> mochila;
     private Acessorio acessorioAtual;
+    private Boolean vivo = true;
     private static final int LIMITE_MOCHILA = 8;
 
     public Jogador(String nome, String classe, Double vida, Arma armaAtual, Armadura armaduraAtual, Acessorio acessorioAtual, Ambiente localizacaoAtual) {
@@ -105,8 +106,7 @@ public class Jogador {
     public double beber(Pocao pocao) {
         if (vida + pocao.getVidaDada() > 100) {
             vida = 100.0;
-        }
-        else {
+        } else {
             vida += pocao.getVidaDada();
         }
         System.out.println(vida);
@@ -118,7 +118,7 @@ public class Jogador {
     }
 
     public void setAcessorioAtual(Acessorio acessorioAtual) {
-        this.acessorioAtual =  acessorioAtual;
+        this.acessorioAtual = acessorioAtual;
     }
 
     public void perderVida(double quantidade) {
@@ -128,4 +128,17 @@ public class Jogador {
         }
     }
 
+    public Boolean getVivo() {
+        return vivo;
+    }
+
+    public void setMorto() {
+        this.vivo = false;
+    }
+
+    public void atacar(Inimigo inimigo) {
+        double dano = armaAtual.calcularDano(armaAtual.getDurabilidade(), inimigo);
+        inimigo.setVida(inimigo.getVida() - dano);
+        System.out.println("Você atacou o inimigo " + inimigo.getNome() + " e causou " + dano + " de dano.");
+    }
 }

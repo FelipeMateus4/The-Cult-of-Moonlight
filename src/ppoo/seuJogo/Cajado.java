@@ -6,6 +6,7 @@ public class Cajado extends Arma implements Equipavel{
     public Cajado(String nome, String descricao, int durabilidade, double danoMagico) {
         super(nome, descricao, durabilidade, "Mago");
         this.danoMagico = danoMagico;
+        this.danoStrategy = new  DanoDeCajadoStrategy();
     }
     
     public double getDanoPerfurante() {
