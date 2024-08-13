@@ -177,8 +177,8 @@ public class Jogo {
 
         salaTesouro.ajustarSaida(Direcao.LESTE, tunelEsgoto4);
 
-        Npc padre = new Npc("Padre", "um 'Padre' idoso", "O padre diz: 'O segredo está na igreja, meu filho.'", igreja);
-        Npc recepcionista = new Npc("Recepcionista", "uma 'Recepcionista' jovem", "A recepcionista diz: 'Bem-vindo à pousada!'", pousada);
+        Npc padre = new Npc("Padre", "um 'Padre' idoso", "O padre diz: 'O segredo está na igreja, meu filho.'");
+        Npc recepcionista = new Npc("Recepcionista", "uma 'Recepcionista' jovem", "A recepcionista diz: 'Bem-vindo à pousada!'");
 
         praca.adicionarNpc(padre);
         pousada.adicionarNpc(recepcionista);
