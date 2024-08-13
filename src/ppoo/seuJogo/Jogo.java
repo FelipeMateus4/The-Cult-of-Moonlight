@@ -177,6 +177,11 @@ public class Jogo {
 
         salaTesouro.ajustarSaida(Direcao.LESTE, tunelEsgoto4);
 
+        Npc padre = new Npc("Padre", "um padre idoso", "O padre diz: 'O segredo está na igreja, meu filho.'", igreja);
+        Npc recepcionista = new Npc("Recepcionista", "uma recepcionista jovem", "A recepcionista diz: 'Bem-vindo à pousada!'", pousada);
+
+        praca.adicionarNpc(padre);
+        pousada.adicionarNpc(recepcionista);
 
         // cria os ambientes
         return praca;
@@ -267,6 +272,9 @@ public class Jogo {
         }
         else if (palavraDeComando == PalavraDeComando.DESEQUIPAR) {
             desequipar(comando);
+        } 
+        else if (palavraDeComando == PalavraDeComando.CONVERSAR) {
+            conversar(comando);
         }
         else if (palavraDeComando == PalavraDeComando.SAIR) {
             querSair = sair(comando);
@@ -328,6 +336,22 @@ public class Jogo {
             } else {
                 System.out.println("Mochila cheia. Remova um item com o comando largar para adicionar outro.");
             }
+        }
+    }
+
+    private void conversar(Comando comando) {
+        if (!comando.temSegundaPalavra()) {
+            System.out.println("Conversar com quem?");
+            return;
+        }
+
+        String nomeNpc = comando.getSegundaPalavra();
+        Npc npc = jogador.getLocalizacaoAtual().getNpc(nomeNpc);
+
+        if (npc == null) {
+            System.out.println("Não existe esse NPC aqui.");
+        } else {
+            System.out.println(npc.getDialogo());
         }
     }
 

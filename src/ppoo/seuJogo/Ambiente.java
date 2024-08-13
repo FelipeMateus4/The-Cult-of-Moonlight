@@ -6,11 +6,13 @@ public class Ambiente implements AmbienteModificado{
     private String descricao;
     private HashMap<Direcao, Saida> saidas;
     private ArrayList<Item> ItemAmbiente;
+    private ArrayList<Npc> NpcAmbiente;
 
     public Ambiente(String descricao) {
         this.descricao = descricao;
         this.saidas = new HashMap<>();
         this.ItemAmbiente = new ArrayList<>();
+        this.NpcAmbiente = new ArrayList<>();
     }
 
     public Ambiente(String descricao, ArrayList<Item> ItemAmbiente) {
@@ -120,6 +122,20 @@ public class Ambiente implements AmbienteModificado{
         String motivo =  saida.getMotivoBloqueio();
         return motivo;
     }
+
+    public void adicionarNpc(Npc npc) {
+        NpcAmbiente.add(npc);
+    }
+
+    public Npc getNpc(String nome) {
+        for (Npc npc : NpcAmbiente) {
+            if (npc.getNome().equals(nome)) {
+                return npc;
+            }
+        }
+        return null;
+    }
+
     @Override
     public boolean isToxico() {
         return false;

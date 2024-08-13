@@ -22,7 +22,8 @@ public enum PalavraDeComando {
     EQUIPADO("equipado"),
     BEBER("beber"),
     EQUIPAR("equipar"),
-    DESEQUIPAR("desequipar");
+    DESEQUIPAR("desequipar"),
+    CONVERSAR("conversar");
 
     // Palavra de comando
     private String palavraDeComando;
