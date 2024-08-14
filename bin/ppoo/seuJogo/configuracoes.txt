@@ -6,7 +6,7 @@ Classe=Guerreiro
 Praca central|na Praca central da cidade Moonlight.|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna
 Pousada|na Pousada da bela cidade Moonlight.|OESTE=Praca central|NORTE=Taverna
 Igreja|na velha igreja da cidade Moonlight.|SUL=Praca central
-Beco|em um beco escuro.|NORTE=Praca central|BAIXO=Esgoto|Toxico
+Beco|em um beco escuro.|NORTE=Praca central|BAIXO=Esgoto|Escuro
 Floresta|na floresta|LESTE=Praca central|SUL=Caverna
 Cemitério|no cemitério sombrio|SUL=Floresta|OESTE=Cabana|LESTE=Portao Trancado|Escuro
 Cabana|em uma cabana abandonada|LESTE=Floresta|OESTE=Lago|Escuro
@@ -28,6 +28,7 @@ Lago|à beira de um lago tranquilo|LESTE=Cabana
 Caverna|em uma caverna escura|NORTE=Floresta|Escuro
 Portao Trancado|diante de um portão trancado, necessitando de uma chave especial para abrir|LESTE=Cemitério|SUL=Salao Secreto
 Salao Secreto|um salão secreto cheio de tesouros e perigos|NORTE=Portao Trancado
+
 
 [Itens]
 Lampiao|um lampião velho|Acessorio|Praca central|Iluminar

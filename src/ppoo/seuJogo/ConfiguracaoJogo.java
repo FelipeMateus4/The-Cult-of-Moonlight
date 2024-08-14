@@ -80,28 +80,36 @@ public class ConfiguracaoJogo {
         }
     }
 
-    private void adicionarAmbiente(String linha) throws IllegalArgumentException {
-        String[] partes = linha.split("\\|");
-        if (partes.length < 2) {
-            throw new IllegalArgumentException("Configuração inválida para ambiente: " + linha);
-        }
-        String nome = partes[0];
-        String descricao = partes[1];
-        String[] saidas = Arrays.copyOfRange(partes, 2, partes.length);
-        Ambiente ambiente = new Ambiente(descricao);
-        ambientes.put(nome, ambiente);
+private void adicionarAmbiente(String linha) throws IllegalArgumentException {
+    String[] partes = linha.split("\\|");
+    if (partes.length < 2) {
+        throw new IllegalArgumentException("Configuração inválida para ambiente: " + linha);
+    }
+    String nome = partes[0];
+    String descricao = partes[1];
+    String[] saidas = Arrays.copyOfRange(partes, 2, partes.length);
 
-        if (ambienteInicial == null) {
-            ambienteInicial = ambiente;
-        }
+    Ambiente ambiente;
+    if (descricao.toLowerCase().contains("escuro")) {
+        ambiente = new AmbienteEscuro(descricao);
+    } else {
+        ambiente = new Ambiente(descricao);
+    }
 
-        for (String saida : saidas) {
-            String[] direcaoAmbiente = saida.split("=");
-            if (direcaoAmbiente.length == 2) {
-                saidasPendentes.add(new String[]{nome, direcaoAmbiente[0], direcaoAmbiente[1]});
-            }
+    ambientes.put(nome, ambiente);
+
+    if (ambienteInicial == null) {
+        ambienteInicial = ambiente;
+    }
+
+    for (String saida : saidas) {
+        String[] direcaoAmbiente = saida.split("=");
+        if (direcaoAmbiente.length == 2) {
+            saidasPendentes.add(new String[]{nome, direcaoAmbiente[0], direcaoAmbiente[1]});
         }
     }
+}
+
 
     private void ajustarSaidasPendentes() {
         for (String[] saida : saidasPendentes) {
