@@ -90,9 +90,22 @@ private void adicionarAmbiente(String linha) throws IllegalArgumentException {
     String[] saidas = Arrays.copyOfRange(partes, 2, partes.length);
 
     Ambiente ambiente;
-    if (descricao.toLowerCase().contains("escuro")) {
+    boolean isEscuro = false;
+    boolean isToxico = false;
+
+    for (int i = 2; i < partes.length; i++) {
+        if (partes[i].equalsIgnoreCase("Escuro")) {
+            isEscuro = true;
+        }
+        if (partes[i].equalsIgnoreCase("Toxico")) {
+            isToxico = true;
+        }
+    }
+
+  
+      if (isEscuro) {
         ambiente = new AmbienteEscuro(descricao);
-    } else if (descricao.toLowerCase().contains("toxico")) {
+    } else if (isToxico) {
         ambiente = new AmbienteToxico(descricao);
     } else {
         ambiente = new Ambiente(descricao);

@@ -3,8 +3,8 @@ Nome=Radahn
 Classe=Guerreiro
 
 [Ambientes]
-Praca central|na Praca central da cidade Moonlight.|LESTE=Pousada|SUL=Beco:Chave|OESTE=Floresta|NORDESTE=Taverna
-Pousada|na Pousada da bela cidade Moonlight.|OESTE=Praca central|NORTE=Taverna|Escuro
+Praca central|na Praca central da cidade Moonlight.|LESTE=Pousada|SUL=Beco:Chave|OESTE=Floresta|NORDESTE=Taverna|Toxico
+Pousada|na Pousada da bela cidade Moonlight.|OESTE=Praca central|NORTE=Taverna|Toxico
 Igreja|na velha igreja da cidade Moonlight.|SUL=Praca central
 Beco|em um beco escuro.|NORTE=Praca central|BAIXO=Esgoto|Escuro
 Floresta|na floresta|LESTE=Praca central|SUL=Caverna
