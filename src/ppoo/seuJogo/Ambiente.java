@@ -2,7 +2,7 @@ package ppoo.seuJogo;
 
 import java.util.*;
 
-public class Ambiente implements AmbienteModificado{
+public class Ambiente implements AmbienteModificado {
     private String descricao;
     private HashMap<Direcao, Saida> saidas;
     private ArrayList<Item> ItemAmbiente;
@@ -47,7 +47,7 @@ public class Ambiente implements AmbienteModificado{
         Saida saida = saidas.get(direcao);
         if (saida != null && !saida.estaTrancado()) {
             return saida.getDestino();
-        } else if (saida != null && saida.estaTrancado()){
+        } else if (saida != null && saida.estaTrancado()) {
             return this;
         } else {
             return null;
@@ -62,20 +62,20 @@ public class Ambiente implements AmbienteModificado{
         return texto;
     }
 
-
-    // Quero que imprima os Npcs do lugar também
     public String getDescricaoLonga(Jogador jogador) {
         String desc = "Você está " + getDescricao() + "\n";
         if (temItem()) {
             desc += "Você avistou ";
-            for (int i = 0; i < ItemAmbiente.size(); i++){
-                if (i > 0 && i == ItemAmbiente.size() - 1) {
-                    desc += " e ";
+            for (int i = 0; i < ItemAmbiente.size(); i++) {
+                Item item = ItemAmbiente.get(i);
+                if (item != null) {
+                    if (i > 0 && i == ItemAmbiente.size() - 1) {
+                        desc += " e ";
+                    } else if (i > 0 && i < ItemAmbiente.size()) {
+                        desc += ", ";
+                    }
+                    desc += item.getDescricao() + " cujo nome é " + item.getNome();
                 }
-                else if (i > 0 && i < ItemAmbiente.size()) {
-                    desc += ", ";
-                }
-                desc += ItemAmbiente.get(i).getDescricao() + " cujo nome é " + ItemAmbiente.get(i).getNome();
             }
             desc += "." + "\n";
         }
@@ -83,27 +83,31 @@ public class Ambiente implements AmbienteModificado{
         if (!NpcAmbiente.isEmpty()) {
             desc += "Você vê ";
             for (int i = 0; i < NpcAmbiente.size(); i++) {
-                if (i > 0 && i == NpcAmbiente.size() - 1) {
-                    desc += " e ";
+                Npc npc = NpcAmbiente.get(i);
+                if (npc != null) {
+                    if (i > 0 && i == NpcAmbiente.size() - 1) {
+                        desc += " e ";
+                    } else if (i > 0 && i < NpcAmbiente.size()) {
+                        desc += ", ";
+                    }
+                    desc += npc.getDescricao() + " cujo nome é " + npc.getNome();
                 }
-                else if (i > 0 && i < NpcAmbiente.size()) {
-                    desc += ", ";
-                }
-                desc += NpcAmbiente.get(i).getDescricao() + " cujo nome é " + NpcAmbiente.get(i).getNome();
             }
             desc += "." + "\n";
         }
-        
+
         if (!InimigoAmbiente.isEmpty()) {
             desc += "Você vê ";
             for (int i = 0; i < InimigoAmbiente.size(); i++) {
-                if (i > 0 && i == InimigoAmbiente.size() - 1) {
-                    desc += " e ";
+                Inimigo inimigo = InimigoAmbiente.get(i);
+                if (inimigo != null) {
+                    if (i > 0 && i == InimigoAmbiente.size() - 1) {
+                        desc += " e ";
+                    } else if (i > 0 && i < InimigoAmbiente.size()) {
+                        desc += ", ";
+                    }
+                    desc += inimigo.getDescricao() + " cujo nome é " + inimigo.getNome();
                 }
-                else if (i > 0 && i < InimigoAmbiente.size()) {
-                    desc += ", ";
-                }
-                desc += InimigoAmbiente.get(i).getDescricao() + " cujo nome é " + InimigoAmbiente.get(i).getNome();
             }
             desc += "." + "\n";
         } else {
@@ -131,17 +135,13 @@ public class Ambiente implements AmbienteModificado{
         return Collections.unmodifiableList(InimigoAmbiente);
     }
 
-    public void removerItemAmbiente(String nome){
-        for (int i = 0; i < ItemAmbiente.size(); i++) {
-            if (ItemAmbiente.get(i).getNome().equals(nome)) {
-                ItemAmbiente.remove(i);
-            }
-        }
+    public void removerItemAmbiente(String nome) {
+        ItemAmbiente.removeIf(item -> item != null && item.getNome().equals(nome));
     }
 
     public Item getItem(String nome) {
         for (Item item : ItemAmbiente) {
-            if (item.getNome().equals(nome)) {
+            if (item != null && item.getNome().equals(nome)) {
                 return item;
             }
         }
@@ -158,8 +158,10 @@ public class Ambiente implements AmbienteModificado{
 
     public String getMotivo(Direcao direcao) {
         Saida saida = saidas.get(direcao);
-        String motivo =  saida.getMotivoBloqueio();
-        return motivo;
+        if (saida != null) {
+            return saida.getMotivoBloqueio();
+        }
+        return null;
     }
 
     public void adicionarNpc(Npc npc) {
@@ -168,7 +170,7 @@ public class Ambiente implements AmbienteModificado{
 
     public Npc getNpc(String nome) {
         for (Npc npc : NpcAmbiente) {
-            if (npc.getNome().equals(nome)) {
+            if (npc != null && npc.getNome().equals(nome)) {
                 return npc;
             }
         }
@@ -181,7 +183,7 @@ public class Ambiente implements AmbienteModificado{
 
     public Inimigo getInimigo(String nome) {
         for (Inimigo inimigo : InimigoAmbiente) {
-            if (inimigo.getNome().equals(nome)) {
+            if (inimigo != null && inimigo.getNome().equals(nome)) {
                 return inimigo;
             }
         }
@@ -189,11 +191,7 @@ public class Ambiente implements AmbienteModificado{
     }
 
     public void removerInimigo(String nome) {
-        for (int i = 0; i < InimigoAmbiente.size(); i++) {
-            if (InimigoAmbiente.get(i).getNome().equals(nome)) {
-                InimigoAmbiente.remove(i);
-            }
-        }
+        InimigoAmbiente.removeIf(inimigo -> inimigo != null && inimigo.getNome().equals(nome));
     }
 
     @Override

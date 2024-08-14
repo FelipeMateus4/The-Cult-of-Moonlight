@@ -10,8 +10,8 @@ public class ConfiguracaoJogo {
     private List<Inimigo> inimigos;
     private String nomeJogador;
     private String classeJogador;
-    private List<String[]> saidasPendentes; // Armazena as saídas pendentes para ajustar depois
-    private Ambiente ambienteInicial; // Novo campo para armazenar o primeiro ambiente lido
+    private List<String[]> saidasPendentes;
+    private Ambiente ambienteInicial;
 
     public ConfiguracaoJogo(String caminhoArquivo) throws IOException {
         ambientes = new HashMap<>();
@@ -29,42 +29,49 @@ public class ConfiguracaoJogo {
         boolean ambienteInicialDefinido = false;
 
         while ((linha = br.readLine()) != null) {
+            linha = linha.trim();
+            if (linha.isEmpty()) {
+                continue;
+            }
             if (linha.startsWith("[") && linha.endsWith("]")) {
                 secao = linha.substring(1, linha.length() - 1);
             } else {
-                switch (secao) {
-                    case "Jogador":
-                        adicionarJogador(linha);
-                        break;
-                    case "Ambientes":
-                        adicionarAmbiente(linha);
-                        if (!ambienteInicialDefinido) {
-                            ambienteInicialDefinido = true;
-                        }
-                        break;
-                    case "Itens":
-                        adicionarItem(linha);
-                        break;
-                    case "Personagens":
-                        adicionarPersonagem(linha);
-                        break;
-                    case "Inimigos":
-                        adicionarInimigo(linha);
-                        break;
+                try {
+                    switch (secao) {
+                        case "Jogador":
+                            adicionarJogador(linha);
+                            break;
+                        case "Ambientes":
+                            adicionarAmbiente(linha);
+                            if (!ambienteInicialDefinido) {
+                                ambienteInicialDefinido = true;
+                            }
+                            break;
+                        case "Itens":
+                            adicionarItem(linha);
+                            break;
+                        case "Personagens":
+                            adicionarPersonagem(linha);
+                            break;
+                        case "Inimigos":
+                            adicionarInimigo(linha);
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Seção desconhecida: " + secao);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Erro ao processar linha na seção " + secao + ": " + linha + " - " + e.getMessage());
                 }
             }
         }
         br.close();
-
-        // Ajustar saídas após todos os ambientes serem carregados
         ajustarSaidasPendentes();
     }
 
-    private void adicionarJogador(String linha) {
+    private void adicionarJogador(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("=");
         if (partes.length < 2) {
-            System.out.println("Erro na configuração do jogador: " + linha);
-            return;
+            throw new IllegalArgumentException("Configuração inválida para jogador: " + linha);
         }
         if (partes[0].equals("Nome")) {
             nomeJogador = partes[1];
@@ -73,11 +80,10 @@ public class ConfiguracaoJogo {
         }
     }
 
-    private void adicionarAmbiente(String linha) {
+    private void adicionarAmbiente(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");
         if (partes.length < 2) {
-            System.out.println("Erro na configuração do ambiente: " + linha);
-            return;
+            throw new IllegalArgumentException("Configuração inválida para ambiente: " + linha);
         }
         String nome = partes[0];
         String descricao = partes[1];
@@ -85,12 +91,10 @@ public class ConfiguracaoJogo {
         Ambiente ambiente = new Ambiente(descricao);
         ambientes.put(nome, ambiente);
 
-        // Armazenar o primeiro ambiente lido
         if (ambienteInicial == null) {
             ambienteInicial = ambiente;
         }
 
-        // Armazenar as saídas pendentes
         for (String saida : saidas) {
             String[] direcaoAmbiente = saida.split("=");
             if (direcaoAmbiente.length == 2) {
@@ -125,11 +129,10 @@ public class ConfiguracaoJogo {
         }
     }
 
-    private void adicionarItem(String linha) {
+    private void adicionarItem(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");
         if (partes.length < 5) {
-            System.out.println("Erro na configuração do item: " + linha);
-            return;
+            throw new IllegalArgumentException("Configuração inválida para item: " + linha);
         }
         String nome = partes[0];
         String descricao = partes[1];
@@ -153,11 +156,10 @@ public class ConfiguracaoJogo {
         ambientes.get(ambienteInicial).adicionarItem(item);
     }
 
-    private void adicionarPersonagem(String linha) {
+    private void adicionarPersonagem(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");
         if (partes.length < 4) {
-            System.out.println("Erro na configuração do personagem: " + linha);
-            return;
+            throw new IllegalArgumentException("Configuração inválida para personagem: " + linha);
         }
         String nome = partes[0];
         String descricao = partes[1];
@@ -168,11 +170,10 @@ public class ConfiguracaoJogo {
         ambientes.get(ambienteInicial).adicionarNpc(npc);
     }
 
-    private void adicionarInimigo(String linha) {
+    private void adicionarInimigo(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");
         if (partes.length < 3) {
-            System.out.println("Erro na configuração do inimigo: " + linha);
-            return;
+            throw new IllegalArgumentException("Configuração inválida para inimigo: " + linha);
         }
         String nome = partes[0];
         String descricao = partes[1];
@@ -195,7 +196,7 @@ public class ConfiguracaoJogo {
     }
 
     public List<Inimigo> getInimigos() {
-        return inimigos;
+        return inimigos;    
     }
 
     public String getNomeJogador() {

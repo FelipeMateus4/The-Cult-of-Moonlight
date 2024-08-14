@@ -17,7 +17,7 @@ public class Jogo {
             ConfiguracaoJogo configuracao = new ConfiguracaoJogo(caminhoConfiguracao);
             ambientes = configuracao.getAmbientes();
             analisador = new Analisador();
-            Ambiente ambienteInicial = configuracao.getAmbienteInicial(); // Obtém o primeiro ambiente lido
+            Ambiente ambienteInicial = configuracao.getAmbienteInicial();
             if (ambienteInicial == null) {
                 throw new RuntimeException("Nenhum ambiente inicial encontrado na configuração.");
             }
