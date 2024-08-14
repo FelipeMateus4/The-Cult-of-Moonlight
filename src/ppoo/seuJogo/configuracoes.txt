@@ -32,7 +32,7 @@ Salao Secreto|um salão secreto cheio de tesouros e perigos|NORTE=Portao Trancad
 [Itens]
 ChaveDeOuro|chave legal |Acessorio|Praca central| abrir portas
 Chave|chave legal |Acessorio|Praca central| abrir portas
-Lampiao|um lampião velho|Acessorio|Praca central|Iluminar
+Lampiao|um lampião velho|Acessorio|Praca central|iluminar
 Merda|uma bosta fedorenta|Acessorio|Beco|Atrapalhar
 Mascara Respiratoria|uma mascara que protege contra gases tóxicos|Acessorio|Esgoto|Proteger
 Terrablade|uma espada lendária da terra|Espada|Caverna|Causa dano massivo|20.0|100
