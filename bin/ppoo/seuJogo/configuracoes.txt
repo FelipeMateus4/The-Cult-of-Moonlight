@@ -3,8 +3,8 @@ Nome=Radahn
 Classe=Guerreiro
 
 [Ambientes]
-Praca central|na Praca central da cidade Moonlight.|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna
-Pousada|na Pousada da bela cidade Moonlight.|OESTE=Praca central|NORTE=Taverna
+Praca central|na Praca central da cidade Moonlight.|LESTE=Pousada|SUL=Beco:Chave|OESTE=Floresta|NORDESTE=Taverna
+Pousada|na Pousada da bela cidade Moonlight.|OESTE=Praca central|NORTE=Taverna|Escuro
 Igreja|na velha igreja da cidade Moonlight.|SUL=Praca central
 Beco|em um beco escuro.|NORTE=Praca central|BAIXO=Esgoto|Escuro
 Floresta|na floresta|LESTE=Praca central|SUL=Caverna
@@ -29,8 +29,9 @@ Caverna|em uma caverna escura|NORTE=Floresta|Escuro
 Portao Trancado|diante de um portão trancado, necessitando de uma chave especial para abrir|LESTE=Cemitério|SUL=Salao Secreto
 Salao Secreto|um salão secreto cheio de tesouros e perigos|NORTE=Portao Trancado
 
-
 [Itens]
+ChaveDeOuro|chave legal |Acessorio|Praca central| abrir portas
+Chave|chave legal |Acessorio|Praca central| abrir portas
 Lampiao|um lampião velho|Acessorio|Praca central|Iluminar
 Merda|uma bosta fedorenta|Acessorio|Beco|Atrapalhar
 Mascara Respiratoria|uma mascara que protege contra gases tóxicos|Acessorio|Esgoto|Proteger
@@ -41,7 +42,7 @@ Carta|uma carta velha|Carta|Pousada|Contém pistas sobre a história
 Pocao Grande|uma poção que recupera 50 de vida|Pocao|Igreja|Recupera 50 de vida|50.0|2
 Pocao Pequena|uma poção que recupera 20 de vida|Pocao|Beco|Recupera 20 de vida|20.0|5
 Pocao Media|uma poção que recupera 30 de vida|Pocao|Taverna|Recupera 30 de vida|30.0|3
-Chave Dourada|uma chave de ouro com runas antigas gravadas|Consumivel|Tunel Esgoto 3|Abre portas trancadas|1
+Chave De Ouro|uma chave de ouro com runas antigas gravadas|Consumivel|Praca central|Abre portas trancadas|1
 Adaga|uma adaga afiada|Adaga|Beco|Causa dano rápido|10.0|100
 Cajado Sagrado|um cajado benzido pelo padre local|Cajado|Igreja|Aumenta o poder mágico|18.0|90
 Armadura de Ferro|uma armadura de ferro|Armadura|Cabana|Aumenta a defesa|50|10

@@ -92,6 +92,8 @@ private void adicionarAmbiente(String linha) throws IllegalArgumentException {
     Ambiente ambiente;
     if (descricao.toLowerCase().contains("escuro")) {
         ambiente = new AmbienteEscuro(descricao);
+    } else if (descricao.toLowerCase().contains("toxico")) {
+        ambiente = new AmbienteToxico(descricao);
     } else {
         ambiente = new Ambiente(descricao);
     }
@@ -103,39 +105,55 @@ private void adicionarAmbiente(String linha) throws IllegalArgumentException {
     }
 
     for (String saida : saidas) {
-        String[] direcaoAmbiente = saida.split("=");
-        if (direcaoAmbiente.length == 2) {
-            saidasPendentes.add(new String[]{nome, direcaoAmbiente[0], direcaoAmbiente[1]});
+        if (saida.contains(":")) {
+            String[] direcaoAmbienteChave = saida.split(":");
+            String[] direcaoAmbiente = direcaoAmbienteChave[0].split("=");
+            if (direcaoAmbiente.length == 2) {
+                String direcao = direcaoAmbiente[0];
+                String ambienteDestino = direcaoAmbiente[1];
+                String chave = direcaoAmbienteChave[1];
+                saidasPendentes.add(new String[]{nome, direcao, ambienteDestino, chave});
+            }
+        } else {
+            String[] direcaoAmbiente = saida.split("=");
+            if (direcaoAmbiente.length == 2) {
+                saidasPendentes.add(new String[]{nome, direcaoAmbiente[0], direcaoAmbiente[1]});
+            }
         }
     }
 }
 
+private void ajustarSaidasPendentes() {
+    for (String[] saida : saidasPendentes) {
+        String nomeAmbiente = saida[0];
+        String direcaoString = saida[1];
+        String nomeAmbienteSaida = saida[2];
+        String chave = saida.length == 4 ? saida[3] : null;
 
-    private void ajustarSaidasPendentes() {
-        for (String[] saida : saidasPendentes) {
-            String nomeAmbiente = saida[0];
-            String direcaoString = saida[1];
-            String nomeAmbienteSaida = saida[2];
-            Ambiente ambiente = ambientes.get(nomeAmbiente);
-            Ambiente ambienteSaida = ambientes.get(nomeAmbienteSaida);
+        Ambiente ambiente = ambientes.get(nomeAmbiente);
+        Ambiente ambienteSaida = ambientes.get(nomeAmbienteSaida);
 
-            if (ambiente != null && ambienteSaida != null) {
-                try {
-                    Direcao direcao = Direcao.valueOf(direcaoString.toUpperCase());
+        if (ambiente != null && ambienteSaida != null) {
+            try {
+                Direcao direcao = Direcao.valueOf(direcaoString.toUpperCase());
+                if (chave != null) {
+                    ambiente.ajustarSaidaBloqueada(direcao, ambienteSaida, chave, "A saída está trancada.");
+                } else {
                     ambiente.ajustarSaida(direcao, ambienteSaida);
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Erro: Direção " + direcaoString + " inválida.");
                 }
-            } else {
-                if (ambiente == null) {
-                    System.out.println("Erro: Ambiente " + nomeAmbiente + " não encontrado.");
-                }
-                if (ambienteSaida == null) {
-                    System.out.println("Erro: Ambiente de saída " + nomeAmbienteSaida + " não encontrado.");
-                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Erro: Direção " + direcaoString + " inválida.");
+            }
+        } else {
+            if (ambiente == null) {
+                System.out.println("Erro: Ambiente " + nomeAmbiente + " não encontrado.");
+            }
+            if (ambienteSaida == null) {
+                System.out.println("Erro: Ambiente de saída " + nomeAmbienteSaida + " não encontrado.");
             }
         }
     }
+}
 
     private void adicionarItem(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");
