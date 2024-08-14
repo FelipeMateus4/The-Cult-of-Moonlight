@@ -1,0 +1,49 @@
+[Jogador]
+Nome=Radahn
+Classe=Guerreiro
+
+[Ambientes]
+Praça Central|na praça central da cidade Moonlight.|LESTE=CU|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna
+CU|na CU da bela cidade Moonlight.|OESTE=Praça Central|NORTE=Taverna
+Igreja|na velha igreja da cidade Moonlight.|SUL=Praça Central
+Beco|em um beco escuro.|NORTE=Praça Central|BAIXO=Esgoto
+Floresta|na floresta|LESTE=Praça Central
+Cemitério|no cemitério|SUL=Floresta
+Cabana|na cabana|LESTE=Floresta
+Esgoto|no esgoto|CIMA=Beco|NOROESTE=Tunel Esgoto 1|NORTE=Tunel Esgoto 2|NORDESTE=Tunel Esgoto 3
+Tunel Esgoto 1|em um túnel do esgoto|SUDESTE=Esgoto|LESTE=Tunel Esgoto 2|NORDESTE=Tunel Esgoto 5|NORTE=Tunel Esgoto 4
+Tunel Esgoto 2|em um túnel do esgoto|OESTE=Tunel Esgoto 1|NORTE=Tunel Esgoto 5|NORDESTE=Tunel Esgoto 6|LESTE=Tunel Esgoto 3|SUL=Esgoto|NOROESTE=Tunel Esgoto 4
+Tunel Esgoto 3|em um túnel do esgoto|OESTE=Tunel Esgoto 2|NOROESTE=Tunel Esgoto 5|NORTE=Tunel Esgoto 6
+Tunel Esgoto 4|em um túnel do esgoto|SUL=Tunel Esgoto 1|SUDESTE=Tunel Esgoto 2|NORTE=Tunel Esgoto 7|NORDESTE=Tunel Esgoto 8|LESTE=Tunel Esgoto 5|OESTE=Sala Tesouro
+Tunel Esgoto 5|em um túnel do esgoto|OESTE=Tunel Esgoto 4|SUL=Tunel Esgoto 2|SUDESTE=Tunel Esgoto 3|NORTE=Tunel Esgoto 8|NORDESTE=Tunel Esgoto 9|LESTE=Tunel Esgoto 6|NOROESTE=Tunel Esgoto 7|SUDOESTE=Tunel Esgoto 1
+Tunel Esgoto 6|em um túnel do esgoto|OESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 3|SUDOESTE=Tunel Esgoto 2|NORTE=Tunel Esgoto 9
+Tunel Esgoto 7|em um túnel do esgoto|SUL=Tunel Esgoto 4|SUDESTE=Tunel Esgoto 5|LESTE=Tunel Esgoto 8
+Tunel Esgoto 8|em um túnel do esgoto|OESTE=Tunel Esgoto 7|SUDOESTE=Tunel Esgoto 4|SUL=Tunel Esgoto 5|SUDESTE=Tunel Esgoto 6|LESTE=Tunel Esgoto 9
+Tunel Esgoto 9|em um túnel do esgoto|OESTE=Tunel Esgoto 8|SUDOESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 6|NORDESTE=Salao Espera
+Salao Espera|no salão de espera|SUL=Tunel Esgoto 9|NORTE=Sala Boss
+Sala Boss|na sala do boss|SUL=Salao Espera
+Sala Tesouro|na sala do tesouro|LESTE=Tunel Esgoto 4
+
+[Itens]
+Lampiao|um lampião velho|Acessorio|Praça Central|Ilumina áreas escuras
+Merda|uma bosta fedorenta|Acessorio|Praça Central|Atrapalha o olfato dos inimigos
+Mascara Respiratoria|uma mascara que protege contra gases tóxicos|Acessorio|Praça Central|Protege contra gases tóxicos
+Terrablade|uma espada lendária da terra|Espada|Praça Central|Causa dano massivo|20.0|100
+Aguablade|uma espada lendária da água|Espada|Praça Central|Dano adicional contra inimigos de fogo|15.0|100
+Aeroblade|uma espada lendária do ar|Espada|Praça Central|Aumenta a velocidade de ataque|10.0|100
+Carta|uma carta velha|Carta|CU|Contém pistas sobre a história
+Pocao Grande|uma poção que recupera 50 de vida|Pocao|Igreja|Recupera 50 de vida|50.0|2
+Pocao Pequena|uma poção que recupera 20 de vida|Pocao|Beco|Recupera 20 de vida|20.0|5
+Pocao Media|uma poção que recupera 30 de vida|Pocao|Praça Central|Recupera 30 de vida|30.0|3
+Chave Dourada|uma chave de ouro com runas antigas gravadas|Consumivel|Beco|Abre portas trancadas|1
+Adaga|uma adaga afiada|Adaga|Beco|Causa dano rápido|10.0|100
+Cajado Sagrado|um cajado benzido pelo padre local|Cajado|Igreja|Aumenta o poder mágico|18.0|90
+Armadura de Ferro|uma armadura de ferro|Armadura|CU|Aumenta a defesa|50|10
+
+[Personagens]
+Padre|um padre idoso|O padre diz: 'O segredo está na igreja, meu filho.'|Praça Central
+Recepcionista|uma recepcionista jovem|A recepcionista diz: 'Bem-vindo à CU!'|CU
+
+[Inimigos]
+Esqueleto|um esqueleto|Praça Central
+Zumbi|um zumbi|Praça Central
