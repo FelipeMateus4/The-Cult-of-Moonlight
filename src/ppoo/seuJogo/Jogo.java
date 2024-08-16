@@ -26,6 +26,7 @@ public class Jogo {
                     new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0),
                     new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"),
                     ambienteInicial);
+                    System.out.println(configuracao.getClasseJogador());
         } catch (IOException e) {
             System.out.println("Erro ao carregar o arquivo de configuração: " + e.getMessage());
             e.printStackTrace();
@@ -41,6 +42,7 @@ public class Jogo {
             return;
         }
         imprimirBoasVindas();
+        verificacaoInicial();
         boolean terminado = false;
         while (!terminado) {
             Comando comando = analisador.pegarComando();
@@ -78,7 +80,7 @@ public class Jogo {
         } else if (palavraDeComando == PalavraDeComando.PEGAR) {
             pegar(comando);
         } else if (palavraDeComando == PalavraDeComando.INVENTARIO) {
-            System.out.println(jogador.getItensCarregados());
+            getItensCarregados();
         } else if (palavraDeComando == PalavraDeComando.USAR) {
             usar(comando);
         } else if (palavraDeComando == PalavraDeComando.LER) {
@@ -103,6 +105,11 @@ public class Jogo {
         return querSair;
     }
 
+
+    private void getItensCarregados () {
+        System.out.println(jogador.getItensCarregados());
+    }
+
     private void imprimirAjuda() {
         System.out.println("Suas palavras de comando são:");
         System.out.println("   " + analisador.getComandosValidos());
@@ -114,6 +121,23 @@ public class Jogo {
             return;
         }
         imprimirDescricaoLonga();
+    }
+
+    private void verificacaoInicial () {
+        if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
+            iniciarControleAmbienteToxico();
+        }
+        if (jogador.getLocalizacaoAtual().getInimigos().size() > 0) {
+            List<Inimigo> inimigos = jogador.getLocalizacaoAtual().getInimigos();
+            System.out.println("Você encontrou um inimigo!");
+            for (Inimigo inimigo : inimigos) {
+                System.out.println("Nome: " + inimigo.getNome() + " Vida: " + inimigo.getVida());
+                inimigo.iniciarAtaquesPeriodicos(jogador);
+            }
+        }
+        if (jogador.getLocalizacaoAtual().isEscuro() && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
+            System.out.println("Está escuro aqui. Você não consegue ver nada.");
+        }
     }
 
     private void pegar(Comando comando) {
@@ -399,7 +423,7 @@ public class Jogo {
         task = new TimerTask() {
             @Override
             public void run() {
-                if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getNome().equals("Mascara_Respiratoria")) {
+                if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
                     jogador.perderVida(20);
                     System.out.println("Você está em um ambiente tóxico e perdeu 20 de vida! Em 25 segundos, perderá mais 20 de vida.");
                     System.out.println("Vida atual: " + jogador.getVidaJogador());

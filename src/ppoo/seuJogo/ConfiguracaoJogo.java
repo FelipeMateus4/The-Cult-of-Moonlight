@@ -64,6 +64,8 @@ public class ConfiguracaoJogo {
                 }
             }
         }
+
+        System.out.println(classeJogador);
         br.close();
         ajustarSaidasPendentes();
     }
@@ -168,32 +170,58 @@ private void ajustarSaidasPendentes() {
     }
 }
 
-    private void adicionarItem(String linha) throws IllegalArgumentException {
-        String[] partes = linha.split("\\|");
-        if (partes.length < 5) {
-            throw new IllegalArgumentException("Configuração inválida para item: " + linha);
-        }
-        String nome = partes[0];
-        String descricao = partes[1];
-        String tipo = partes[2];
-        String ambienteInicial = partes[3];
-        String efeito = partes[4];
-        Item item = null;
-        switch (tipo) {
-            case "Acessorio":
-                item = new Acessorio(nome, descricao, efeito);
-                break;
-            case "Espada":
-                item = new Espada(nome, Double.parseDouble(partes[5]), descricao, Integer.parseInt(partes[6]));
-                break;
-            case "Pocao":
-                item = new Pocao(nome, descricao, Double.parseDouble(partes[5]), Integer.parseInt(partes[6]));
-                break;
-            // Adicione outros tipos de itens aqui
-        }
-        itens.add(item);
-        ambientes.get(ambienteInicial).adicionarItem(item);
+private void adicionarItem(String linha) throws IllegalArgumentException {
+    String[] partes = linha.split("\\|");
+    if (partes.length < 5) {
+        throw new IllegalArgumentException("Configuração inválida para item: " + linha);
     }
+    String nome = partes[0];
+    String descricao = partes[1];
+    String tipo = partes[2];
+    String ambienteInicial = partes[3];
+    Item item = null;
+    
+    switch (tipo) {
+        case "Acessorio":
+            String efeito = partes[4];
+            item = new Acessorio(nome, descricao, efeito);
+            break;
+        case "Espada":
+            double danoEspada = Double.parseDouble(partes[4]);
+            int durabilidadeEspada = Integer.parseInt(partes[5]);
+            item = new Espada(nome, danoEspada, descricao, durabilidadeEspada);
+            break;
+        case "Pocao":
+            double recuperacao = Double.parseDouble(partes[4]);
+            int usos = Integer.parseInt(partes[5]);
+            item = new Pocao(nome, descricao, recuperacao, usos);
+            break;
+        case "Consumivel":
+            int usosConsumivel = Integer.parseInt(partes[4]);
+            item = new Consumivel(nome, descricao, usosConsumivel);
+            break;
+        case "Carta":
+            String textoCarta = partes[4];
+            item = new Carta(nome, descricao, textoCarta);
+            break;
+        case "Armadura":
+            double defesaFisica = Double.parseDouble(partes[4]);
+            double defesaMagica = Double.parseDouble(partes[5]);
+            item = new Armadura(nome, descricao, defesaFisica, defesaMagica);
+            break;
+        case "Adaga":
+            double danoAdaga = Double.parseDouble(partes[4]);
+            int durabilidadeAdaga = Integer.parseInt(partes[5]);
+            item = new Adaga(nome, danoAdaga, descricao, durabilidadeAdaga);
+            break;
+        default:
+            throw new IllegalArgumentException("Tipo de item desconhecido: " + tipo);
+    }
+
+    itens.add(item);
+    ambientes.get(ambienteInicial).adicionarItem(item);
+}
+
 
     private void adicionarPersonagem(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");

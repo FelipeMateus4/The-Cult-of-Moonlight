@@ -3,14 +3,14 @@ Nome=Radahn
 Classe=Guerreiro
 
 [Ambientes]
-Bernardo|na Bernardo da cidade Moonlight.|LESTE=Pousada|SUL=Beco:Chave|OESTE=Floresta|NORDESTE=Taverna
-Pousada|na Pousada da bela cidade Moonlight.|OESTE=Bernardo|NORTE=Taverna|Toxico
-Igreja|na velha igreja da cidade Moonlight.|SUL=Bernardo
-Beco|em um beco escuro.|NORTE=Bernardo|BAIXO=Esgoto|Escuro
-Floresta|na floresta|LESTE=Bernardo|SUL=Caverna
+Praça Central|na Praça Central da cidade Moonlight.|LESTE=Pousada|SUL=Beco:Chave|OESTE=Floresta|NORDESTE=Taverna
+Pousada|na Pousada da bela cidade Moonlight.|OESTE=Praça Central|NORTE=Taverna|Toxico
+Igreja|na velha igreja da cidade Moonlight.|SUL=Praça Central
+Beco|em um beco escuro.|NORTE=Praça Central|BAIXO=Esgoto|Escuro
+Floresta|na floresta|LESTE=Praça Central|SUL=Caverna
 Cemitério|no cemitério sombrio|SUL=Floresta|OESTE=Cabana|LESTE=Portao Trancado|Escuro
 Cabana|em uma cabana abandonada|LESTE=Floresta|OESTE=Lago|Escuro
-Taverna|na taverna acolhedora.|OESTE=Bernardo|SUL=Pousada
+Taverna|na taverna acolhedora.|OESTE=Praça Central|SUL=Pousada
 Esgoto|no esgoto escuro e fedorento|CIMA=Beco|NOROESTE=Tunel Esgoto 1|NORTE=Tunel Esgoto 2|NORDESTE=Tunel Esgoto 3|Toxico
 Tunel Esgoto 1|em um túnel do esgoto|SUDESTE=Esgoto|LESTE=Tunel Esgoto 2|NORDESTE=Tunel Esgoto 5|NORTE=Tunel Esgoto 4|Toxico
 Tunel Esgoto 2|em um túnel do esgoto|OESTE=Tunel Esgoto 1|NORTE=Tunel Esgoto 5|NORDESTE=Tunel Esgoto 6|LESTE=Tunel Esgoto 3|SUL=Esgoto|NOROESTE=Tunel Esgoto 4|Toxico
@@ -25,43 +25,29 @@ Salao Espera|no salão de espera|SUL=Tunel Esgoto 9|NORTE=Sala Boss
 Sala Boss|na sala do boss|SUL=Salao Espera
 Sala Tesouro|na sala do tesouro|LESTE=Tunel Esgoto 4
 Lago|à beira de um lago tranquilo|LESTE=Cabana
-Caverna|em uma caverna escura|NORTE=Floresta|Toxica
+Caverna|em uma caverna escura|NORTE=Floresta|Toxico
 Portao Trancado|diante de um portão trancado, necessitando de uma chave especial para abrir|LESTE=Cemitério|SUL=Salao Secreto
 Salao Secreto|um salão secreto cheio de tesouros e perigos|NORTE=Portao Trancado
 
 [Itens]
-Mascara_Respiratoria|chave legal |Acessorio|Bernardo|proteger
-ChaveDeOuro|chave legal |Acessorio|Bernardo| abrir portas
-Chave|chave legal |Acessorio|Bernardo| abrir portas
-Lampiao|um lampião velho|Acessorio|Bernardo|iluminar
-Merda|uma bosta fedorenta|Acessorio|Beco|Atrapalhar
-Mascara Respiratoria|uma mascara que protege contra gases tóxicos|Acessorio|Esgoto|Proteger
-Terrablade|uma espada lendária da terra|Espada|Caverna|Causa dano massivo|20.0|100
-Aguablade|uma espada lendária da água|Espada|Lago|Dano adicional contra inimigos de fogo|15.0|100
-Aeroblade|uma espada lendária do ar|Espada|Tunel Esgoto 5|Aumenta a velocidade de ataque|10.0|100
+Bosta|uma máscara respiratória que protege contra gases tóxicos|Acessorio|Praça Central|proteger
+Terrablade|uma espada lendária da terra|Espada|Caverna|20.0|100
+Pocao_Grande|uma poção que recupera 50 de vida|Pocao|Igreja|50.0|2
+Chave_De_Ouro|uma chave de ouro com runas antigas gravadas|Consumivel|Praça Central|1
 Carta|uma carta velha|Carta|Pousada|Contém pistas sobre a história
-Pocao Grande|uma poção que recupera 50 de vida|Pocao|Igreja|Recupera 50 de vida|50.0|2
-Pocao Pequena|uma poção que recupera 20 de vida|Pocao|Beco|Recupera 20 de vida|20.0|5
-Pocao Media|uma poção que recupera 30 de vida|Pocao|Taverna|Recupera 30 de vida|30.0|3
-Chave De Ouro|uma chave de ouro com runas antigas gravadas|Consumivel|Bernardo|Abre portas trancadas|1
-Adaga|uma adaga afiada|Adaga|Beco|Causa dano rápido|10.0|100
-Cajado Sagrado|um cajado benzido pelo padre local|Cajado|Igreja|Aumenta o poder mágico|18.0|90
-Armadura de Ferro|uma armadura de ferro|Armadura|Cabana|Aumenta a defesa|50|10
-Escudo de Ouro|um escudo feito de ouro puro|Acessorio|Cemitério|Proteger
-Pocao Revitalizante|uma poção que revitaliza a energia|Pocao|Cabana|Recupera 100 de energia|100.0|1
-Espada de Fogo|uma espada flamejante|Espada|Taverna|Dano adicional contra inimigos de gelo|25.0|100
-Anel de Invisibilidade|um anel que torna o usuário invisível|Acessorio|Floresta|Invisibilidade
-Chave Prateada|uma chave prateada com inscrições místicas|Consumivel|Igreja|Abre o Portao Trancado|1
+Armadura de Ferro|uma armadura de ferro|Armadura|Cabana|50.0|10
+Adaga|uma adaga afiada|Adaga|Beco|10.0|100
+
 
 [Personagens]
-Padre|um padre idoso|O padre diz: 'O segredo está na igreja, meu filho.'|Bernardo
+Padre|um padre idoso|O padre diz: 'O segredo está na igreja, meu filho.'|Praça Central
 Recepcionista|uma recepcionista jovem|A recepcionista diz: 'Bem-vindo à Pousada!'|Pousada
-Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Bernardo
+Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Praça Central
 Mendigo|um mendigo sujo|O mendigo diz: 'Você tem algum trocado?'|Beco
 
 [Inimigos]
-Esqueleto|um esqueleto assustador|Bernardo
-Zumbi|um zumbi fedido|Bernardo
+Esqueleto|um esqueleto assustador|Praça Central
+Zumbi|um zumbi fedido|Praça Central
 Lobisomem|um lobisomem feroz|Floresta
 Fantasma|um fantasma assustador|Cemitério
 Aranha Gigante|uma aranha gigante|Caverna

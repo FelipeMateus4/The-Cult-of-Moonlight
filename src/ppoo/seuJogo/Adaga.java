@@ -19,7 +19,7 @@ public class Adaga extends Arma implements Equipavel{
 
     @Override
     public boolean equipar(Jogador jogador) {
-        if (jogador.getClasseJogador() != "Ladrao") {
+        if (!jogador.getClasseJogador().equals("Ladrão")) {
             System.out.println("Você não pode equipar uma adaga, pois não é um ladrao.");
             return false;
         }

@@ -20,7 +20,7 @@ public class Cajado extends Arma implements Equipavel{
 
     @Override
     public boolean equipar(Jogador jogador) {
-        if (jogador.getClasseJogador() != "Mago") {
+        if (!jogador.getClasseJogador().equals("Mago")) {
             System.out.println("Você não pode equipar um cajado, pois não é um mago.");
             return false;
         }
