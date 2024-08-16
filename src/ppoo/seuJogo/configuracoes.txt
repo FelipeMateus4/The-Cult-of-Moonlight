@@ -3,7 +3,7 @@ Nome=Radahn
 Classe=Mago
 
 [Ambientes]
-Praça Central|na Praça Central da cidade Moonlight.|LESTE=Pousada|SUL=Beco:Chave|OESTE=Floresta|NORDESTE=Taverna
+Praça Central|na Praça Central da cidade Moonlight.|LESTE=Pousada|SUL=Beco:Chave|OESTE=Floresta|NORDESTE=Taverna|Toxico
 Pousada|na Pousada da bela cidade Moonlight.|OESTE=Praça Central|NORTE=Taverna|Toxico
 Igreja|na velha igreja da cidade Moonlight.|SUL=Praça Central
 Beco|em um beco escuro.|NORTE=Praça Central|BAIXO=Esgoto|Escuro
@@ -32,7 +32,7 @@ Salao Secreto|um salão secreto cheio de tesouros e perigos|NORTE=Portao Trancad
 [Itens]
 Bosta|uma máscara respiratória que protege contra gases tóxicos|Acessorio|Praça Central|proteger
 Terrablade|uma espada lendária da terra|Espada|Praça Central|20.0|100
-Pocao_Grande|uma poção que recupera 50 de vida|Pocao|Igreja|50.0|2
+Pocao_Grande|uma poção que recupera 50 de vida|Pocao|Igreja|5
 Chave_De_Ouro|uma chave de ouro com runas antigas gravadas|Consumivel|Praça Central|1
 Carta|uma carta velha|Carta|Pousada|Contém pistas sobre a história
 Armadura de Ferro|uma armadura de ferro|Armadura|Cabana|50.0|10

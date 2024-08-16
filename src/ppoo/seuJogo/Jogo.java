@@ -48,6 +48,10 @@ public class Jogo {
         while (!terminado) {
             Comando comando = analisador.pegarComando();
             terminado = processarComando(comando);
+            if (jogador.getVidaJogador() <= 0) {
+                System.out.println("VOCE MORREU, JA ERA COLEGA!!!!!!!!!!!!!");
+                terminado = true;
+            }
             verificarAmbienteToxico();
         }
         System.out.println("Obrigado por jogar. Até mais!");
@@ -132,7 +136,6 @@ public class Jogo {
             System.out.println("Você encontrou um inimigo!");
             for (Inimigo inimigo : inimigos) {
                 System.out.println("Nome: " + inimigo.getNome() + " Vida: " + inimigo.getVida());
-                inimigo.iniciarAtaquesPeriodicos(jogador);
             }
         }
         if (jogador.getLocalizacaoAtual().isEscuro() && !jogador.getAcessorioAtual().getEfeito().equals("iluminar")) {
@@ -162,34 +165,44 @@ public class Jogo {
         }
     }
 
-    private void atacar(Comando comando) {
-        if (!comando.temSegundaPalavra()) {
-            System.out.println("Atacar o que?");
-            return;
-        }
-        String nomeInimigo = comando.getSegundaPalavra();
-        Inimigo inimigo = jogador.getLocalizacaoAtual().getInimigo(nomeInimigo);
-        if (inimigo == null) {
-            System.out.println("Não existe esse NPC aqui.");
-        } else {
-            jogador.atacar(inimigo);
-            System.out.println("O inimigo " + inimigo.getNome() + " te atacou e causou " + inimigo.getDano() + " de dano.");
-            System.out.println("Sua vida atual é: " + jogador.getVidaJogador());
-            if (inimigo.getVida() <= 0) {
-                System.out.println("Você derrotou " + nomeInimigo + ".");
-                List<Item> itensDrop = inimigo.getItensDrop();
-                for (Item item : itensDrop) {
-                    jogador.getLocalizacaoAtual().adicionarItem(item);
-                    System.out.println("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
-                }
-                jogador.getLocalizacaoAtual().removerInimigo(nomeInimigo);
-                inimigo.pararAtaque();
-            }
-            if (jogador.getVidaJogador() <= 0) {
-                encerrarJogo("Você foi derrotado pelo inimigo " + inimigo.getNome() + ".");
-            }
-        }
+private void atacar(Comando comando) {
+    if (!comando.temSegundaPalavra()) {
+        System.out.println("Atacar o que?");
+        return;
     }
+    String nomeInimigo = comando.getSegundaPalavra();
+    Inimigo inimigo = jogador.getLocalizacaoAtual().getInimigo(nomeInimigo);
+    if (inimigo == null) {
+        System.out.println("Não existe esse NPC aqui.");
+        return;
+    }
+
+    // Jogador ataca o inimigo
+    jogador.atacar(inimigo);
+    System.out.println("Vida do inimigo " + inimigo.getNome() + ": " + inimigo.getVida());
+
+    // Verifica se o inimigo ainda está vivo para contra-atacar
+    if (inimigo.isVivo()) {
+        inimigo.atacar(jogador);
+        System.out.println("O inimigo " + inimigo.getNome() + " te atacou e causou " + inimigo.getDano() + " de dano.");
+        System.out.println("Sua vida atual é: " + jogador.getVidaJogador());
+
+        if (jogador.getVidaJogador() <= 0) {
+            encerrarJogo("Você foi derrotado pelo inimigo " + inimigo.getNome() + ".");
+        }
+    } else {
+        System.out.println("Você derrotou " + inimigo.getNome() + ".");
+        List<Item> itensDrop = inimigo.getItensDrop();
+        for (Item item : itensDrop) {
+            jogador.getLocalizacaoAtual().adicionarItem(item);
+            System.out.println("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
+        }
+        jogador.getLocalizacaoAtual().removerInimigo(nomeInimigo);
+    }
+}
+
+
+
 
     private void conversar(Comando comando) {
         if (!comando.temSegundaPalavra()) {
@@ -346,7 +359,6 @@ public class Jogo {
         } else if (proximoAmbiente == null) {
             System.out.println("Não há passagem!");
         } else {
-            pararAtaquesInimigos(ambienteAtual); // Parar ataques de inimigos ao sair do ambiente atual
             jogador.setLocalizacaoAtual(proximoAmbiente);
             if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
                 iniciarControleAmbienteToxico();
@@ -356,16 +368,9 @@ public class Jogo {
                 System.out.println("Você encontrou um inimigo!");
                 for (Inimigo inimigo : inimigos) {
                     System.out.println("Nome: " + inimigo.getNome() + " Vida: " + inimigo.getVida());
-                    inimigo.iniciarAtaquesPeriodicos(jogador);
                 }
             }
             imprimirLocalizacaoAtual();
-        }
-    }
-
-    private void pararAtaquesInimigos(Ambiente ambiente) {
-        for (Inimigo inimigo : ambiente.getInimigos()) {
-            inimigo.pararAtaque();
         }
     }
 
@@ -465,6 +470,6 @@ public class Jogo {
 
     private void encerrarJogo(String mensagem) {
         System.out.println(mensagem);
-        terminado = true; 
+       processarComando(new Comando(PalavraDeComando.SAIR, null)); 
     }
 }

@@ -149,7 +149,6 @@ public class Jogador {
                 System.out.println("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
             }
             getLocalizacaoAtual().removerInimigo(inimigo.getNome());
-            inimigo.pararAtaque(); // Certifique-se de parar o ataque do inimigo ao ser derrotado
         }
     }
 }
