@@ -11,14 +11,16 @@ public class Acessorio extends Item implements Equipavel{
         return efeito;
     }
 
-        @Override
-    public void equipado(Jogador jogador) {
+    @Override
+    public String equipado(Jogador jogador) {
         String nome = getNome();
-        System.out.println("Acessório:");
-        System.out.println("Você está equipado com o acessório: " + nome + " que tem o efeito " + getEfeito());
-
+        String efeito = getEfeito();  // Presumindo que getEfeito() retorna o efeito do acessório
+        String mensagem = "Acessório:\n";
+        mensagem += "Você está equipado com o acessório: " + nome + " que tem o efeito " + efeito + "\n";
         
+        return mensagem;
     }
+    
 
     @Override
     public boolean equipar(Jogador jogador) {

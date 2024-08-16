@@ -19,15 +19,18 @@ public class Armadura extends Item implements Equipavel{
     }
 
     @Override
-    public void equipado(Jogador jogador) {
+    public String equipado(Jogador jogador) {
         String nome = getNome();
         double defesaFisica = getDefesaFisica();
         double defesaMagica = getDefesaMagica();
-        System.out.println("Armadura:");
-        System.out.println("Você está equipado com a armadura: " + nome);
-        System.out.println("Defesa Física: " + defesaFisica);
-        System.out.println("Defesa Mágica: " + defesaMagica);
+        String mensagem = "Armadura:\n";
+        mensagem += "Você está equipado com a armadura: " + nome + "\n";
+        mensagem += "Defesa Física: " + defesaFisica + "\n";
+        mensagem += "Defesa Mágica: " + defesaMagica + "\n";
+        
+        return mensagem;
     }
+    
 
     @Override
     public boolean equipar(Jogador jogador) {

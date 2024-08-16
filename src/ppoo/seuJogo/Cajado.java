@@ -9,14 +9,17 @@ public class Cajado extends Arma implements Equipavel{
     
 
     @Override
-    public void equipado(Jogador jogador) {
+    public String equipado(Jogador jogador) {
         String nome = getNome();
         int durabilidade = getDurabilidade();
-        System.out.println("Cajado:");
-        System.out.println("Você está equipado com a cajado: " + nome);
-        System.out.println("Durabilidade: " + durabilidade);
-        System.out.println("Dano de corte: " + getDanoBase());
+        String mensagem = "Cajado:\n";
+        mensagem += "Você está equipado com o cajado: " + nome + "\n";
+        mensagem += "Durabilidade: " + durabilidade + "\n";
+        mensagem += "Dano de corte: " + getDanoBase() + "\n";
+        
+        return mensagem;
     }
+    
 
     @Override
     public boolean equipar(Jogador jogador) {

@@ -8,11 +8,14 @@ public class Mao extends Arma implements Equipavel{
     }
 
     @Override
-    public void equipado(Jogador jogador) {
-        System.out.println("Mão:");
-        System.out.println("Você está de mãos vazias.");
-        System.out.println("Dano do soco: " + danoSoco);
+    public String equipado(Jogador jogador) {
+        String mensagem = "Mão:\n";
+        mensagem += "Você está de mãos vazias.\n";
+        mensagem += "Dano do soco: " + danoSoco + "\n";
+        
+        return mensagem;
     }
+    
 
     @Override
     public boolean equipar(Jogador jogador) {

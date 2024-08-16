@@ -1,6 +1,6 @@
 [Jogador]
 Nome=Radahn
-Classe=Guerreiro
+Classe=Mago
 
 [Ambientes]
 Praça Central|na Praça Central da cidade Moonlight.|LESTE=Pousada|SUL=Beco:Chave|OESTE=Floresta|NORDESTE=Taverna
@@ -31,7 +31,7 @@ Salao Secreto|um salão secreto cheio de tesouros e perigos|NORTE=Portao Trancad
 
 [Itens]
 Bosta|uma máscara respiratória que protege contra gases tóxicos|Acessorio|Praça Central|proteger
-Terrablade|uma espada lendária da terra|Espada|Caverna|20.0|100
+Terrablade|uma espada lendária da terra|Espada|Praça Central|20.0|100
 Pocao_Grande|uma poção que recupera 50 de vida|Pocao|Igreja|50.0|2
 Chave_De_Ouro|uma chave de ouro com runas antigas gravadas|Consumivel|Praça Central|1
 Carta|uma carta velha|Carta|Pousada|Contém pistas sobre a história
@@ -46,8 +46,8 @@ Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Pra�
 Mendigo|um mendigo sujo|O mendigo diz: 'Você tem algum trocado?'|Beco
 
 [Inimigos]
-Esqueleto|um esqueleto assustador|Praça Central
-Zumbi|um zumbi fedido|Praça Central
+Esqueleto|um esqueleto assustador|Caverna
+Zumbi|um zumbi fedido|Caverna
 Lobisomem|um lobisomem feroz|Floresta
 Fantasma|um fantasma assustador|Cemitério
 Aranha Gigante|uma aranha gigante|Caverna

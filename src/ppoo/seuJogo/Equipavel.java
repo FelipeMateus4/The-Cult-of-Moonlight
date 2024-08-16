@@ -1,6 +1,6 @@
 package ppoo.seuJogo;
 
 public interface Equipavel {
-    void equipado(Jogador jogador);
+    String equipado(Jogador jogador);
     boolean equipar(Jogador jogador);
 }

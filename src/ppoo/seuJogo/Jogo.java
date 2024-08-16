@@ -278,16 +278,33 @@ public class Jogo {
             System.out.println("Não é possível equipar algo aqui. Para equipar algo, use o comando 'equipar' e o nome do item.");
             return;
         }
+    
         Arma armaAtual = jogador.getArmaAtual();
         Armadura armaduraAtual = jogador.getArmaduraAtual();
         Acessorio acessorioAtual = jogador.getAcessorioAtual();
-        Equipavel equipavel = (Equipavel) armaAtual;
-        equipavel.equipado(jogador);
-        Equipavel equipavel2 = (Equipavel) armaduraAtual;
-        equipavel2.equipado(jogador);
-        Equipavel equipavel3 = (Equipavel) acessorioAtual;
-        equipavel3.equipado(jogador);
+        
+        // Usando um StringBuilder para compor a mensagem final
+        StringBuilder mensagem = new StringBuilder();
+        
+        if (armaAtual != null) {
+            Equipavel equipavelArma = (Equipavel) armaAtual;
+            mensagem.append(equipavelArma.equipado(jogador)).append("\n");
+        }
+        
+        if (armaduraAtual != null) {
+            Equipavel equipavelArmadura = (Equipavel) armaduraAtual;
+            mensagem.append(equipavelArmadura.equipado(jogador)).append("\n");
+        }
+        
+        if (acessorioAtual != null) {
+            Equipavel equipavelAcessorio = (Equipavel) acessorioAtual;
+            mensagem.append(equipavelAcessorio.equipado(jogador)).append("\n");
+        }
+        
+        // Exibindo a mensagem composta
+        System.out.println(mensagem.toString());
     }
+    
 
     private void equipar(Comando comando) {
         if (!comando.temSegundaPalavra()) {
@@ -305,6 +322,8 @@ public class Jogo {
             boolean bool = equipavel.equipar(jogador);
             if (bool) {
                 System.out.println("Item equipado.");
+            } else {
+                System.out.println("Sua classe não permite equipar esse item.");
             }
         } else {
             System.out.println("O item " + nomeItem + " não pode ser equipado.");

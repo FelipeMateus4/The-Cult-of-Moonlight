@@ -8,14 +8,17 @@ public class Adaga extends Arma implements Equipavel{
     }
 
     @Override
-    public void equipado(Jogador jogador) {
+    public String equipado(Jogador jogador) {
         String nome = getNome();
         int durabilidade = getDurabilidade();
-        System.out.println("Adaga:");
-        System.out.println("Você está equipado com a adaga: " + nome);
-        System.out.println("Durabilidade: " + durabilidade);
-        System.out.println("Dano de corte: " + getDanoBase());
+        String mensagem = "Adaga:\n";
+        mensagem += "Você está equipado com a adaga: " + nome + "\n";
+        mensagem += "Durabilidade: " + durabilidade + "\n";
+        mensagem += "Dano de corte: " + getDanoBase() + "\n";
+        
+        return mensagem;
     }
+    
 
     @Override
     public boolean equipar(Jogador jogador) {
