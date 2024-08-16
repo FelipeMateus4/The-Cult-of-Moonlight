@@ -46,8 +46,8 @@ Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Pra�
 Mendigo|um mendigo sujo|O mendigo diz: 'Você tem algum trocado?'|Beco
 
 [Inimigos]
-Esqueleto|um esqueleto assustador|Praça Central
-Zumbi|um zumbi fedido|Caverna
-Lobisomem|um lobisomem feroz|Floresta
-Fantasma|um fantasma assustador|Cemitério
-Aranha Gigante|uma aranha gigante|Caverna
+Esqueleto|um esqueleto assustador|Praça Central|100|10|Bosta, Carta
+Zumbi|um zumbi fedido|Caverna|150|15|Pocao_Grande
+Lobisomem|um lobisomem feroz|Floresta|100|10
+Fantasma|um fantasma assustador|Cemitério|100|10
+Aranha Gigante|uma aranha gigante|Caverna|100|10

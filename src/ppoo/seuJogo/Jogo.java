@@ -193,18 +193,20 @@ public class Jogo {
             if (jogador.getVidaJogador() <= 0) {
                 encerrarJogo("Você foi derrotado pelo inimigo " + inimigo.getNome() + ".");
             }
-        } else {
-            System.out.println("Você derrotou " + inimigo.getNome() + ".");
-            
-            // Inimigo dropa itens
-            List<Item> itensDrop = inimigo.getItensDrop();
-            for (Item item : itensDrop) {
-                jogador.getLocalizacaoAtual().adicionarItem(item);
-                System.out.println("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
+
+            if (!inimigo.isVivo()) {
+                System.out.println("Você derrotou " + inimigo.getNome() + ".");
+                
+                // Inimigo dropa itens
+                List<Item> itensDrop = inimigo.getItensDrop();
+                for (Item item : itensDrop) {
+                    jogador.getLocalizacaoAtual().adicionarItem(item);
+                    System.out.println("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
+                }
+                
+                // Remove o inimigo da localização atual
+                jogador.getLocalizacaoAtual().removerInimigo(nomeInimigo);
             }
-            
-            // Remove o inimigo da localização atual
-            jogador.getLocalizacaoAtual().removerInimigo(nomeInimigo);
         }
     }
     
@@ -459,6 +461,7 @@ public class Jogo {
                     System.out.println("Você está em um ambiente tóxico e perdeu 20 de vida! Em 25 segundos, perderá mais 20 de vida.");
                     System.out.println("Vida atual: " + jogador.getVidaJogador());
                     if (jogador.getVidaJogador() <= 0) {
+                        jogador.setMorto();
                         encerrarJogo("Você morreu devido à toxicidade do ambiente!");
                     }
                 }

@@ -242,12 +242,39 @@ private void adicionarItem(String linha) throws IllegalArgumentException {
         if (partes.length < 3) {
             throw new IllegalArgumentException("Configuração inválida para inimigo: " + linha);
         }
+    
         String nome = partes[0];
         String descricao = partes[1];
         String ambienteInicial = partes[2];
-        Inimigo inimigo = new Inimigo(nome, descricao, 100, 10, new ArrayList<>()); // Exemplo de valores para vida e dano
+        Double vida = Double.parseDouble(partes[3]);
+        Double dano = Double.parseDouble(partes[4]);
+    
+        List<Item> itensDropados = new ArrayList<>();
+        if (partes.length > 5) {
+            String[] itensNomes = partes[5].split(",");
+            for (String itemNome : itensNomes) {
+                Item item = encontrarItemPorNome(itemNome.trim());
+                if (item != null) {
+                    itensDropados.add(item);
+                } else {
+                    System.out.println("Item não encontrado: " + itemNome);
+                }
+            }
+        }
+    
+        Inimigo inimigo = new Inimigo(nome, descricao, vida, dano, itensDropados);
         inimigos.add(inimigo);
         ambientes.get(ambienteInicial).adicionarInimigo(inimigo);
+    }
+    
+
+    private Item encontrarItemPorNome(String nome) {
+        for (Item item : itens) {
+            if (item.getNome().equalsIgnoreCase(nome)) {
+                return item;
+            }
+        }
+        return null;
     }
 
     public Map<String, Ambiente> getAmbientes() {
