@@ -24,6 +24,9 @@ public class Inimigo extends Individuo {
     }
 
     public double getVida() {
+        if (vida < 0) {
+            return 0;
+        }
         return vida;
     }
 
@@ -47,30 +50,39 @@ public class Inimigo extends Individuo {
         this.vivo = vivo;
     }
 
-    public void atacar(Jogador jogador) {
+    public double atacar(Jogador jogador) {
+        double danoAplicado = 0.0;
         if (vivo) {
-            double danoAplicado = escolherAtaque();
+            danoAplicado = escolherAtaque();
             jogador.perderVida(danoAplicado);
+
             if (jogador.getVidaJogador() <= 0) {
                 jogador.setMorto();
             }
         }
+        return danoAplicado;
     }
 
     private double escolherAtaque() {
         Random random = new Random();
-        int tipoAtaque = random.nextInt(3); // 0, 1, ou 2
+        int tipoAtaque = random.nextInt(3); // Gera um número aleatório entre 0, 1, ou 2
 
+        double danoCalculado;
         switch (tipoAtaque) {
             case 0:
-                return dano * 0.8; // Ataque rápido
+                danoCalculado = dano * 0.8; // Ataque rápido
+                break;
             case 1:
-                return dano * 1.5; // Ataque forte
+                danoCalculado = dano * 1.5; // Ataque forte
+                break;
             case 2:
-                return dano; // Ataque normal
+                danoCalculado = dano; // Ataque normal
+                break;
             default:
-                return dano;
+                danoCalculado = dano;
+                break;
         }
+        return danoCalculado;
     }
 
     public void receberDano(double danoRecebido) {
@@ -81,6 +93,8 @@ public class Inimigo extends Individuo {
             }
         }
     }
+
+
 
     public double getDanoMultiplicador(String weaponType) {
         switch (weaponType) {
