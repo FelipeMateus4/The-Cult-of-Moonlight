@@ -46,7 +46,7 @@ Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Pra�
 Mendigo|um mendigo sujo|O mendigo diz: 'Você tem algum trocado?'|Beco
 
 [Inimigos]
-Esqueleto|um esqueleto assustador|Caverna
+Esqueleto|um esqueleto assustador|Praça Central
 Zumbi|um zumbi fedido|Caverna
 Lobisomem|um lobisomem feroz|Floresta
 Fantasma|um fantasma assustador|Cemitério

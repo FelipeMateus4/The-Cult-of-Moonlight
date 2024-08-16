@@ -78,7 +78,7 @@ public class Inimigo extends Individuo {
                     atacar(jogador);
                     if (!jogador.getVivo()) {
                         System.out.println("Você foi derrotado pelo inimigo " + getNome() + ".");
-                        System.exit(0); // Encerra o jogo se o jogador morrer
+                        return;
                     }
                     System.out.println("sua vida atual é: " + jogador.getVidaJogador());
                     // Programa o próximo ataque com uma duração aleatória

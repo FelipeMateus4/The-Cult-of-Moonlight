@@ -11,6 +11,7 @@ public class Jogo {
     private Timer timer;
     private TimerTask task;
     private boolean estavaToxico;
+    private boolean terminado;
 
     public Jogo(String caminhoConfiguracao) {
         try {
@@ -26,7 +27,7 @@ public class Jogo {
                     new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0),
                     new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"),
                     ambienteInicial);
-                    System.out.println(configuracao.getClasseJogador());
+            System.out.println(configuracao.getClasseJogador());
         } catch (IOException e) {
             System.out.println("Erro ao carregar o arquivo de configuração: " + e.getMessage());
             e.printStackTrace();
@@ -43,7 +44,7 @@ public class Jogo {
         }
         imprimirBoasVindas();
         verificacaoInicial();
-        boolean terminado = false;
+        terminado = false;
         while (!terminado) {
             Comando comando = analisador.pegarComando();
             terminado = processarComando(comando);
@@ -105,8 +106,7 @@ public class Jogo {
         return querSair;
     }
 
-
-    private void getItensCarregados () {
+    private void getItensCarregados() {
         System.out.println(jogador.getItensCarregados());
     }
 
@@ -123,7 +123,7 @@ public class Jogo {
         imprimirDescricaoLonga();
     }
 
-    private void verificacaoInicial () {
+    private void verificacaoInicial() {
         if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
             iniciarControleAmbienteToxico();
         }
@@ -173,6 +173,8 @@ public class Jogo {
             System.out.println("Não existe esse NPC aqui.");
         } else {
             jogador.atacar(inimigo);
+            System.out.println("O inimigo " + inimigo.getNome() + " te atacou e causou " + inimigo.getDano() + " de dano.");
+            System.out.println("Sua vida atual é: " + jogador.getVidaJogador());
             if (inimigo.getVida() <= 0) {
                 System.out.println("Você derrotou " + nomeInimigo + ".");
                 List<Item> itensDrop = inimigo.getItensDrop();
@@ -181,7 +183,10 @@ public class Jogo {
                     System.out.println("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
                 }
                 jogador.getLocalizacaoAtual().removerInimigo(nomeInimigo);
-                inimigo.pararAtaque(); // Certifique-se de parar o ataque do inimigo ao ser derrotado
+                inimigo.pararAtaque();
+            }
+            if (jogador.getVidaJogador() <= 0) {
+                encerrarJogo("Você foi derrotado pelo inimigo " + inimigo.getNome() + ".");
             }
         }
     }
@@ -210,12 +215,13 @@ public class Jogo {
         if (itemProcurado != null) {
             jogador.removerItem(nomeItem);
             jogador.getLocalizacaoAtual().largarItem(itemProcurado);
-            if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome()))
+            if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
                 jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito));
-            else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome()))
+            } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
                 jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0));
-            else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome()))
+            } else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
                 jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"));
+            }
             System.out.println("Você largou " + nomeItem + " no chão.");
         } else {
             System.out.println("Item nao encontrado na mochila");
@@ -278,33 +284,30 @@ public class Jogo {
             System.out.println("Não é possível equipar algo aqui. Para equipar algo, use o comando 'equipar' e o nome do item.");
             return;
         }
-    
+
         Arma armaAtual = jogador.getArmaAtual();
         Armadura armaduraAtual = jogador.getArmaduraAtual();
         Acessorio acessorioAtual = jogador.getAcessorioAtual();
-        
-        // Usando um StringBuilder para compor a mensagem final
+
         StringBuilder mensagem = new StringBuilder();
-        
+
         if (armaAtual != null) {
             Equipavel equipavelArma = (Equipavel) armaAtual;
             mensagem.append(equipavelArma.equipado(jogador)).append("\n");
         }
-        
+
         if (armaduraAtual != null) {
             Equipavel equipavelArmadura = (Equipavel) armaduraAtual;
             mensagem.append(equipavelArmadura.equipado(jogador)).append("\n");
         }
-        
+
         if (acessorioAtual != null) {
             Equipavel equipavelAcessorio = (Equipavel) acessorioAtual;
             mensagem.append(equipavelAcessorio.equipado(jogador)).append("\n");
         }
-        
-        // Exibindo a mensagem composta
+
         System.out.println(mensagem.toString());
     }
-    
 
     private void equipar(Comando comando) {
         if (!comando.temSegundaPalavra()) {
@@ -399,7 +402,7 @@ public class Jogo {
         }
         if (itemProcurado instanceof Legivel) {
             Legivel legivel = (Legivel) itemProcurado;
-            legivel.lerCarta(jogador);
+            System.out.println(legivel.lerCarta(jogador));
         } else {
             System.out.println("O item " + nomeItem + " não pode ser lido.");
         }
@@ -420,23 +423,22 @@ public class Jogo {
             System.out.println("Sair o que?");
             return false;
         }
-        return true; // sinaliza que nós realmente queremos sair
+        return true; 
     }
 
     private void verificarAmbienteToxico() {
-        boolean ambienteToxicoAtual = jogador.getLocalizacaoAtual().isToxico(); // Atualiza o estado atual
-        // Verifica se houve mudança no estado do ambiente
+        boolean ambienteToxicoAtual = jogador.getLocalizacaoAtual().isToxico(); 
         if (ambienteToxicoAtual && !estavaToxico) {
-            iniciarControleAmbienteToxico(); // Inicia o Timer se o ambiente ficou tóxico
+            iniciarControleAmbienteToxico(); 
         } else if (!ambienteToxicoAtual && estavaToxico) {
-            pararControleAmbienteToxico(); // Para o Timer se o ambiente deixou de ser tóxico
+            pararControleAmbienteToxico();
         }
-        estavaToxico = ambienteToxicoAtual; // Atualiza o estado anterior
+        estavaToxico = ambienteToxicoAtual; 
     }
 
     private void iniciarControleAmbienteToxico() {
         if (timer != null) {
-            timer.cancel(); // Cancela o timer anterior, se existir
+            timer.cancel(); 
         }
         timer = new Timer();
         task = new TimerTask() {
@@ -447,18 +449,22 @@ public class Jogo {
                     System.out.println("Você está em um ambiente tóxico e perdeu 20 de vida! Em 25 segundos, perderá mais 20 de vida.");
                     System.out.println("Vida atual: " + jogador.getVidaJogador());
                     if (jogador.getVidaJogador() <= 0) {
-                        System.out.println("Você morreu devido à toxicidade do ambiente!");
-                        System.exit(0); // Finaliza o jogo se a vida chegar a 0
+                        encerrarJogo("Você morreu devido à toxicidade do ambiente!");
                     }
                 }
             }
         };
-        timer.scheduleAtFixedRate(task, 25000, 25000); // Ajuste o intervalo (1000 ms = 1 segundo)
+        timer.scheduleAtFixedRate(task, 25000, 25000); 
     }
 
     private void pararControleAmbienteToxico() {
         if (timer != null) {
-            timer.cancel(); // Cancela o timer quando o ambiente deixa de ser tóxico
+            timer.cancel();
         }
+    }
+
+    private void encerrarJogo(String mensagem) {
+        System.out.println(mensagem);
+        terminado = true; 
     }
 }
