@@ -13,6 +13,7 @@ public class Jogador {
     private Acessorio acessorioAtual;
     private Boolean vivo = true;
     private static final int LIMITE_MOCHILA = 8;
+    private int pontos;
 
     public Jogador(String nome, String classe, Double vida, Arma armaAtual, Armadura armaduraAtual, Acessorio acessorioAtual, Ambiente localizacaoAtual) {
         this.nome = nome;
@@ -27,6 +28,14 @@ public class Jogador {
 
     public String getNomeJogador() {
         return nome;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void adicionarPontos(int pontos) {
+        this.pontos += pontos;
     }
 
     public String getClasseJogador() {

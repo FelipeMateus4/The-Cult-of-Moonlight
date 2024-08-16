@@ -48,12 +48,13 @@ public class Jogo {
         while (!terminado) {
             Comando comando = analisador.pegarComando();
             terminado = processarComando(comando);
-            if (!jogador.getVivo()) {
+            if (jogador.getVidaJogador() <= 0) {
                 System.out.println("Você Morreu!");
                 terminado = true;
             }
             verificarAmbienteToxico();
         }
+        System.out.println("Você conseguiu um total de " + jogador.getPontos() + " pontos!");
         System.out.println("Obrigado por jogar. Até mais!");
         if (timer != null) {
             timer.cancel();
@@ -175,7 +176,7 @@ public class Jogo {
         Inimigo inimigo = jogador.getLocalizacaoAtual().getInimigo(nomeInimigo);
         
         if (inimigo == null) {
-            System.out.println("Não existe esse NPC aqui.");
+            System.out.println("Não existe esse Inimigo aqui.");
             return;
         }
     
@@ -194,8 +195,10 @@ public class Jogo {
                 encerrarJogo("Você foi derrotado pelo inimigo " + inimigo.getNome() + ".");
             }
 
-            if (!inimigo.isVivo()) {
+            if (inimigo.getVida() <= 0) {
                 System.out.println("Você derrotou " + inimigo.getNome() + ".");
+                jogador.adicionarPontos(inimigo.getPontos());
+                System.out.println("Você ganhou " + inimigo.getPontos() + " pontos.");
                 
                 // Inimigo dropa itens
                 List<Item> itensDrop = inimigo.getItensDrop();
@@ -457,17 +460,18 @@ public class Jogo {
             @Override
             public void run() {
                 if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
-                    jogador.perderVida(20);
+                    jogador.perderVida(200);
                     System.out.println("Você está em um ambiente tóxico e perdeu 20 de vida! Em 25 segundos, perderá mais 20 de vida.");
                     System.out.println("Vida atual: " + jogador.getVidaJogador());
                     if (jogador.getVidaJogador() <= 0) {
                         jogador.setMorto();
                         encerrarJogo("Você morreu devido à toxicidade do ambiente!");
+                        timer.cancel();
                     }
                 }
             }
         };
-        timer.scheduleAtFixedRate(task, 25000, 25000); 
+        timer.scheduleAtFixedRate(task, 10000, 25000); 
     }
 
     private void pararControleAmbienteToxico() {
@@ -478,5 +482,10 @@ public class Jogo {
 
     private void encerrarJogo(String mensagem) {
         System.out.println(mensagem);
+        terminado = true;
+        if (timer != null) {
+            timer.cancel();
+        }
     }
+    
 }

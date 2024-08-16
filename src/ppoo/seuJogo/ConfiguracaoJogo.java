@@ -248,10 +248,11 @@ private void adicionarItem(String linha) throws IllegalArgumentException {
         String ambienteInicial = partes[2];
         Double vida = Double.parseDouble(partes[3]);
         Double dano = Double.parseDouble(partes[4]);
+        int pontos = Integer.parseInt(partes[5]);
     
         List<Item> itensDropados = new ArrayList<>();
-        if (partes.length > 5) {
-            String[] itensNomes = partes[5].split(",");
+        if (partes.length > 6) {
+            String[] itensNomes = partes[6].split(",");
             for (String itemNome : itensNomes) {
                 Item item = encontrarItemPorNome(itemNome.trim());
                 if (item != null) {
@@ -262,7 +263,7 @@ private void adicionarItem(String linha) throws IllegalArgumentException {
             }
         }
     
-        Inimigo inimigo = new Inimigo(nome, descricao, vida, dano, itensDropados);
+        Inimigo inimigo = new Inimigo(nome, descricao, vida, dano, itensDropados, pontos);
         inimigos.add(inimigo);
         ambientes.get(ambienteInicial).adicionarInimigo(inimigo);
     }

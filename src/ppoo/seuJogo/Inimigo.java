@@ -8,19 +8,25 @@ public class Inimigo extends Individuo {
     private double dano;
     private boolean vivo;
     private List<Item> itensDrop;
+    private int pontos;
 
-    public Inimigo(String nome, String descricao, double vida, double dano, List<Item> itensDrop) {
+    public Inimigo(String nome, String descricao, double vida, double dano, List<Item> itensDrop, int pontos) {
         super(nome, descricao);
         this.vida = vida;
         this.dano = dano;
         this.vivo = true;
         this.itensDrop = itensDrop;
+        this.pontos = pontos;
     }
 
     // Getters e Setters
 
     public List<Item> getItensDrop() {
         return itensDrop;
+    }
+
+    public int getPontos() {
+        return pontos;
     }
 
     public double getVida() {
@@ -63,7 +69,7 @@ public class Inimigo extends Individuo {
         return danoAplicado;
     }
 
-    private double escolherAtaque() {
+    public double escolherAtaque() {
         Random random = new Random();
         int tipoAtaque = random.nextInt(3); // Gera um número aleatório entre 0, 1, ou 2
 
@@ -93,7 +99,6 @@ public class Inimigo extends Individuo {
             }
         }
     }
-
 
 
     public double getDanoMultiplicador(String weaponType) {
