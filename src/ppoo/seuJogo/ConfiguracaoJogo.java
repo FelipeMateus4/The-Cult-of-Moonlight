@@ -104,7 +104,6 @@ public class ConfiguracaoJogo {
             }
         }
 
-    
         if (isEscuro) {
             ambiente = new AmbienteEscuro(descricao);
         } else if (isToxico) {
@@ -127,7 +126,11 @@ public class ConfiguracaoJogo {
                     String direcao = direcaoAmbiente[0];
                     String ambienteDestino = direcaoAmbiente[1];
                     String chave = direcaoAmbienteChave[1];
-                    saidasPendentes.add(new String[]{nome, direcao, ambienteDestino, chave});
+
+                    // Verifica se há um motivo de bloqueio especificado
+                    String motivoBloqueio = (direcaoAmbienteChave.length > 2) ? direcaoAmbienteChave[2] : "A saída está trancada.";
+
+                    saidasPendentes.add(new String[]{nome, direcao, ambienteDestino, chave, motivoBloqueio});
                 }
             } else {
                 String[] direcaoAmbiente = saida.split("=");
@@ -138,12 +141,14 @@ public class ConfiguracaoJogo {
         }
     }
 
+
     private void ajustarSaidasPendentes() {
         for (String[] saida : saidasPendentes) {
             String nomeAmbiente = saida[0];
             String direcaoString = saida[1];
             String nomeAmbienteSaida = saida[2];
-            String chave = saida.length == 4 ? saida[3] : null;
+            String chave = saida.length >= 4 ? saida[3] : null;
+            String motivoBloqueio = saida.length == 5 ? saida[4] : null;
 
             Ambiente ambiente = ambientes.get(nomeAmbiente);
             Ambiente ambienteSaida = ambientes.get(nomeAmbienteSaida);
@@ -152,7 +157,7 @@ public class ConfiguracaoJogo {
                 try {
                     Direcao direcao = Direcao.valueOf(direcaoString.toUpperCase());
                     if (chave != null) {
-                        ambiente.ajustarSaidaBloqueada(direcao, ambienteSaida, chave, "A saída está trancada.");
+                        ambiente.ajustarSaidaBloqueada(direcao, ambienteSaida, chave, motivoBloqueio);
                     } else {
                         ambiente.ajustarSaida(direcao, ambienteSaida);
                     }
@@ -169,6 +174,7 @@ public class ConfiguracaoJogo {
             }
         }
     }
+
 
     private void adicionarItem(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");

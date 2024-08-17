@@ -3,7 +3,7 @@ Nome=Radahn
 Classe=Guerreiro
 
 [Ambientes]
-Praça Central|na Praça Central da vila Moonlight.|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna|NORTE=Igreja:Chave_De_Ferro|Toxico
+Praça Central|na Praça Central da vila Moonlight.|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna|NORTE=Igreja:Chave_De_Ferro:Porta enferrujada e trancada|Toxico
 Pousada|na Pousada da bela vila Moonlight.|OESTE=Praça Central|NORTE=Taverna
 Igreja|na velha igreja da vila Moonlight.|SUL=Praça Central|OESTE=Cemitério
 Beco|em um beco escuro.|NORTE=Praça Central|BAIXO=Esgoto|Escuro
