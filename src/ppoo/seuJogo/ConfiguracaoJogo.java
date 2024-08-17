@@ -215,6 +215,11 @@ public class ConfiguracaoJogo {
                 int durabilidadeAdaga = Integer.parseInt(partes[5]);
                 item = new Adaga(nome, danoAdaga, descricao, durabilidadeAdaga);
                 break;
+            case "Cajado":
+                double danoCajado = Double.parseDouble(partes[4]);
+                int durabilidadeCajado = Integer.parseInt(partes[5]);
+                item = new Cajado(nome, danoCajado, descricao, durabilidadeCajado);
+                break;
             default:
                 throw new IllegalArgumentException("Tipo de item desconhecido: " + tipo);
         }
@@ -230,17 +235,33 @@ public class ConfiguracaoJogo {
 
     private void adicionarPersonagem(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");
-        if (partes.length < 4) {
+        if (partes.length < 5) {
             throw new IllegalArgumentException("Configuração inválida para personagem: " + linha);
         }
         String nome = partes[0];
         String descricao = partes[1];
         String dialogo = partes[2];
         String ambienteInicial = partes[3];
-        Npc npc = new Npc(nome, descricao, dialogo);
+        String itemNome = partes[4];
+        
+        Item item = null;
+        if (!itemNome.equals("null")) {
+            item = encontrarItemPorNome(itemNome);
+            if (item == null) {
+                throw new IllegalArgumentException("Item não encontrado: " + itemNome);
+            }
+        }
+        
+        Npc npc = new Npc(nome, descricao, dialogo, item);
         npcs.add(npc);
-        ambientes.get(ambienteInicial).adicionarNpc(npc);
+        Ambiente ambiente = ambientes.get(ambienteInicial);
+        if (ambiente != null) {
+            ambiente.adicionarNpc(npc);
+        } else {
+            System.out.println("Erro: Ambiente " + ambienteInicial + " não encontrado.");
+        }
     }
+    
 
     private void adicionarInimigo(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");

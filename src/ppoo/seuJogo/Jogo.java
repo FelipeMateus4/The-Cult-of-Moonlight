@@ -226,6 +226,15 @@ public class Jogo {
         } else {
             System.out.println(npc.getDialogo());
         }
+
+        if (npc.getItem() != null) {
+            if (!jogador.temItem(npc.getItem().getNome())) {
+                jogador.adicionarItem(npc.getItem());
+                System.out.println("Você recebeu o item " + npc.getItem().getNome() + " do NPC " + npc.getNome() + ".");
+            } else {
+                System.out.println("Você já possui o item " + npc.getItem().getNome() + ".");
+            }
+        }
     }
 
     private void largar(Comando comando) {
