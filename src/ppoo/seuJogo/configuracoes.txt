@@ -36,7 +36,7 @@ Espada_Longa|uma espada usada, com marcas do tempo|Espada|Caverna|20.0|100
 Pocao_Grande|uma poção grande que recupera 50 de vida|Pocao|null|50|15
 Pocao_Media|uma poção media que recupera 35 de vida|Pocao|Igreja|35|20
 Pocao_Pequena|uma poção pequena que recupera 25 de vida|Pocao|Taverna|25|20
-Pocao_Inicial|uma poção tão pequena que parece amostra grátis|null|10|8
+Pocao_Inicial|uma poção tão pequena que parece amostra grátis|Pocao|null|10|8
 Chave_De_Ferro|uma chave de ferro com uma cruz gravada nela|Consumivel|Cabana|1
 Carta|uma carta velha, jogada no canto da Praça|Carta|Praça Central|Seu conteúdo diz: "Os rumores eram verdadeiros. Vi com meus próprios olhos. Não vá ao cemitério desarmado, coisas estranhas habitam aquele lugar. Caso insista em ir mesmo assim, vá pela Igreja. Que a sorte esteja com você."
 Armadura de Ferro|uma armadura de ferro|Armadura|Cabana|50.0|10

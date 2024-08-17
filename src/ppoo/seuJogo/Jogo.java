@@ -27,7 +27,6 @@ public class Jogo {
                     new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0),
                     new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz"),
                     ambienteInicial);
-            System.out.println(configuracao.getClasseJogador());
         } catch (IOException e) {
             System.out.println("Erro ao carregar o arquivo de configuração: " + e.getMessage());
             e.printStackTrace();

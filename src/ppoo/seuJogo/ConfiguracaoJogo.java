@@ -66,7 +66,6 @@ public class ConfiguracaoJogo {
             }
         }
 
-        System.out.println(classeJogador);
         br.close();
         ajustarSaidasPendentes();
     }
