@@ -1,6 +1,6 @@
 package ppoo.seuJogo;
 
-import java.util.Scanner;
+import ppoo.baseJogo.InterfaceUsuario;
 
 /**
  * Esta classe é parte da aplicacao "World of Zuul". "World of Zuul" é um jogo
@@ -22,15 +22,17 @@ import java.util.Scanner;
 public class Analisador {
     // guarda todas as palavras de comando validas
     private PalavrasComando palavrasDeComando;
-    // origem da entrada de comandos
-    private Scanner entrada;
+    // interface para interação com o usuário
+    private InterfaceUsuario interfaceUsuario;
 
     /**
-     * Cria um analisador para ler do terminal.
+     * Cria um analisador com uma interface de usuário.
+     * 
+     * @param interfaceUsuario A interface de usuário a ser usada (pode ser terminal ou gráfica)
      */
-    public Analisador() {
+    public Analisador(InterfaceUsuario interfaceUsuario) {
         palavrasDeComando = new PalavrasComando();
-        entrada = new Scanner(System.in);
+        this.interfaceUsuario = interfaceUsuario;
     }
 
     /**
@@ -43,11 +45,8 @@ public class Analisador {
         String palavra1 = null;
         String palavra2 = null;
 
-        // imprime o prompt
-        System.out.print("> ");
-
-        // obtém uma linha de comando do usuário
-        linha = entrada.nextLine();
+        // obtém uma linha de comando do usuário através da interface de usuário
+        linha = interfaceUsuario.obterComando();
 
         // quebra o comando do usuário em várias palavras, usando espaços em branco como
         // separadores.
@@ -73,10 +72,10 @@ public class Analisador {
      * @return Uma lista que representa os comandos válidos do jogo
      */
     public String getComandosValidos() {
-        String comandos = "";
+        StringBuilder comandos = new StringBuilder();
         for (PalavraDeComando palavraDeComando : palavrasDeComando.getComandosValidos()) {
-            comandos += palavraDeComando + " ";
+            comandos.append(palavraDeComando).append(" ");
         }
-        return comandos;
+        return comandos.toString().trim();
     }
 }

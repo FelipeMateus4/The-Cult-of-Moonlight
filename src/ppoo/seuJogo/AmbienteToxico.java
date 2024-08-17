@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class AmbienteToxico extends Ambiente {
     private boolean toxico;
 
-    public AmbienteToxico(String descricao) {
-        super(descricao);
+    public AmbienteToxico(String descricao, String caminhoImagem) {
+        super(descricao, caminhoImagem);
         this.toxico = true;
     }
 
-    public AmbienteToxico(String descricao, ArrayList<Item> ItemAmbiente) {
-        super(descricao, ItemAmbiente);
+    public AmbienteToxico(String descricao, String caminhoImagem, ArrayList<Item> ItemAmbiente) {
+        super(descricao, caminhoImagem, ItemAmbiente);
         this.toxico = true;
     }
 

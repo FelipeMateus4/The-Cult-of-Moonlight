@@ -2,8 +2,8 @@ package ppoo.seuJogo;
 
 public class Adaga extends Arma implements Equipavel{
 
-    public Adaga(String nome, double danoBase, String descricao, Integer durabilidade) {
-        super(nome, danoBase, descricao, durabilidade, "Ladrao");
+    public Adaga(String nome, double danoBase, String descricao, Integer durabilidade, String caminhoImagem) {
+        super(nome, danoBase, descricao, durabilidade, "Ladrao", caminhoImagem);
         this.danoStrategy = new  DanoDeAdagaStrategy();
     }
 

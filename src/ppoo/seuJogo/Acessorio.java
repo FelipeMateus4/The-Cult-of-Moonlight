@@ -3,8 +3,8 @@ package ppoo.seuJogo;
 public class Acessorio extends Item implements Equipavel{
     private String efeito;
 
-    Acessorio (String nome, String descricao, String efeito) {
-        super(nome, descricao);
+    Acessorio (String nome, String descricao, String efeito, String caminhoImagem) {
+        super(nome, descricao, caminhoImagem);
         this.efeito =  efeito;
     }
     public String getEfeito() {

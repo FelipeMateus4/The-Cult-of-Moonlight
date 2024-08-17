@@ -18,10 +18,6 @@ public abstract class EntidadeGrafica {
     /**
      * Construtor da classe recebe o caminho do arquivo que contém a imagem.
      * 
-     * Por exemplo, se você tiver uma pasta chamada 'imagens' na pasta do seu
-     * projeto (ou seja, ao lado da pasta 'br'), e dentro desta pasta tiver um
-     * arquivo 'sala.jpg', o caminho para essa imagem será "imagens/casa.jpg".
-     * 
      * @param caminhoImagem Caminho do arquivo que contém a imagem.
      */
     public EntidadeGrafica(String caminhoImagem) {
@@ -30,13 +26,17 @@ public abstract class EntidadeGrafica {
             try {
                 // tenta carregar a imagem do caminho passado
                 imagem = ImageIO.read(new File(caminhoImagem));
+                if (imagem == null) {
+                    System.out.println("ATENÇÃO: Imagem não encontrada ou não pode ser carregada: " + caminhoImagem);
+                }
             }
             catch (Exception e) {
                 // Se houver algum problema no carregamento da imagem (por exemplo, ela não for
                 // encontrada)
-                // esta mensagem será exibida
-                System.out.println("ATENÇÃO: Erro ao tentar abrir imagem " + caminhoImagem + "!");
+                System.out.println("ATENÇÃO: Erro ao tentar abrir imagem " + caminhoImagem + "! Detalhes: " + e.getMessage());
             }
+        } else {
+            System.out.println("ATENÇÃO: Caminho da imagem é nulo ou vazio!");
         }
     }
 

@@ -3,8 +3,8 @@ package ppoo.seuJogo;
 public class Pocao extends Consumivel implements Bebivel {
     private double vidaDada;
 
-    public Pocao(String nome, String descricao, double vidaDada, int usos) {
-        super(nome, descricao, usos);
+    public Pocao(String nome, String descricao, double vidaDada, int usos, String caminhoImagem) {
+        super(nome, descricao, usos, caminhoImagem);
         this.vidaDada = vidaDada;
     }
 

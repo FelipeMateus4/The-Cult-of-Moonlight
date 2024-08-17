@@ -1,11 +1,10 @@
 {
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "jar_files/flatlaf-3.4.1.jar"
-    ],
-    "githubPullRequests.ignoredPullRequestBranches": [
-        "main"
-    ]
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "jar_files/flatlaf-3.4.1.jar",
+    "src/ppoo/lib/flatlaf-3.5.1.jar"
+  ],
+  "githubPullRequests.ignoredPullRequestBranches": ["main"]
 }

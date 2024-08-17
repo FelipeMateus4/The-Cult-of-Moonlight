@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class AmbienteEscuro extends Ambiente {
     private boolean escuro;
 
-    public AmbienteEscuro(String descricao) {
-        super(descricao);
+    public AmbienteEscuro(String descricao, String caminhoImagem) {
+        super(descricao, caminhoImagem);
         this.escuro = true;
     }
 
-    public AmbienteEscuro(String descricao, ArrayList<Item> ItemAmbiente) {
-        super(descricao, ItemAmbiente);
+    public AmbienteEscuro(String descricao, String caminhoImagem, ArrayList<Item> ItemAmbiente) {
+        super(descricao, caminhoImagem, ItemAmbiente);
         this.escuro = true;
     }
 

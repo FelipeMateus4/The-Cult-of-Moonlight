@@ -3,8 +3,8 @@ package ppoo.seuJogo;
 public class Consumivel extends Item {
     private int usos;
 
-    public Consumivel(String nome, String descricao, int usos) {
-        super(nome, descricao);
+    public Consumivel(String nome, String descricao, int usos, String caminhoImagem) {
+        super(nome, descricao, caminhoImagem);
         this.usos = usos;
     }
 

@@ -1,15 +1,17 @@
 package ppoo.seuJogo;
 
+import ppoo.baseJogo.EntidadeGrafica;
 import java.util.*;
 
-public class Ambiente implements AmbienteModificado {
+public class Ambiente extends EntidadeGrafica implements AmbienteModificado {
     private String descricao;
     private HashMap<Direcao, Saida> saidas;
     private ArrayList<Item> ItemAmbiente;
     private ArrayList<Npc> NpcAmbiente;
     private ArrayList<Inimigo> InimigoAmbiente;
 
-    public Ambiente(String descricao) {
+    public Ambiente(String descricao, String caminhoImagem) {
+        super(caminhoImagem);
         this.descricao = descricao;
         this.saidas = new HashMap<>();
         this.ItemAmbiente = new ArrayList<>();
@@ -17,8 +19,13 @@ public class Ambiente implements AmbienteModificado {
         this.InimigoAmbiente = new ArrayList<>();
     }
 
-    public Ambiente(String descricao, ArrayList<Item> ItemAmbiente) {
-        this(descricao);
+    @Override
+    public String getNome() {
+        return descricao;
+    }
+
+    public Ambiente(String descricao, String caminhoImagem, ArrayList<Item> ItemAmbiente) {
+        this(descricao, caminhoImagem);
         this.ItemAmbiente = ItemAmbiente;
     }
 

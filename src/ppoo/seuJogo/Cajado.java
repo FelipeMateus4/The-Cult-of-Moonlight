@@ -2,8 +2,8 @@ package ppoo.seuJogo;
 
 public class Cajado extends Arma implements Equipavel{
 
-    public Cajado(String nome, double danoBase, String descricao, int durabilidade) {
-        super(nome, danoBase, descricao, durabilidade, "Mago");
+    public Cajado(String nome, double danoBase, String descricao, int durabilidade, String caminhoImagem) {
+        super(nome, danoBase, descricao, durabilidade, "Mago", caminhoImagem);
         this.danoStrategy = new  DanoDeCajadoStrategy();
     }
     

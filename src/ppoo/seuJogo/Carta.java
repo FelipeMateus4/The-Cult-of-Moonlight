@@ -3,8 +3,8 @@ package ppoo.seuJogo;
 public class Carta extends Item implements Legivel{
     private String texto;
 
-    public Carta(String nome, String descricao, String texto) {
-        super(nome, descricao);
+    public Carta(String nome, String descricao, String texto, String caminhoImagem) {
+        super(nome, descricao, caminhoImagem);
         this.texto = texto;
     }
 

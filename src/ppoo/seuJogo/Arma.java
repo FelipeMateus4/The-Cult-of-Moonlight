@@ -6,8 +6,8 @@ public abstract class Arma extends Item {
     private String classe;
     protected DanoDeArmaStrategy danoStrategy;
 
-    public Arma(String nome, double danoBase, String descricao, int durabilidade, String classe) {
-        super(nome, descricao);
+    public Arma(String nome, double danoBase, String descricao, int durabilidade, String classe, String caminhoImagem) {
+        super(nome, descricao, caminhoImagem);
         this.danoBase = danoBase;
         this.durabilidade = durabilidade;
         this.classe = classe;

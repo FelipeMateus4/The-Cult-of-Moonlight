@@ -3,8 +3,8 @@ package ppoo.seuJogo;
 public class Espada extends Arma implements Equipavel {
 
 
-    public Espada(String nome, double danoBase, String descricao, int durabilidade) {
-        super(nome, danoBase, descricao, durabilidade, "Guerreiro");
+    public Espada(String nome, double danoBase, String descricao, int durabilidade, String caminhoImagem) {
+        super(nome, danoBase, descricao, durabilidade, "Guerreiro", caminhoImagem);
         this.danoStrategy = new DanoDeEspadaStrategy();
     }
 

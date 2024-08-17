@@ -4,8 +4,8 @@ public class Armadura extends Item implements Equipavel{
     private double defesaFisica;
     private double defesaMagica;
 
-    public Armadura(String nome, String descricao, double defesaFisica, double defesaMagica) {
-        super(nome, descricao);
+    public Armadura(String nome, String descricao, double defesaFisica, double defesaMagica, String caminhoImagem) {
+        super(nome, descricao, caminhoImagem);
         this.defesaFisica = defesaFisica;
         this.defesaMagica = defesaMagica;
     }
