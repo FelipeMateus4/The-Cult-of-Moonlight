@@ -3,9 +3,9 @@ Nome=Radahn
 Classe=Guerreiro
 
 [Ambientes]
-Praça Central|na Praça Central da cidade Moonlight.|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna|NORTE=Igreja:Chave_De_Ferro|Toxico
-Pousada|na Pousada da bela cidade Moonlight.|OESTE=Praça Central|NORTE=Taverna
-Igreja|na velha igreja da cidade Moonlight.|SUL=Praça Central|OESTE=Cemitério
+Praça Central|na Praça Central da vila Moonlight.|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna|NORTE=Igreja:Chave_De_Ferro|Toxico
+Pousada|na Pousada da bela vila Moonlight.|OESTE=Praça Central|NORTE=Taverna
+Igreja|na velha igreja da vila Moonlight.|SUL=Praça Central|OESTE=Cemitério
 Beco|em um beco escuro.|NORTE=Praça Central|BAIXO=Esgoto|Escuro
 Floresta|na floresta|LESTE=Praça Central|SUL=Caverna|OESTE=Cabana|NORTE=Cemitério
 Cemitério|no cemitério sombrio|SUL=Floresta|LESTE=Igreja|Escuro
@@ -21,8 +21,8 @@ Tunel Esgoto 6|em um túnel do esgoto|OESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 3|SU
 Tunel Esgoto 7|em um túnel do esgoto|SUL=Tunel Esgoto 4|SUDESTE=Tunel Esgoto 5|LESTE=Tunel Esgoto 8|Toxico
 Tunel Esgoto 8|em um túnel do esgoto|OESTE=Tunel Esgoto 7|SUDOESTE=Tunel Esgoto 4|SUL=Tunel Esgoto 5|SUDESTE=Tunel Esgoto 6|LESTE=Tunel Esgoto 9|Toxico
 Tunel Esgoto 9|em um túnel do esgoto|OESTE=Tunel Esgoto 8|SUDOESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 6|NORDESTE=Salao Espera|Toxico
-Salao Espera|no salão de espera|SUDOESTE=Tunel Esgoto 9|NORTE=Sala Boss
-Sala Boss|na sala do boss|SUL=Salao Espera
+Salao Espera|no salão de espera|SUDOESTE=Tunel Esgoto 9|NORTE=Sala do Boss
+Sala do Boss|na sala do boss|SUL=Salao Espera
 Sala Tesouro|na sala do tesouro|LESTE=Tunel Esgoto 4
 Lago|à beira de um lago tranquilo|NORTE=Cabana|LESTE=Caverna
 Caverna|em uma caverna escura|NORTE=Floresta|OESTE=Lago|Toxico
@@ -68,3 +68,4 @@ Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 7|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 8|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 9|100|10|200
+Boss|Boss Final|Um inimigo temido e poderoso, responsável pelo caos na Vila Moonlight. Sua presença é esmagadora. Prepare-se para um combate épico, pois ele possui habilidades devastadoras e uma resistência impressionante. Cuidado, ele possui uma variação de ataques e possui a habilidade de roubo de vida ao atacar. Boa sorte.|Sala do Boss|500|30|2000

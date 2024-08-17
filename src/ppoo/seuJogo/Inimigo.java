@@ -48,10 +48,6 @@ public abstract class Inimigo extends Individuo {
     }
 
     public void adicionarVida(double vida) {
-        if (this.vida + vida > vida) {
-            this.vida = vida;
-            return;
-        }
         this.vida += vida;
     }
 

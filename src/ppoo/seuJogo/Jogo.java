@@ -186,8 +186,8 @@ public class Jogo {
         // Verifica se o inimigo ainda está vivo para contra-atacar
         if (inimigo.isVivo()) {
             double dano = inimigo.atacar(jogador);
-            System.out.println("O inimigo " + inimigo.getNome() + " te atacou e causou " + dano + " de dano.");
-            System.out.println("Sua vida atual é: " + jogador.getVidaJogador());
+            System.out.println("O inimigo " + inimigo.getNome() + " te atacou e causou " + String.format("%.2f", dano) + " de dano.");
+            System.out.println("Sua vida atual é: " + String.format("%.2f", jogador.getVidaJogador()));
     
             // Verifica se o jogador foi derrotado
             if (jogador.getVidaJogador() <= 0) {
@@ -334,7 +334,7 @@ public class Jogo {
 
         if (acessorioAtual != null) {
             Equipavel equipavelAcessorio = (Equipavel) acessorioAtual;
-            mensagem.append(equipavelAcessorio.equipado(jogador)).append("\n");
+            mensagem.append(equipavelAcessorio.equipado(jogador));
         }
 
         System.out.println(mensagem.toString());
