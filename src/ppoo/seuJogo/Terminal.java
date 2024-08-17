@@ -30,18 +30,17 @@ public class Terminal implements InterfaceUsuario {
 
     @Override
     public void ambienteAtualMudou(EntidadeGrafica ambiente) {
+        // Não precisa fazer nada para terminal, pois não há ambiente gráfico.
     }
 
     @Override
     public void jogadorPegouItem(EntidadeGrafica item) {
-        // Não precisa fazer nada para terminal, mas vamos exibir uma mensagem de exemplo
-        System.out.println("Você pegou um item: " + item.getNome());
+        // Não precisa fazer nada para terminal, pois não há ambiente gráfico.
     }
 
     @Override
     public void jogadorDescartouItem(EntidadeGrafica item) {
-        // Não precisa fazer nada para terminal, mas vamos exibir uma mensagem de exemplo
-        System.out.println("Você descartou um item: " + item.getNome());
+        // Não precisa fazer nada para terminal, pois não há ambiente gráfico.
     }
 
     @Override
