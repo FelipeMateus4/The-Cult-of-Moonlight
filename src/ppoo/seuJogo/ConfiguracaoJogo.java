@@ -12,6 +12,7 @@ public class ConfiguracaoJogo {
     private String classeJogador;
     private List<String[]> saidasPendentes;
     private Ambiente ambienteInicial;
+    private List<Item> itensSemAmbiente = new ArrayList<>();
 
     public ConfiguracaoJogo(String caminhoArquivo) throws IOException {
         ambientes = new HashMap<>();
@@ -82,145 +83,149 @@ public class ConfiguracaoJogo {
         }
     }
 
-private void adicionarAmbiente(String linha) throws IllegalArgumentException {
-    String[] partes = linha.split("\\|");
-    if (partes.length < 2) {
-        throw new IllegalArgumentException("Configuração inválida para ambiente: " + linha);
-    }
-    String nome = partes[0];
-    String descricao = partes[1];
-    String[] saidas = Arrays.copyOfRange(partes, 2, partes.length);
-
-    Ambiente ambiente;
-    boolean isEscuro = false;
-    boolean isToxico = false;
-
-    for (int i = 2; i < partes.length; i++) {
-        if (partes[i].equalsIgnoreCase("Escuro")) {
-            isEscuro = true;
+    private void adicionarAmbiente(String linha) throws IllegalArgumentException {
+        String[] partes = linha.split("\\|");
+        if (partes.length < 2) {
+            throw new IllegalArgumentException("Configuração inválida para ambiente: " + linha);
         }
-        if (partes[i].equalsIgnoreCase("Toxico")) {
-            isToxico = true;
-        }
-    }
+        String nome = partes[0];
+        String descricao = partes[1];
+        String[] saidas = Arrays.copyOfRange(partes, 2, partes.length);
 
-  
-      if (isEscuro) {
-        ambiente = new AmbienteEscuro(descricao);
-    } else if (isToxico) {
-        ambiente = new AmbienteToxico(descricao);
-    } else {
-        ambiente = new Ambiente(descricao);
-    }
+        Ambiente ambiente;
+        boolean isEscuro = false;
+        boolean isToxico = false;
 
-    ambientes.put(nome, ambiente);
-
-    if (ambienteInicial == null) {
-        ambienteInicial = ambiente;
-    }
-
-    for (String saida : saidas) {
-        if (saida.contains(":")) {
-            String[] direcaoAmbienteChave = saida.split(":");
-            String[] direcaoAmbiente = direcaoAmbienteChave[0].split("=");
-            if (direcaoAmbiente.length == 2) {
-                String direcao = direcaoAmbiente[0];
-                String ambienteDestino = direcaoAmbiente[1];
-                String chave = direcaoAmbienteChave[1];
-                saidasPendentes.add(new String[]{nome, direcao, ambienteDestino, chave});
+        for (int i = 2; i < partes.length; i++) {
+            if (partes[i].equalsIgnoreCase("Escuro")) {
+                isEscuro = true;
             }
-        } else {
-            String[] direcaoAmbiente = saida.split("=");
-            if (direcaoAmbiente.length == 2) {
-                saidasPendentes.add(new String[]{nome, direcaoAmbiente[0], direcaoAmbiente[1]});
+            if (partes[i].equalsIgnoreCase("Toxico")) {
+                isToxico = true;
             }
         }
-    }
-}
 
-private void ajustarSaidasPendentes() {
-    for (String[] saida : saidasPendentes) {
-        String nomeAmbiente = saida[0];
-        String direcaoString = saida[1];
-        String nomeAmbienteSaida = saida[2];
-        String chave = saida.length == 4 ? saida[3] : null;
-
-        Ambiente ambiente = ambientes.get(nomeAmbiente);
-        Ambiente ambienteSaida = ambientes.get(nomeAmbienteSaida);
-
-        if (ambiente != null && ambienteSaida != null) {
-            try {
-                Direcao direcao = Direcao.valueOf(direcaoString.toUpperCase());
-                if (chave != null) {
-                    ambiente.ajustarSaidaBloqueada(direcao, ambienteSaida, chave, "A saída está trancada.");
-                } else {
-                    ambiente.ajustarSaida(direcao, ambienteSaida);
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.println("Erro: Direção " + direcaoString + " inválida.");
-            }
-        } else {
-            if (ambiente == null) {
-                System.out.println("Erro: Ambiente " + nomeAmbiente + " não encontrado.");
-            }
-            if (ambienteSaida == null) {
-                System.out.println("Erro: Ambiente de saída " + nomeAmbienteSaida + " não encontrado.");
-            }
-        }
-    }
-}
-
-private void adicionarItem(String linha) throws IllegalArgumentException {
-    String[] partes = linha.split("\\|");
-    if (partes.length < 5) {
-        throw new IllegalArgumentException("Configuração inválida para item: " + linha);
-    }
-    String nome = partes[0];
-    String descricao = partes[1];
-    String tipo = partes[2];
-    String ambienteInicial = partes[3];
-    Item item = null;
     
-    switch (tipo) {
-        case "Acessorio":
-            String efeito = partes[4];
-            item = new Acessorio(nome, descricao, efeito);
-            break;
-        case "Espada":
-            double danoEspada = Double.parseDouble(partes[4]);
-            int durabilidadeEspada = Integer.parseInt(partes[5]);
-            item = new Espada(nome, danoEspada, descricao, durabilidadeEspada);
-            break;
-        case "Pocao":
-            double recuperacao = Double.parseDouble(partes[4]);
-            int usos = Integer.parseInt(partes[5]);
-            item = new Pocao(nome, descricao, recuperacao, usos);
-            break;
-        case "Consumivel":
-            int usosConsumivel = Integer.parseInt(partes[4]);
-            item = new Consumivel(nome, descricao, usosConsumivel);
-            break;
-        case "Carta":
-            String textoCarta = partes[4];
-            item = new Carta(nome, descricao, textoCarta);
-            break;
-        case "Armadura":
-            double defesaFisica = Double.parseDouble(partes[4]);
-            double defesaMagica = Double.parseDouble(partes[5]);
-            item = new Armadura(nome, descricao, defesaFisica, defesaMagica);
-            break;
-        case "Adaga":
-            double danoAdaga = Double.parseDouble(partes[4]);
-            int durabilidadeAdaga = Integer.parseInt(partes[5]);
-            item = new Adaga(nome, danoAdaga, descricao, durabilidadeAdaga);
-            break;
-        default:
-            throw new IllegalArgumentException("Tipo de item desconhecido: " + tipo);
+        if (isEscuro) {
+            ambiente = new AmbienteEscuro(descricao);
+        } else if (isToxico) {
+            ambiente = new AmbienteToxico(descricao);
+        } else {
+            ambiente = new Ambiente(descricao);
+        }
+
+        ambientes.put(nome, ambiente);
+
+        if (ambienteInicial == null) {
+            ambienteInicial = ambiente;
+        }
+
+        for (String saida : saidas) {
+            if (saida.contains(":")) {
+                String[] direcaoAmbienteChave = saida.split(":");
+                String[] direcaoAmbiente = direcaoAmbienteChave[0].split("=");
+                if (direcaoAmbiente.length == 2) {
+                    String direcao = direcaoAmbiente[0];
+                    String ambienteDestino = direcaoAmbiente[1];
+                    String chave = direcaoAmbienteChave[1];
+                    saidasPendentes.add(new String[]{nome, direcao, ambienteDestino, chave});
+                }
+            } else {
+                String[] direcaoAmbiente = saida.split("=");
+                if (direcaoAmbiente.length == 2) {
+                    saidasPendentes.add(new String[]{nome, direcaoAmbiente[0], direcaoAmbiente[1]});
+                }
+            }
+        }
     }
 
-    itens.add(item);
-    ambientes.get(ambienteInicial).adicionarItem(item);
-}
+    private void ajustarSaidasPendentes() {
+        for (String[] saida : saidasPendentes) {
+            String nomeAmbiente = saida[0];
+            String direcaoString = saida[1];
+            String nomeAmbienteSaida = saida[2];
+            String chave = saida.length == 4 ? saida[3] : null;
+
+            Ambiente ambiente = ambientes.get(nomeAmbiente);
+            Ambiente ambienteSaida = ambientes.get(nomeAmbienteSaida);
+
+            if (ambiente != null && ambienteSaida != null) {
+                try {
+                    Direcao direcao = Direcao.valueOf(direcaoString.toUpperCase());
+                    if (chave != null) {
+                        ambiente.ajustarSaidaBloqueada(direcao, ambienteSaida, chave, "A saída está trancada.");
+                    } else {
+                        ambiente.ajustarSaida(direcao, ambienteSaida);
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Erro: Direção " + direcaoString + " inválida.");
+                }
+            } else {
+                if (ambiente == null) {
+                    System.out.println("Erro: Ambiente " + nomeAmbiente + " não encontrado.");
+                }
+                if (ambienteSaida == null) {
+                    System.out.println("Erro: Ambiente de saída " + nomeAmbienteSaida + " não encontrado.");
+                }
+            }
+        }
+    }
+
+    private void adicionarItem(String linha) throws IllegalArgumentException {
+        String[] partes = linha.split("\\|");
+        if (partes.length < 5) {
+            throw new IllegalArgumentException("Configuração inválida para item: " + linha);
+        }
+        String nome = partes[0];
+        String descricao = partes[1];
+        String tipo = partes[2];
+        String ambienteInicial = partes[3].equals("null") ? null : partes[3];
+        Item item = null;
+        
+        switch (tipo) {
+            case "Acessorio":
+                String efeito = partes[4];
+                item = new Acessorio(nome, descricao, efeito);
+                break;
+            case "Espada":
+                double danoEspada = Double.parseDouble(partes[4]);
+                int durabilidadeEspada = Integer.parseInt(partes[5]);
+                item = new Espada(nome, danoEspada, descricao, durabilidadeEspada);
+                break;
+            case "Pocao":
+                double recuperacao = Double.parseDouble(partes[4]);
+                int usos = Integer.parseInt(partes[5]);
+                item = new Pocao(nome, descricao, recuperacao, usos);
+                break;
+            case "Consumivel":
+                int usosConsumivel = Integer.parseInt(partes[4]);
+                item = new Consumivel(nome, descricao, usosConsumivel);
+                break;
+            case "Carta":
+                String textoCarta = partes[4];
+                item = new Carta(nome, descricao, textoCarta);
+                break;
+            case "Armadura":
+                double defesaFisica = Double.parseDouble(partes[4]);
+                double defesaMagica = Double.parseDouble(partes[5]);
+                item = new Armadura(nome, descricao, defesaFisica, defesaMagica);
+                break;
+            case "Adaga":
+                double danoAdaga = Double.parseDouble(partes[4]);
+                int durabilidadeAdaga = Integer.parseInt(partes[5]);
+                item = new Adaga(nome, danoAdaga, descricao, durabilidadeAdaga);
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de item desconhecido: " + tipo);
+        }
+
+        if (ambienteInicial != null && ambientes.containsKey(ambienteInicial)) {
+            ambientes.get(ambienteInicial).adicionarItem(item);
+        } else {
+            itensSemAmbiente.add(item);
+        }
+        itens.add(item);
+    }
 
 
     private void adicionarPersonagem(String linha) throws IllegalArgumentException {
@@ -239,20 +244,21 @@ private void adicionarItem(String linha) throws IllegalArgumentException {
 
     private void adicionarInimigo(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");
-        if (partes.length < 3) {
+        if (partes.length < 5) {
             throw new IllegalArgumentException("Configuração inválida para inimigo: " + linha);
         }
     
-        String nome = partes[0];
-        String descricao = partes[1];
-        String ambienteInicial = partes[2];
-        Double vida = Double.parseDouble(partes[3]);
-        Double dano = Double.parseDouble(partes[4]);
-        int pontos = Integer.parseInt(partes[5]);
+        String tipoInimigo = partes[0];
+        String nome = partes[1];
+        String descricao = partes[2];
+        String ambienteInicial = partes[3];
+        Double vida = Double.parseDouble(partes[4]);
+        Double dano = Double.parseDouble(partes[5]);
+        int pontos = Integer.parseInt(partes[6]);
     
         List<Item> itensDropados = new ArrayList<>();
-        if (partes.length > 6) {
-            String[] itensNomes = partes[6].split(",");
+        if (partes.length > 7) {
+            String[] itensNomes = partes[7].split(",");
             for (String itemNome : itensNomes) {
                 Item item = encontrarItemPorNome(itemNome.trim());
                 if (item != null) {
@@ -262,11 +268,13 @@ private void adicionarItem(String linha) throws IllegalArgumentException {
                 }
             }
         }
+        
+        Inimigo inimigo = InimigoFactory.criarInimigo(tipoInimigo, nome, descricao, vida, dano, pontos, itensDropados);
     
-        Inimigo inimigo = new Inimigo(nome, descricao, vida, dano, itensDropados, pontos);
         inimigos.add(inimigo);
         ambientes.get(ambienteInicial).adicionarInimigo(inimigo);
     }
+    
     
 
     private Item encontrarItemPorNome(String nome) {

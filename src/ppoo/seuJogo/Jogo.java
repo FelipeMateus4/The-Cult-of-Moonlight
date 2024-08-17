@@ -460,8 +460,8 @@ public class Jogo {
             @Override
             public void run() {
                 if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
-                    jogador.perderVida(200);
-                    System.out.println("Você está em um ambiente tóxico e perdeu 20 de vida! Em 25 segundos, perderá mais 20 de vida.");
+                    jogador.perderVida(10);
+                    System.out.println("Você está em um ambiente tóxico e perdeu 10 de vida! Em 25 segundos, perderá mais 10 de vida.");
                     System.out.println("Vida atual: " + jogador.getVidaJogador());
                     if (jogador.getVidaJogador() <= 0) {
                         jogador.setMorto();

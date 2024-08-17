@@ -32,11 +32,12 @@ Salao Secreto|um salão secreto cheio de tesouros e perigos|NORTE=Portao Trancad
 [Itens]
 Bosta|uma máscara respiratória que protege contra gases tóxicos|Acessorio|Praça Central|proteger
 Terrablade|uma espada lendária da terra|Espada|Praça Central|20.0|100
-Pocao_Grande|uma poção que recupera 50 de vida|Pocao|Igreja|5
+Pocao_Grande|uma poção que recupera 50 de vida|Pocao|Igreja|50|5
 Chave_De_Ouro|uma chave de ouro com runas antigas gravadas|Consumivel|Praça Central|1
 Carta|uma carta velha|Carta|Pousada|Contém pistas sobre a história
 Armadura de Ferro|uma armadura de ferro|Armadura|Cabana|50.0|10
 Adaga|uma adaga afiada|Adaga|Beco|10.0|100
+Adagaa|uma adaga afiada|Adaga|null|10.0|100
 
 
 [Personagens]
@@ -46,8 +47,8 @@ Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Pra�
 Mendigo|um mendigo sujo|O mendigo diz: 'Você tem algum trocado?'|Beco
 
 [Inimigos]
-Esqueleto|um esqueleto assustador|Praça Central|100|10|100|Bosta, Carta
-Zumbi|um zumbi fedido|Caverna|150|15|Pocao_Grande|50
-Lobisomem|um lobisomem feroz|Floresta|100|10|120
-Fantasma|um fantasma assustador|Cemitério|100|10|20
-Aranha Gigante|uma aranha gigante|Caverna|100|10|40
+Comum|Esqueleto|um esqueleto assustador|Praça Central|3|1|100|Adagaa
+Comum|Zumbi|um zumbi fedido|Caverna|150|15|50|Pocao_Grande
+Lobisomem|Lobisomem|um lobisomem feroz|Floresta|100|10|120
+Comum|Fantasma|um fantasma assustador|Cemitério|100|10|20
+Comum|Aranha_Gigante|uma aranha gigante|Caverna|100|10|40

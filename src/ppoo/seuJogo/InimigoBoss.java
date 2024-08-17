@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Random;
 
 
-public class Boss extends Inimigo {
+public class InimigoBoss extends Inimigo {
+    Random random = new Random();
 
-    public Boss(String nome, String descricao, double vida, double dano, List<Item> itensDrop, int pontos) {
-        super(nome, descricao, vida, dano, itensDrop, pontos);
+    public InimigoBoss(String nome, String descricao, double vida, double dano, int pontos, List<Item> itensDrop) {
+        super(nome, descricao, vida, dano, pontos, itensDrop);
     }
 
     @Override
     public double escolherAtaque() {
-        Random random = new Random();
-        int tipoAtaque = random.nextInt(6); // Gera um número aleatório entre 0, 1, ou 2
+        int tipoAtaque = random.nextInt(4);
 
         double danoCalculado;
         switch (tipoAtaque) {
@@ -21,10 +21,13 @@ public class Boss extends Inimigo {
                 danoCalculado = getDano() * 0.8; // Ataque rápido
                 break;
             case 1:
-                danoCalculado = getDano() * 1.8; // Ataque forte
+                danoCalculado = getDano() * 1.3; // Ataque forte
                 break;
             case 2:
                 danoCalculado = getDano(); // Ataque normal
+                break;
+            case 3:
+                danoCalculado = getDano() * 1.8; // Ataque crítico
                 break;
             default:
                 danoCalculado = getDano();
@@ -53,7 +56,7 @@ public class Boss extends Inimigo {
         if (isVivo()) {
             danoAplicado = escolherAtaque();
             jogador.perderVida(danoAplicado);
-            setVida(danoAplicado * 0.5);
+            adicionarVida(danoAplicado * 0.5);
 
             if (jogador.getVidaJogador() <= 0) {
                 jogador.setMorto();
