@@ -16,7 +16,6 @@ public class Jogo {
     private boolean estavaToxico;
     private boolean terminado;
 
-
     public Jogo(InterfaceUsuario interfaceUsuario, String caminhoConfiguracao) {
         this.interfaceUsuario = interfaceUsuario;
         try {
@@ -118,6 +117,7 @@ public class Jogo {
 
     private void getItensCarregados() {
         interfaceUsuario.exibirMensagem(jogador.getItensCarregados());
+        jogador.getItens().forEach(interfaceUsuario::jogadorPegouItem);
     }
 
     private void imprimirAjuda() {
@@ -165,6 +165,7 @@ public class Jogo {
             if (verificar) {
                 jogador.getLocalizacaoAtual().removerItemAmbiente(nomeItem);
                 interfaceUsuario.exibirMensagem("Item coletado.");
+                interfaceUsuario.jogadorPegouItem(item); // Exibe a imagem do item na UI
             } else {
                 interfaceUsuario.exibirMensagem("Mochila cheia. Remova um item com o comando largar para adicionar outro.");
             }
@@ -210,6 +211,7 @@ public class Jogo {
                 for (Item item : itensDrop) {
                     jogador.getLocalizacaoAtual().adicionarItem(item);
                     interfaceUsuario.exibirMensagem("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
+                    interfaceUsuario.jogadorPegouItem(item); // Exibe a imagem do item na UI
                 }
                 
                 // Remove o inimigo da localização atual
@@ -235,6 +237,7 @@ public class Jogo {
             if (!jogador.temItem(npc.getItem().getNome())) {
                 jogador.adicionarItem(npc.getItem());
                 interfaceUsuario.exibirMensagem("Você recebeu o item " + npc.getItem().getNome() + " do NPC " + npc.getNome() + ".");
+                interfaceUsuario.jogadorPegouItem(npc.getItem()); // Exibe a imagem do item na UI
             } else {
                 interfaceUsuario.exibirMensagem("Você já possui o item " + npc.getItem().getNome() + ".");
             }
@@ -251,6 +254,7 @@ public class Jogo {
         if (itemProcurado != null) {
             jogador.removerItem(nomeItem);
             jogador.getLocalizacaoAtual().largarItem(itemProcurado);
+            interfaceUsuario.jogadorDescartouItem(itemProcurado); // Remove a imagem do item da UI
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
                 jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\avb.jpeg"));
             } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
@@ -275,11 +279,15 @@ public class Jogo {
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
                 jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\avb.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
+                interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
                 jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0, "imagens\\avb.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
+                interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
                 jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "imagens\\avb.jpeg"));
+                interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
+                interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else {
                 interfaceUsuario.exibirMensagem("Item não equipado");
             }
@@ -309,6 +317,7 @@ public class Jogo {
             bebivel.beberPocao(jogador);
             double vidaNova = jogador.getVidaJogador();
             interfaceUsuario.exibirMensagem("Você recuperou " + (vidaNova - vidaAntiga) + " de vida.");
+            interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI ao consumir o item
         } else {
             interfaceUsuario.exibirMensagem("O item " + nomeItem + " não pode ser bebido.");
         }
@@ -503,4 +512,3 @@ public class Jogo {
         }
     }
 }
-

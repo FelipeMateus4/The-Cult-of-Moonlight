@@ -95,21 +95,20 @@ public class Jogador {
             return "Mochila vazia!";
         }
 
-        String itens = "Itens na mochila: ";
+        StringBuilder itens = new StringBuilder("Itens na mochila: ");
         for (String nomeItem : mochila.keySet()) {
-            itens += nomeItem + ", ";
+            itens.append(nomeItem).append(", ");
         }
 
         // Remove a última vírgula e espaço e adiciona um ponto final
-        itens = itens.substring(0, itens.length() - 2) + ".";
+        itens.setLength(itens.length() - 2);
+        itens.append(".");
 
-        return itens;
+        return itens.toString();
     }
 
     public Item getItemEspecifico(String nome) {
-        Item aux = null;
-        aux = mochila.get(nome);
-        return aux;
+        return mochila.get(nome);
     }
 
     public double beber(Pocao pocao) {
@@ -159,5 +158,10 @@ public class Jogador {
             }
             getLocalizacaoAtual().removerInimigo(inimigo.getNome());
         }
+    }
+
+    // Adicionado método para obter os itens carregados na mochila
+    public Collection<Item> getItens() {
+        return mochila.values();
     }
 }
