@@ -144,21 +144,19 @@ public class Jogador {
         this.vivo = false;
     }
 
-    public void atacar(Inimigo inimigo) {
-        double dano = armaAtual.calcularDano(armaAtual.getDanoBase(), inimigo);
-        inimigo.setVida(inimigo.getVida() - dano);
-        System.out.println("Você atacou o inimigo " + inimigo.getNome() + " e causou " + dano + " de dano.");
+public void atacar(Inimigo inimigo) {
+    double dano = armaAtual.calcularDano(armaAtual.getDanoBase(), inimigo);
+    inimigo.setVida(inimigo.getVida() - dano);
 
-        if (inimigo.getVida() <= 0) {
-            System.out.println("Você derrotou " + inimigo.getNome() + ".");
-            List<Item> itensDrop = inimigo.getItensDrop();
-            for (Item item : itensDrop) {
-                getLocalizacaoAtual().adicionarItem(item);
-                System.out.println("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
-            }
-            getLocalizacaoAtual().removerInimigo(inimigo.getNome());
+    if (inimigo.getVida() <= 0) {
+        List<Item> itensDrop = inimigo.getItensDrop();
+        for (Item item : itensDrop) {
+            getLocalizacaoAtual().adicionarItem(item);
         }
+        getLocalizacaoAtual().removerInimigo(inimigo.getNome());
     }
+}
+
 
     // Adicionado método para obter os itens carregados na mochila
     public Collection<Item> getItens() {
