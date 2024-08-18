@@ -54,14 +54,8 @@ public class Jogo {
         while (!terminado) {
             Comando comando = analisador.pegarComando();
             terminado = processarComando(comando);
-            if (jogador.getVidaJogador() <= 0) {
-                interfaceUsuario.exibirMensagem("Você Morreu!");
-                terminado = true;
-            }
             verificarAmbienteToxico();
         }
-        interfaceUsuario.exibirMensagem("Você conseguiu um total de " + jogador.getPontos() + " pontos!");
-        interfaceUsuario.exibirMensagem("Obrigado por jogar. Até mais!");
         if (timer != null) {
             timer.cancel();
         }
@@ -484,8 +478,8 @@ public void atacar(Comando comando) {
             @Override
             public void run() {
                 if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
-                    jogador.perderVida(10);
-                    interfaceUsuario.exibirMensagem("Você está em um ambiente tóxico e perdeu 10 de vida! Em 25 segundos, perderá mais 10 de vida.");
+                    jogador.perderVida(20);
+                    interfaceUsuario.exibirMensagem("Você está em um ambiente tóxico e perdeu 20 de vida! Em 25 segundos, perderá mais 20 de vida.");
                     interfaceUsuario.exibirMensagem("Vida atual: " + jogador.getVidaJogador());
                     if (jogador.getVidaJogador() <= 0) {
                         jogador.setMorto();
@@ -504,11 +498,20 @@ public void atacar(Comando comando) {
         }
     }
 
-    private void encerrarJogo(String mensagem) {
-        interfaceUsuario.exibirMensagem(mensagem);
-        terminado = true;
-        if (timer != null) {
-            timer.cancel();
-        }
+private void encerrarJogo(String mensagem) {
+    interfaceUsuario.exibirMensagem(mensagem);
+    interfaceUsuario.exibirMensagem("Você conseguiu um total de " + jogador.getPontos() + " pontos!");
+    interfaceUsuario.exibirMensagem("Obrigado por jogar. Até mais!");
+    if (timer != null) {
+        timer.cancel();
     }
+    interfaceUsuario.exibirMensagem("O jogo será encerrado em 5 segundos.");
+    try {
+        Thread.sleep(5000); 
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    
+    System.exit(0);
+}
 }
