@@ -1,8 +1,8 @@
 package ppoo.seuJogo;
 
 import ppoo.baseJogo.InterfaceUsuario;
-
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Jogo {
@@ -16,6 +16,7 @@ public class Jogo {
     private boolean estavaToxico;
     private boolean terminado;
 
+
     public Jogo(InterfaceUsuario interfaceUsuario, String caminhoConfiguracao) {
         this.interfaceUsuario = interfaceUsuario;
         try {
@@ -27,10 +28,13 @@ public class Jogo {
                 throw new RuntimeException("Nenhum ambiente inicial encontrado na configuração.");
             }
             jogador = new Jogador(configuracao.getNomeJogador(), configuracao.getClasseJogador(), 100.0, 
-                    new Mao("Mão", 1.0, "Somente sua mão.", Integer.MAX_VALUE, "pracaCentral.png"),
-                    new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0, "pracaCentral.png"),
-                    new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "pracaCentral.png"),
+                    new Mao("Mão", 1.0, "Somente sua mão.", Integer.MAX_VALUE, "imagens\\avb.jpeg"),
+                    new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0, "imagens\\avb.jpeg"),
+                    new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "imagens\\avb.jpeg"),
                     ambienteInicial);
+
+            // Notifica a interface sobre o ambiente inicial
+            interfaceUsuario.ambienteAtualMudou(jogador.getLocalizacaoAtual());
         } catch (IOException e) {
             interfaceUsuario.exibirMensagem("Erro ao carregar o arquivo de configuração: " + e.getMessage());
             e.printStackTrace();
@@ -65,8 +69,8 @@ public class Jogo {
     }
 
     private void imprimirBoasVindas() {
-        interfaceUsuario.exibirMensagem("\nBem-vindo a vila de Moonlight");
-        interfaceUsuario.exibirMensagem("Você foi contratado para descobrir o que ou quem está causando a onda de assassinatos na cidade ");
+        interfaceUsuario.exibirMensagem("\nBem-vindo à vila de Moonlight");
+        interfaceUsuario.exibirMensagem("Você foi contratado para descobrir o que ou quem está causando a onda de assassinatos na cidade.");
         interfaceUsuario.exibirMensagem("Digite 'ajuda' se você precisar de ajuda.\n");
         imprimirLocalizacaoAtual();
     }
@@ -213,7 +217,6 @@ public class Jogo {
             }
         }
     }
-    
 
     private void conversar(Comando comando) {
         if (!comando.temSegundaPalavra()) {
@@ -249,15 +252,15 @@ public class Jogo {
             jogador.removerItem(nomeItem);
             jogador.getLocalizacaoAtual().largarItem(itemProcurado);
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
-                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "pracaCentral.png"));
+                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\avb.jpeg"));
             } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
-                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0, "pracaCentral.png"));
+                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0, "imagens\\avb.jpeg"));
             } else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
-                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "pracaCentral.png"));
+                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "imagens\\avb.jpeg"));
             }
             interfaceUsuario.exibirMensagem("Você largou " + nomeItem + " no chão.");
         } else {
-            interfaceUsuario.exibirMensagem("Item nao encontrado na mochila");
+            interfaceUsuario.exibirMensagem("Item não encontrado na mochila");
         }
     }
 
@@ -270,14 +273,13 @@ public class Jogo {
         Item itemProcurado = jogador.getItemEspecifico(nomeItem);
         if (itemProcurado != null) {
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
-                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "pracaCentral.png"));
+                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\avb.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
             } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
-                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0, "pracaCentral.png"));
+                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0, "imagens\\avb.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
             } else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
-                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "pracaCentral.png"));
-                interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
+                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "imagens\\avb.jpeg"));
             } else {
                 interfaceUsuario.exibirMensagem("Item não equipado");
             }
@@ -358,6 +360,7 @@ public class Jogo {
             boolean bool = equipavel.equipar(jogador);
             if (bool) {
                 interfaceUsuario.exibirMensagem("Item equipado.");
+                interfaceUsuario.jogadorPegouItem(itemProcurado); // Atualiza a UI com o item equipado
             } else {
                 interfaceUsuario.exibirMensagem("Sua classe não permite equipar esse item.");
             }
@@ -380,7 +383,6 @@ public class Jogo {
             interfaceUsuario.exibirMensagem("Não há passagem!");
         } else {
             jogador.setLocalizacaoAtual(proximoAmbiente);
-            //interfaceUsuario.ambienteAtualMudou(proximoAmbiente); // Removido pois não existe mais o método ambienteAtualMudou
             if (jogador.getLocalizacaoAtual().isToxico() && !jogador.getAcessorioAtual().getEfeito().equals("proteger")) {
                 iniciarControleAmbienteToxico();
             }
@@ -391,6 +393,7 @@ public class Jogo {
                     interfaceUsuario.exibirMensagem("Nome: " + inimigo.getNome() + " Vida: " + inimigo.getVida());
                 }
             }
+            interfaceUsuario.ambienteAtualMudou(proximoAmbiente); // Atualiza a UI com o novo ambiente
             imprimirLocalizacaoAtual();
         }
     }
@@ -407,6 +410,7 @@ public class Jogo {
                 saidaBloqueada.desbloquear();
                 jogador.removerItem(nomeItem);
                 interfaceUsuario.exibirMensagem("A saída foi destravada.");
+                interfaceUsuario.ambienteAtualMudou(jogador.getLocalizacaoAtual()); // Atualiza a UI após usar o item
             } else {
                 interfaceUsuario.exibirMensagem("Esse item não pode ser usado aqui.");
             }
@@ -498,5 +502,5 @@ public class Jogo {
             timer.cancel();
         }
     }
-    
 }
+
