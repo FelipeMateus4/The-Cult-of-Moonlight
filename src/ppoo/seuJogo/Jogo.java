@@ -178,40 +178,46 @@ public void atacar(Comando comando) {
         interfaceUsuario.exibirMensagem("Não existe esse Inimigo aqui.");
         return;
     }
-
     // Jogador ataca o inimigo
-    double dano = jogador.getArmaAtual().calcularDano(jogador.getArmaAtual().getDanoBase(), inimigo);
-    inimigo.receberDano(dano);
+    boolean ataque = jogador.atacar(inimigo);
     interfaceUsuario.exibirMensagem("Vida do inimigo " + inimigo.getNome() + ": " + inimigo.getVida());
-
-    // Verifica se o inimigo ainda está vivo para contra-atacar
-    if (inimigo.isVivo()) {
-        double danoRecebido = inimigo.atacar(jogador);
-        interfaceUsuario.exibirMensagem("O inimigo " + inimigo.getNome() + " te atacou e causou " + String.format("%.2f", danoRecebido) + " de dano.");
-        interfaceUsuario.exibirMensagem("Sua vida atual é: " + String.format("%.2f", jogador.getVidaJogador()));
-
-        // Verifica se o jogador foi derrotado
-        if (jogador.getVidaJogador() <= 0) {
-            encerrarJogo("Você foi derrotado pelo inimigo " + inimigo.getNome() + ".");
-            return;
+    
+        // Verifica se o inimigo ainda está vivo para contra-atacar
+        if (inimigo.isVivo()) {
+            double danoRecebido = inimigo.atacar(jogador);
+            interfaceUsuario.exibirMensagem("O inimigo " + inimigo.getNome() + " te atacou e causou " + String.format("%.2f", danoRecebido) + " de dano.");
+            interfaceUsuario.exibirMensagem("Sua vida atual é: " + String.format("%.2f", jogador.getVidaJogador()));
+    
+            // Verifica se o jogador foi derrotado
+            if (jogador.getVidaJogador() <= 0) {
+                encerrarJogo("Você foi derrotado pelo inimigo " + inimigo.getNome() + ".");
+                return;
+            }
+        } else {
+            // Se o inimigo foi derrotado
+            interfaceUsuario.exibirMensagem("Você derrotou " + inimigo.getNome() + ".");
+            jogador.adicionarPontos(inimigo.getPontos());
+            interfaceUsuario.exibirMensagem("Você ganhou " + inimigo.getPontos() + " pontos.");
+    
+            // Inimigo dropa itens
+            List<Item> itensDrop = inimigo.getItensDrop();
+            for (Item item : itensDrop) {
+                jogador.getLocalizacaoAtual().adicionarItem(item);
+                interfaceUsuario.exibirMensagem("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
+            }
+    
+            // Remove o inimigo da localização atual
+            jogador.getLocalizacaoAtual().removerInimigo(nomeInimigo);
         }
-    } else {
-        // Se o inimigo foi derrotado
-        interfaceUsuario.exibirMensagem("Você derrotou " + inimigo.getNome() + ".");
-        jogador.adicionarPontos(inimigo.getPontos());
-        interfaceUsuario.exibirMensagem("Você ganhou " + inimigo.getPontos() + " pontos.");
-
-        // Inimigo dropa itens
-        List<Item> itensDrop = inimigo.getItensDrop();
-        for (Item item : itensDrop) {
-            jogador.getLocalizacaoAtual().adicionarItem(item);
-            interfaceUsuario.exibirMensagem("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
+        if(!ataque) {
+            interfaceUsuario.jogadorDescartouItem(jogador.getArmaAtual());
+            jogador.removerItem(jogador.getArmaAtual().getNome());
+            jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\avb.jpeg"));
+            interfaceUsuario.exibirMensagem("A arma quebrou. Você não pode mais atacar.");
         }
+    } 
+    
 
-        // Remove o inimigo da localização atual
-        jogador.getLocalizacaoAtual().removerInimigo(nomeInimigo);
-    }
-}
 
     private void conversar(Comando comando) {
         if (!comando.temSegundaPalavra()) {
@@ -394,6 +400,7 @@ public void atacar(Comando comando) {
                     interfaceUsuario.exibirMensagem("Nome: " + inimigo.getNome() + " Vida: " + inimigo.getVida());
                 }
             }
+            interfaceUsuario.limparMensagens();
             interfaceUsuario.ambienteAtualMudou(proximoAmbiente); // Atualiza a UI com o novo ambiente
             imprimirLocalizacaoAtual();
         }
@@ -454,8 +461,20 @@ public void atacar(Comando comando) {
             interfaceUsuario.exibirMensagem("Sair o que?");
             return false;
         }
-        return true; 
+        interfaceUsuario.exibirMensagem("Obrigado por jogar. Até mais!");
+    
+        try {
+            Thread.sleep(2000); // Pausa para permitir que a mensagem seja vista
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Força o fechamento do programa
+        System.exit(0);
+
+        return true; // Este código nunca será alcançado, mas é uma boa prática retornar um valor.
     }
+
 
     private void verificarAmbienteToxico() {
         boolean ambienteToxicoAtual = jogador.getLocalizacaoAtual().isToxico(); 

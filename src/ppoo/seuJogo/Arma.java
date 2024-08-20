@@ -25,6 +25,9 @@ public abstract class Arma extends Item {
         return classe;
     }
 
+    public void setDurabilidade(int durabilidade) {
+        this.durabilidade = durabilidade;
+    }
     public DanoDeArmaStrategy getDanoStrategy() {
         return danoStrategy;
     }

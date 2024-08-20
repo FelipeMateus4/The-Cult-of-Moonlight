@@ -144,17 +144,23 @@ public class Jogador {
         this.vivo = false;
     }
 
-public void atacar(Inimigo inimigo) {
-    double dano = armaAtual.calcularDano(armaAtual.getDanoBase(), inimigo);
-    inimigo.setVida(inimigo.getVida() - dano);
-
-    if (inimigo.getVida() <= 0) {
-        List<Item> itensDrop = inimigo.getItensDrop();
-        for (Item item : itensDrop) {
-            getLocalizacaoAtual().adicionarItem(item);
+public boolean atacar(Inimigo inimigo) {
+        double dano = armaAtual.calcularDano(armaAtual.getDanoBase(), inimigo);
+        inimigo.receberDano(dano);
+        
+        if (inimigo.getVida() <= 0) {
+            List<Item> itensDrop = inimigo.getItensDrop();
+            for (Item item : itensDrop) {
+                getLocalizacaoAtual().adicionarItem(item);
+            }
+            getLocalizacaoAtual().removerInimigo(inimigo.getNome());
         }
-        getLocalizacaoAtual().removerInimigo(inimigo.getNome());
-    }
+        armaAtual.setDurabilidade(armaAtual.getDurabilidade() - 1);
+        if (armaAtual.getDurabilidade() == 0)  { 
+            return false;
+        }   else {
+            return true;
+        }
 }
 
 

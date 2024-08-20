@@ -30,7 +30,7 @@ Caverna|em uma caverna escura|imagens/caverna.jpeg|NORTE=Floresta|OESTE=Lago|Tox
 [Itens]
 Cajado_De_Madeira|um cajado de madeira que não parece ser poderoso,|Cajado|Praça Central|imagens/cajadoMadeira.jpeg|5.0|100
 Lampiao|um lampiao antigo|Acessorio|Floresta|imagens/lampiao.jpeg|iluminar
-Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|8.0|20
+Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|8.0|2
 Adaga_Velha|uma adaga enferrujada,|Adaga|Praça Central|imagens/adaga.jpeg|7.0|20
 Mascara|uma máscara respiratória que protege contra gases tóxicos|Acessorio|null|imagens/mascara.jpeg|proteger
 Espada_Longa|uma espada usada, com marcas do tempo|Espada|Caverna|imagens/espadaLonga.jpeg|20.0|100
