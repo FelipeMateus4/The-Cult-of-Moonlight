@@ -515,20 +515,20 @@ public void atacar(Comando comando) {
         }
     }
 
-private void encerrarJogo(String mensagem) {
-    interfaceUsuario.exibirMensagem(mensagem);
-    interfaceUsuario.exibirMensagem("Você conseguiu um total de " + jogador.getPontos() + " pontos!");
-    interfaceUsuario.exibirMensagem("Obrigado por jogar. Até mais!");
-    if (timer != null) {
-        timer.cancel();
+    private void encerrarJogo(String mensagem) {
+        interfaceUsuario.exibirMensagem(mensagem);
+        interfaceUsuario.exibirMensagem("Você conseguiu um total de " + jogador.getPontos() + " pontos!");
+        interfaceUsuario.exibirMensagem("Obrigado por jogar. Até mais!");
+        if (timer != null) {
+            timer.cancel();
+        }
+        interfaceUsuario.exibirMensagem("O jogo será encerrado em 5 segundos.");
+        try {
+            Thread.sleep(5000); 
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        System.exit(0);
     }
-    interfaceUsuario.exibirMensagem("O jogo será encerrado em 5 segundos.");
-    try {
-        Thread.sleep(5000); 
-    } catch (InterruptedException e) {
-        e.printStackTrace();
-    }
-    
-    System.exit(0);
-}
 }
