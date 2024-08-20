@@ -95,6 +95,7 @@ public class ConfiguracaoJogo {
         Ambiente ambiente;
         boolean isEscuro = false;
         boolean isToxico = false;
+        Set<String> direcoesUsadas = new HashSet<>();
 
         for (int i = 3; i < partes.length; i++) {
             if (partes[i].equalsIgnoreCase("Escuro")) {
@@ -125,6 +126,9 @@ public class ConfiguracaoJogo {
                 String[] direcaoAmbiente = direcaoAmbienteChave[0].split("=");
                 if (direcaoAmbiente.length == 2) {
                     String direcao = direcaoAmbiente[0];
+                    if (!direcoesUsadas.add(direcao)) {
+                        throw new IllegalArgumentException("Erro: Direção duplicada encontrada (" + direcao + ") na configuração do ambiente: " + nome);
+                    }
                     String ambienteDestino = direcaoAmbiente[1];
                     String chave = direcaoAmbienteChave[1];
 
@@ -135,6 +139,10 @@ public class ConfiguracaoJogo {
             } else {
                 String[] direcaoAmbiente = saida.split("=");
                 if (direcaoAmbiente.length == 2) {
+                    String direcao = direcaoAmbiente[0];
+                    if (!direcoesUsadas.add(direcao)) {
+                        throw new IllegalArgumentException("Erro: Direção duplicada encontrada (" + direcao + ") na configuração do ambiente: " + nome);
+                    }
                     saidasPendentes.add(new String[]{nome, direcaoAmbiente[0], direcaoAmbiente[1]});
                 }
             }
