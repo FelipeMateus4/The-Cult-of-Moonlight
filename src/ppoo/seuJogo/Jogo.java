@@ -181,7 +181,7 @@ public void atacar(Comando comando) {
 
     // Jogador ataca o inimigo
     double dano = jogador.getArmaAtual().calcularDano(jogador.getArmaAtual().getDanoBase(), inimigo);
-    inimigo.setVida(inimigo.getVida() - dano);
+    inimigo.receberDano(dano);
     interfaceUsuario.exibirMensagem("Vida do inimigo " + inimigo.getNome() + ": " + inimigo.getVida());
 
     // Verifica se o inimigo ainda está vivo para contra-atacar

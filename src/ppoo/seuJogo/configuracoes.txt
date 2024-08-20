@@ -57,7 +57,7 @@ Coveiro|um coveiro cansado e preocupado|O coveiro diz: 'Não me recordo de ter s
 Alma|uma alma mensageira|A alma diz: 'Atenção! Você enfrentou diversos inimigos até agora, alguns mais desafiadores que outros, mas nenhum tão poderoso quanto ao que está por vir. Se não estiver preparado o suficiente, não siga adiante.|Salao Espera|null
 
 [Inimigos]
-Comum|Esqueleto|um esqueleto assustador|Floresta|20|5|50
+Comum|Esqueleto|um esqueleto assustador|Floresta|2|5|50
 Lobisomem|Lobisomem|um lobisomem feroz. Cuidado, ele possui roubo de vida.|Floresta|100|10|200
 Comum|EsqueletoAlfa|um esqueleto assustador|Cemitério|100|15|300
 Comum|Fantasma|um fantasma assustador|Cemitério|50|5|80
