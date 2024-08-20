@@ -3,10 +3,10 @@ package ppoo.seuJogo;
 import java.util.List;
 import java.util.Random;
 
-public class InimigoLobisomem extends Inimigo {
+public class InimigoLobisomemCura extends Inimigo {
     Random random = new Random();
 
-    public InimigoLobisomem(String nome, String descricao, double vida, double dano, int pontos, List<Item> itensDrop) {
+    public InimigoLobisomemCura(String nome, String descricao, double vida, double dano, int pontos, List<Item> itensDrop) {
         super(nome, descricao, vida, dano, pontos, itensDrop);
     }
 
@@ -33,6 +33,16 @@ public class InimigoLobisomem extends Inimigo {
     }
 
     @Override
+    public double atacar(Jogador jogador) {
+        double danoAplicado = 0.0;
+        if (isVivo()) {
+            danoAplicado = escolherAtaque();
+            adicionarVida(danoAplicado * 0.3);
+        }
+        return danoAplicado;
+    }
+
+    @Override
     public double getDanoMultiplicador(String weaponType) {
         switch (weaponType) {
             case "espada":
@@ -45,5 +55,4 @@ public class InimigoLobisomem extends Inimigo {
                 return 1.5;
         }
     }
-    
 }

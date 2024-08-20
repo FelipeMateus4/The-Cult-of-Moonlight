@@ -1,6 +1,6 @@
 package ppoo.seuJogo;
 
-public class Individuo {
+public abstract class Individuo {
     private String nome;
     private String descricao;
 

@@ -8,6 +8,7 @@ public abstract class Inimigo extends Individuo {
     private boolean vivo;
     private List<Item> itensDrop;
     private int pontos;
+    private double vidaMaxima;
 
     public Inimigo(String nome, String descricao, double vida, double dano, int pontos, List<Item> itensDrop) {
         super(nome, descricao);
@@ -16,12 +17,17 @@ public abstract class Inimigo extends Individuo {
         this.vivo = true;
         this.pontos = pontos;
         this.itensDrop = itensDrop;
+        this.vidaMaxima = vida;
     }
 
     // Getters e Setters
 
     public List<Item> getItensDrop() {
         return itensDrop;
+    }
+
+    public double getVidaMaxima() {
+        return vidaMaxima;
     }
 
     public int getPontos() {
@@ -47,8 +53,12 @@ public abstract class Inimigo extends Individuo {
         this.vida = vida;
     }
 
-    public void adicionarVida(double vida) {
-        this.vida += vida;
+    public void adicionarVida(double valor) {
+        if (this.vida + valor >= vidaMaxima) {
+            this.vida = vidaMaxima;
+            return;
+        }
+        this.vida += valor;
     }
 
     public void setDano(double dano) {
@@ -58,23 +68,11 @@ public abstract class Inimigo extends Individuo {
     public void setVivo(boolean vivo) {
         this.vivo = vivo;
     }
-
+    
     public double atacar(Jogador jogador) {
         double danoAplicado = 0.0;
         if (vivo) {
             danoAplicado = escolherAtaque();
-            if (jogador.getArmaduraAtual() != null) {
-                double defesaFisica = jogador.getArmaduraAtual().getDefesa();
-                danoAplicado = danoAplicado - (defesaFisica/10);
-                if (danoAplicado < 0) {
-                    danoAplicado = 0;
-                }
-            }
-            jogador.perderVida(danoAplicado);
-
-            if (jogador.getVidaJogador() <= 0) {
-                jogador.setMorto();
-            }
         }
         return danoAplicado;
     }

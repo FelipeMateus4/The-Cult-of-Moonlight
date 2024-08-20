@@ -3,7 +3,7 @@ Nome=Radahn
 Classe=Guerreiro
 
 [Ambientes]
-Praça Central|na Praça Central da vila Moonlight.|imagens/pracaCentral.jpeg|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna|NORTE=Igreja:Chave_De_Ferro:Porta enferrujada e trancada|Toxico
+Praça Central|na Praça Central da vila Moonlight.|imagens/pracaCentral.jpeg|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna|NORTE=Igreja:Chave_De_Ferro:Porta enferrujada e trancada
 Pousada|na Pousada da bela vila Moonlight.|imagens/pousada.jpeg|OESTE=Praça Central|NORTE=Taverna
 Igreja|na velha igreja da vila Moonlight.|imagens/igreja.jpeg|SUL=Praça Central|OESTE=Cemitério
 Beco|em um beco escuro.|imagens/beco.jpeg|NORTE=Praça Central|BAIXO=Esgoto|Escuro
@@ -57,20 +57,20 @@ Coveiro|um coveiro cansado e preocupado|O coveiro diz: 'Não me recordo de ter s
 Alma|uma alma mensageira|A alma diz: 'Atenção! Você enfrentou diversos inimigos até agora, alguns mais desafiadores que outros, mas nenhum tão poderoso quanto ao que está por vir. Se não estiver preparado o suficiente, não siga adiante.|Salao Espera|null
 
 [Inimigos]
-Comum|Esqueleto|um esqueleto assustador|Floresta|2|5|50
-Lobisomem|Lobisomem|um lobisomem feroz. Cuidado, ele possui roubo de vida.|Floresta|100|10|200
+Comum|Esqueleto|um esqueleto assustador|Praça Central|50|20|50|null|Cura
+Lobisomem|Lobisomem|um lobisomem feroz. Cuidado, ele possui roubo de vida.|Floresta|100|10|200|null|Cura
 Comum|EsqueletoAlfa|um esqueleto assustador|Cemitério|100|15|300
 Comum|Fantasma|um fantasma assustador|Cemitério|50|5|80
 Comum|Zumbi|um zumbi da growth|Cabana|70|20|300|Pocao_Grande
-Comum|ZumbiMinerador|um zumbi com uma máscara de gás|Caverna|100|10|40|Mascara
+Comum|ZumbiMinerador|um zumbi com uma máscara de gás|Caverna|100|10|40|Mascara|null|Cura
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Esgoto|100|20|400
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 1|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 2|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 3|100|10|200
-Lobisomem|LobisomemGuarda|um lombisomem deformado. Ao olhar melhor, você percebe uma chave pendurada em seu pescoço. Cuidado, ele possui roubo de vida.|Tunel Esgoto 4|100|15|200|Chave_Tesouro
+Lobisomem|LobisomemGuarda|um lombisomem deformado. Ao olhar melhor, você percebe uma chave pendurada em seu pescoço. Cuidado, ele possui roubo de vida.|Tunel Esgoto 4|100|15|200|Chave_Tesouro|Cura
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 5|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 6|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 7|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 8|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 9|100|10|200
-Boss|Boss Final|Um inimigo temido e poderoso, responsável pelo caos na Vila Moonlight. Sua presença é esmagadora. Prepare-se para um combate épico, pois ele possui habilidades devastadoras e uma resistência impressionante. Cuidado, ele possui uma variação de ataques e possui a habilidade de roubo de vida ao atacar. Boa sorte.|Sala do Boss|500|30|2000
+Boss|Boss Final|Um inimigo temido e poderoso, responsável pelo caos na Vila Moonlight. Sua presença é esmagadora. Prepare-se para um combate épico, pois ele possui habilidades devastadoras e uma resistência impressionante. Cuidado, ele possui uma variação de ataques e possui a habilidade de roubo de vida ao atacar. Boa sorte.|Sala do Boss|500|30|2000|null|Cura

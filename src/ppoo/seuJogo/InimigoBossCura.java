@@ -3,27 +3,31 @@ package ppoo.seuJogo;
 import java.util.List;
 import java.util.Random;
 
-public class InimigoLobisomem extends Inimigo {
+
+public class InimigoBossCura extends Inimigo {
     Random random = new Random();
 
-    public InimigoLobisomem(String nome, String descricao, double vida, double dano, int pontos, List<Item> itensDrop) {
+    public InimigoBossCura(String nome, String descricao, double vida, double dano, int pontos, List<Item> itensDrop) {
         super(nome, descricao, vida, dano, pontos, itensDrop);
     }
 
     @Override
     public double escolherAtaque() {
-        int tipoAtaque = random.nextInt(3);
+        int tipoAtaque = random.nextInt(4);
 
         double danoCalculado;
         switch (tipoAtaque) {
             case 0:
-                danoCalculado = getDano() * 0.5; // Ataque rápido
+                danoCalculado = getDano() * 0.8; // Ataque rápido
                 break;
             case 1:
-                danoCalculado = getDano() * 1.2; // Ataque forte
+                danoCalculado = getDano() * 1.3; // Ataque forte
                 break;
             case 2:
                 danoCalculado = getDano(); // Ataque normal
+                break;
+            case 3:
+                danoCalculado = getDano() * 1.8; // Ataque crítico
                 break;
             default:
                 danoCalculado = getDano();
@@ -33,16 +37,26 @@ public class InimigoLobisomem extends Inimigo {
     }
 
     @Override
+    public double atacar(Jogador jogador) {
+        double danoAplicado = 0.0;
+        if (isVivo()) {
+            danoAplicado = escolherAtaque();
+            adicionarVida(danoAplicado * 0.5);
+        }
+        return danoAplicado;
+    }
+
+    @Override
     public double getDanoMultiplicador(String weaponType) {
         switch (weaponType) {
             case "espada":
-                return 1.5;
+                return 0.5;
             case "adaga":
-                return 1.5;
+                return 0.5;
             case "cajado":
-                return 1.5;
+                return 0.5;
             default:
-                return 1.5;
+                return 0.5;
         }
     }
     

@@ -279,7 +279,7 @@ public class ConfiguracaoJogo {
         int pontos = Integer.parseInt(partes[6]);
     
         List<Item> itensDropados = new ArrayList<>();
-        if (partes.length > 7) {
+        if (partes.length > 7 && partes[7] != null && !partes[7].equalsIgnoreCase("null") && !partes[7].isEmpty()) {
             String[] itensNomes = partes[7].split(",");
             for (String itemNome : itensNomes) {
                 Item item = encontrarItemPorNome(itemNome.trim());
@@ -291,7 +291,14 @@ public class ConfiguracaoJogo {
             }
         }
         
-        Inimigo inimigo = InimigoFactory.criarInimigo(tipoInimigo, nome, descricao, vida, dano, pontos, itensDropados);
+        InimigoFactory factory;
+        if (partes.length > 8 && partes[8].equalsIgnoreCase("Cura")) {
+            factory = new InimigoCuraFactory();
+        } else {
+            factory = new InimigoNaoCuraFactory();
+        }
+
+        Inimigo inimigo = factory.criarInimigo(tipoInimigo, nome, descricao, vida, dano, pontos, itensDropados);
     
         inimigos.add(inimigo);
         ambientes.get(ambienteInicial).adicionarInimigo(inimigo);

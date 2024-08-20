@@ -180,11 +180,20 @@ public void atacar(Comando comando) {
     }
     // Jogador ataca o inimigo
     boolean ataque = jogador.atacar(inimigo);
-    interfaceUsuario.exibirMensagem("Vida do inimigo " + inimigo.getNome() + ": " + inimigo.getVida());
     
         // Verifica se o inimigo ainda está vivo para contra-atacar
         if (inimigo.isVivo()) {
             double danoRecebido = inimigo.atacar(jogador);
+            interfaceUsuario.exibirMensagem("Vida do inimigo " + inimigo.getNome() + ": " + String.format("%.2f", inimigo.getVida()));
+            Armadura armadura = jogador.getArmaduraAtual();
+            danoRecebido = danoRecebido - (armadura.getDefesa()/10);
+            jogador.perderVida(danoRecebido);
+            if (danoRecebido < 0) {
+                danoRecebido = 0;
+            }
+            if (jogador.getVidaJogador() <= 0) {
+                jogador.setMorto();
+            }
             interfaceUsuario.exibirMensagem("O inimigo " + inimigo.getNome() + " te atacou e causou " + String.format("%.2f", danoRecebido) + " de dano.");
             interfaceUsuario.exibirMensagem("Sua vida atual é: " + String.format("%.2f", jogador.getVidaJogador()));
     

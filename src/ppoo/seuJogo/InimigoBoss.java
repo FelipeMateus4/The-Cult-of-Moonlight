@@ -49,20 +49,5 @@ public class InimigoBoss extends Inimigo {
                 return 0.5;
         }
     }
-
-    @Override
-    public double atacar(Jogador jogador) {
-        double danoAplicado = 0.0;
-        if (isVivo()) {
-            danoAplicado = escolherAtaque();
-            jogador.perderVida(danoAplicado);
-            adicionarVida(danoAplicado * 0.5);
-
-            if (jogador.getVidaJogador() <= 0) {
-                jogador.setMorto();
-            }
-        }
-        return danoAplicado;
-    }
     
 }
