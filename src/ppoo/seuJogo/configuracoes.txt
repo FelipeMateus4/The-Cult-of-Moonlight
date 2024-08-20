@@ -3,51 +3,51 @@ Nome=Radahn
 Classe=Guerreiro
 
 [Ambientes]
-Praça Central|na Praça Central da vila Moonlight.|pracaCentral.jpeg|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna|NORTE=Igreja:Chave_De_Ferro:Porta enferrujada e trancada|Toxico
-Pousada|na Pousada da bela vila Moonlight.|imagens/avb.jpeg|OESTE=Praça Central|NORTE=Taverna
-Igreja|na velha igreja da vila Moonlight.|imagens/avb.jpeg|SUL=Praça Central|OESTE=Cemitério
-Beco|em um beco escuro.|imagens/avb.jpeg|NORTE=Praça Central|BAIXO=Esgoto|Escuro
-Floresta|na floresta|imagens/avb.jpeg|LESTE=Praça Central|SUL=Caverna|OESTE=Cabana|NORTE=Cemitério
-Cemitério|no cemitério sombrio|imagens/avb.jpeg|SUL=Floresta|LESTE=Igreja|Escuro
-Cabana|em uma cabana abandonada|imagens/avb.jpeg|LESTE=Floresta|SUL=Lago|Escuro
-Taverna|na taverna acolhedora.|imagens/avb.jpeg|OESTE=Praça Central|SUL=Pousada
-Esgoto|no esgoto escuro e fedorento|imagens/avb.jpeg|CIMA=Beco|NOROESTE=Tunel Esgoto 1|NORTE=Tunel Esgoto 2|NORDESTE=Tunel Esgoto 3|Toxico
-Tunel Esgoto 1|em um túnel do esgoto|imagens/avb.jpeg|SUDESTE=Esgoto|LESTE=Tunel Esgoto 2|NORDESTE=Tunel Esgoto 5|NORTE=Tunel Esgoto 4|Toxico
-Tunel Esgoto 2|em um túnel do esgoto|imagens/avb.jpeg|OESTE=Tunel Esgoto 1|NORTE=Tunel Esgoto 5|NORDESTE=Tunel Esgoto 6|LESTE=Tunel Esgoto 3|SUL=Esgoto|NOROESTE=Tunel Esgoto 4|Toxico
-Tunel Esgoto 3|em um túnel do esgoto|imagens/avb.jpeg|OESTE=Tunel Esgoto 2|NOROESTE=Tunel Esgoto 5|NORTE=Tunel Esgoto 6|Toxico
-Tunel Esgoto 4|em um túnel do esgoto|imagens/avb.jpeg|SUL=Tunel Esgoto 1|SUDESTE=Tunel Esgoto 2|NORTE=Tunel Esgoto 7|NORDESTE=Tunel Esgoto 8|LESTE=Tunel Esgoto 5|OESTE=Sala Tesouro:Chave_Tesouro|Toxico
-Tunel Esgoto 5|em um túnel do esgoto|imagens/avb.jpeg|OESTE=Tunel Esgoto 4|SUL=Tunel Esgoto 2|SUDESTE=Tunel Esgoto 3|NORTE=Tunel Esgoto 8|NORDESTE=Tunel Esgoto 9|LESTE=Tunel Esgoto 6|NOROESTE=Tunel Esgoto 7|SUDOESTE=Tunel Esgoto 1|Toxico
-Tunel Esgoto 6|em um túnel do esgoto|imagens/avb.jpeg|OESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 3|SUDOESTE=Tunel Esgoto 2|NORTE=Tunel Esgoto 9|Toxico
-Tunel Esgoto 7|em um túnel do esgoto|imagens/avb.jpeg|SUL=Tunel Esgoto 4|SUDESTE=Tunel Esgoto 5|LESTE=Tunel Esgoto 8|Toxico
-Tunel Esgoto 8|em um túnel do esgoto|imagens/avb.jpeg|OESTE=Tunel Esgoto 7|SUDOESTE=Tunel Esgoto 4|SUL=Tunel Esgoto 5|SUDESTE=Tunel Esgoto 6|LESTE=Tunel Esgoto 9|Toxico
-Tunel Esgoto 9|em um túnel do esgoto|imagens/avb.jpeg|OESTE=Tunel Esgoto 8|SUDOESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 6|NORDESTE=Salao Espera|Toxico
-Salao Espera|no salão de espera|imagens/avb.jpeg|SUDOESTE=Tunel Esgoto 9|NORTE=Sala do Boss
-Sala do Boss|na sala do boss|imagens/avb.jpeg|SUL=Salao Espera
+Praça Central|na Praça Central da vila Moonlight.|imagens/pracaCentral.jpeg|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna|NORTE=Igreja:Chave_De_Ferro:Porta enferrujada e trancada|Toxico
+Pousada|na Pousada da bela vila Moonlight.|imagens/pousada.jpeg|OESTE=Praça Central|NORTE=Taverna
+Igreja|na velha igreja da vila Moonlight.|imagens/igreja.jpeg|SUL=Praça Central|OESTE=Cemitério
+Beco|em um beco escuro.|imagens/beco.jpeg|NORTE=Praça Central|BAIXO=Esgoto|Escuro
+Floresta|na floresta|imagens/floresta.jpeg|LESTE=Praça Central|SUL=Caverna|OESTE=Cabana|NORTE=Cemitério
+Cemitério|no cemitério sombrio|imagens/cemiterio.jpeg|SUL=Floresta|LESTE=Igreja|Escuro
+Cabana|em uma cabana abandonada|imagens/cabana.jpeg|LESTE=Floresta|SUL=Lago|Escuro
+Taverna|na taverna acolhedora.|imagens/taverna.jpeg|OESTE=Praça Central|SUL=Pousada
+Esgoto|no esgoto escuro e fedorento|imagens/esgoto1.jpeg|CIMA=Beco|NOROESTE=Tunel Esgoto 1|NORTE=Tunel Esgoto 2|NORDESTE=Tunel Esgoto 3|Toxico
+Tunel Esgoto 1|em um túnel do esgoto|imagens/esgoto2.jpeg|SUDESTE=Esgoto|LESTE=Tunel Esgoto 2|NORDESTE=Tunel Esgoto 5|NORTE=Tunel Esgoto 4|Toxico
+Tunel Esgoto 2|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 1|NORTE=Tunel Esgoto 5|NORDESTE=Tunel Esgoto 6|LESTE=Tunel Esgoto 3|SUL=Esgoto|NOROESTE=Tunel Esgoto 4|Toxico
+Tunel Esgoto 3|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 2|NOROESTE=Tunel Esgoto 5|NORTE=Tunel Esgoto 6|Toxico
+Tunel Esgoto 4|em um túnel do esgoto|imagens/esgoto2.jpeg|SUL=Tunel Esgoto 1|SUDESTE=Tunel Esgoto 2|NORTE=Tunel Esgoto 7|NORDESTE=Tunel Esgoto 8|LESTE=Tunel Esgoto 5|OESTE=Sala Tesouro:Chave_Tesouro|Toxico
+Tunel Esgoto 5|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 4|SUL=Tunel Esgoto 2|SUDESTE=Tunel Esgoto 3|NORTE=Tunel Esgoto 8|NORDESTE=Tunel Esgoto 9|LESTE=Tunel Esgoto 6|NOROESTE=Tunel Esgoto 7|SUDOESTE=Tunel Esgoto 1|Toxico
+Tunel Esgoto 6|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 3|SUDOESTE=Tunel Esgoto 2|NORTE=Tunel Esgoto 9|Toxico
+Tunel Esgoto 7|em um túnel do esgoto|imagens/esgoto2.jpeg|SUL=Tunel Esgoto 4|SUDESTE=Tunel Esgoto 5|LESTE=Tunel Esgoto 8|Toxico
+Tunel Esgoto 8|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 7|SUDOESTE=Tunel Esgoto 4|SUL=Tunel Esgoto 5|SUDESTE=Tunel Esgoto 6|LESTE=Tunel Esgoto 9|Toxico
+Tunel Esgoto 9|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 8|SUDOESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 6|NORDESTE=Salao Espera|Toxico
+Salao Espera|no salão de espera|imagens/salaoEspera.jpeg|SUDOESTE=Tunel Esgoto 9|NORTE=Sala do Boss
+Sala do Boss|na sala do boss|imagens/salaBossMelhor.jpeg|SUL=Salao Espera
 Sala Tesouro|na sala do tesouro|imagens/avb.jpeg|LESTE=Tunel Esgoto 4
-Lago|à beira de um lago tranquilo|imagens/avb.jpeg|NORTE=Cabana|LESTE=Caverna
-Caverna|em uma caverna escura|imagens/avb.jpeg|NORTE=Floresta|OESTE=Lago|Toxico
+Lago|à beira de um lago tranquilo|imagens/lago.jpeg|NORTE=Cabana|LESTE=Caverna
+Caverna|em uma caverna escura|imagens/lago.jpeg|NORTE=Floresta|OESTE=Lago|Toxico
 
 [Itens]
-Cajado_De_Madeira|um cajado de madeira que não parece ser poderoso,|Cajado|Praça Central|imagens/avb.jpeg|5.0|100
-Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/avb.jpeg|8.0|20
-Adaga_Velha|uma adaga enferrujada,|Adaga|Praça Central|imagens/avb.jpeg|7.0|20
+Cajado_De_Madeira|um cajado de madeira que não parece ser poderoso,|Cajado|Praça Central|imagens/imagens/cajadoMadeira.jpeg|5.0|100
+Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|8.0|20
+Adaga_Velha|uma adaga enferrujada,|Adaga|Praça Central|imagens/adaga.jpeg|7.0|20
 Mascara|uma máscara respiratória que protege contra gases tóxicos|Acessorio|null|imagens/avb.jpeg|proteger
-Espada_Longa|uma espada usada, com marcas do tempo|Espada|Caverna|imagens/avb.jpeg|20.0|100
-Pocao_Grande|uma poção grande que recupera 50 de vida|Pocao|null|imagens/avb.jpeg|50|15
-Pocao_Media|uma poção media que recupera 35 de vida|Pocao|Igreja|imagens/avb.jpeg|35|20
-Pocao_Pequena|uma poção pequena que recupera 25 de vida|Pocao|Taverna|imagens/avb.jpeg|25|20
-Pocao_Inicial|uma poção tão pequena que parece amostra grátis|Pocao|null|imagens/avb.jpeg|10|8
-Chave_De_Ferro|uma chave de ferro com uma cruz gravada nela|Consumivel|Cabana|imagens/avb.jpeg|1
+Espada_Longa|uma espada usada, com marcas do tempo|Espada|Caverna|imagens/espadaLonga.jpeg|20.0|100
+Pocao_Grande|uma poção grande que recupera 50 de vida|Pocao|null|imagens/pocaoGrande.jpeg|50|15
+Pocao_Media|uma poção media que recupera 35 de vida|Pocao|Igreja|imagens/pocaoMedia.jpeg|35|20
+Pocao_Pequena|uma poção pequena que recupera 25 de vida|Pocao|Taverna|imagens/pocaoPequena.jpeg|25|20
+Pocao_Inicial|uma poção tão pequena que parece amostra grátis|Pocao|null|imagens/pocaoMinuscula.jpeg|10|8
+Chave_De_Ferro|uma chave de ferro com uma cruz gravada nela|Consumivel|Cabana|imagens/chaveIgreja.jpeg|1
 Carta|uma carta velha, jogada no canto da Praça|Carta|Praça Central|imagens/avb.jpeg|Seu conteúdo diz: "Os rumores eram verdadeiros. Vi com meus próprios olhos. Não vá ao cemitério desarmado, coisas estranhas habitam aquele lugar. Caso insista em ir mesmo assim, vá pela Igreja. Que a sorte esteja com você."
-Armadura de Ferro|uma armadura de ferro|Armadura|Cabana|imagens/avb.jpeg|50.0|10
-Cajado_Branco|um cajado com uma aura sagrada|Cajado|null|imagens/avb.jpeg|20.0|100
-Chave_Tesouro|uma chave dourada, com um símbolo de baú encravado nela|Consumivel|null|imagens/avb.jpeg|1
+Armadura_de_Ferro|uma armadura de ferro|Armadura|Cabana|imagens/armadura.jpeg|50.0|10
+Cajado_Sagrado|um cajado com uma aura sagrada|Cajado|null|imagens/cajadoSagrado.jpeg|20.0|100
+Chave_Tesouro|uma chave dourada, com um símbolo de baú encravado nela|Consumivel|null|imagens/chaveTesouro.jpeg|1
 
 
 
 
 [Personagens]
-Padre|um padre idoso|O padre diz: 'Então você é o novo mercenário contratado para lidar com esses monstros? Ótimo, lhe darei um cajado para que abençoe sua jornada.'|Igreja|Cajado_Branco
+Padre|um padre idoso|O padre diz: 'Então você é o novo mercenário contratado para lidar com esses monstros? Ótimo, lhe darei um cajado para que abençoe sua jornada.'|Igreja|Cajado_Sagrado
 Recepcionista|uma recepcionista jovem|A recepcionista diz: 'Bem-vindo à Pousada! Você parece um novo aventureiro, tome aqui uma Poção para ajudá-lo em sua aventura.'|Pousada|Pocao_Pequena
 Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Praça Central|null
 Mendigo|um mendigo maltrapilho|O mendigo diz: 'A última vez que pisei naquele esgoto, quase morri com aquele gás tóxico. Ouvi dizer que existem máscaras que protegem disso.'|Praça Central|null
