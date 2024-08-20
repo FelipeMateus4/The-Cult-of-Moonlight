@@ -28,7 +28,8 @@ Lago|à beira de um lago tranquilo|imagens/lago.jpeg|NORTE=Cabana|LESTE=Caverna
 Caverna|em uma caverna escura|imagens/caverna.jpeg|NORTE=Floresta|OESTE=Lago|Toxico
 
 [Itens]
-Cajado_De_Madeira|um cajado de madeira que não parece ser poderoso,|Cajado|Praça Central|imagens/imagens/cajadoMadeira.jpeg|5.0|100
+Cajado_De_Madeira|um cajado de madeira que não parece ser poderoso,|Cajado|Praça Central|imagens/cajadoMadeira.jpeg|5.0|100
+Lampiao|um lampiao antigo|Acessorio|Floresta|imagens/lampiao.jpeg|iluminar
 Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|8.0|20
 Adaga_Velha|uma adaga enferrujada,|Adaga|Praça Central|imagens/adaga.jpeg|7.0|20
 Mascara|uma máscara respiratória que protege contra gases tóxicos|Acessorio|null|imagens/mascara.jpeg|proteger
@@ -39,7 +40,7 @@ Pocao_Pequena|uma poção pequena que recupera 25 de vida|Pocao|Taverna|imagens/
 Pocao_Inicial|uma poção tão pequena que parece amostra grátis|Pocao|null|imagens/pocaoMinuscula.jpeg|10|8
 Chave_De_Ferro|uma chave de ferro com uma cruz gravada nela|Consumivel|Cabana|imagens/chaveIgreja.jpeg|1
 Carta|uma carta velha, jogada no canto da Praça|Carta|Praça Central|imagens/carta.jpeg|Seu conteúdo diz: "Os rumores eram verdadeiros. Vi com meus próprios olhos. Não vá ao cemitério desarmado, coisas estranhas habitam aquele lugar. Caso insista em ir mesmo assim, vá pela Igreja. Que a sorte esteja com você."
-Armadura_de_Ferro|uma armadura de ferro|Armadura|Cabana|imagens/armadura.jpeg|50.0|10
+Armadura_de_Ferro|uma armadura de ferro|Armadura|Praça Central|imagens/armadura.jpeg|50.0
 Cajado_Sagrado|um cajado com uma aura sagrada|Cajado|null|imagens/cajadoSagrado.jpeg|20.0|100
 Chave_Tesouro|uma chave dourada, com um símbolo de baú encravado nela|Consumivel|null|imagens/chaveTesouro.jpeg|1
 
@@ -56,7 +57,7 @@ Coveiro|um coveiro cansado e preocupado|O coveiro diz: 'Não me recordo de ter s
 Alma|uma alma mensageira|A alma diz: 'Atenção! Você enfrentou diversos inimigos até agora, alguns mais desafiadores que outros, mas nenhum tão poderoso quanto ao que está por vir. Se não estiver preparado o suficiente, não siga adiante.|Salao Espera|null
 
 [Inimigos]
-Comum|Esqueleto|um esqueleto assustador|Floresta|20|3|50
+Comum|Esqueleto|um esqueleto assustador|Floresta|20|5|50
 Lobisomem|Lobisomem|um lobisomem feroz. Cuidado, ele possui roubo de vida.|Floresta|100|10|200
 Comum|EsqueletoAlfa|um esqueleto assustador|Cemitério|100|15|300
 Comum|Fantasma|um fantasma assustador|Cemitério|50|5|80

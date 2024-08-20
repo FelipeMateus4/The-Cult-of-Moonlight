@@ -27,7 +27,7 @@ public class Jogo {
             }
             jogador = new Jogador(configuracao.getNomeJogador(), configuracao.getClasseJogador(), 100.0, 
                     new Mao("Mão", 1.0, "Somente sua mão.", Integer.MAX_VALUE, "imagens\\mao.jpeg"),
-                    new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0, "imagens\\roupaVelha.jpeg"),
+                    new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, "imagens\\roupaVelha.jpeg"),
                     new Acessorio("Medalhão antigo", "um medalhão simples encontrado pelo caminho", "de não deixar a história se perder", "imagens\\medalhao.jpeg"),
                     ambienteInicial);
 
@@ -251,7 +251,7 @@ public void atacar(Comando comando) {
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
                 jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\mao.jpeg"));
             } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
-                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0, "imagens\\roupaVelha.jpeg"));
+                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, "imagens\\roupaVelha.jpeg"));
             } else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
                 jogador.setAcessorioAtual(new Acessorio("Medalhão antigo", "um medalhão simples encontrado pelo caminho", "de não deixar a história se perder", "imagens\\medalhao.jpeg"));
             }
@@ -274,7 +274,7 @@ public void atacar(Comando comando) {
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
                 interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
-                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0, "imagens\\avb.jpeg"));
+                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, "imagens\\avb.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
                 interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
@@ -362,7 +362,6 @@ public void atacar(Comando comando) {
             boolean bool = equipavel.equipar(jogador);
             if (bool) {
                 interfaceUsuario.exibirMensagem("Item equipado.");
-                interfaceUsuario.jogadorPegouItem(itemProcurado); // Atualiza a UI com o item equipado
             } else {
                 interfaceUsuario.exibirMensagem("Sua classe não permite equipar esse item.");
             }

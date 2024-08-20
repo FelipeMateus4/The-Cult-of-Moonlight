@@ -210,9 +210,8 @@ public class ConfiguracaoJogo {
                 item = new Carta(nome, descricao, textoCarta, caminhoImagem);
                 break;
             case "Armadura":
-                double defesaFisica = Double.parseDouble(partes[5]);
-                double defesaMagica = Double.parseDouble(partes[6]);
-                item = new Armadura(nome, descricao, defesaFisica, defesaMagica, caminhoImagem);
+                double defesa = Double.parseDouble(partes[5]);
+                item = new Armadura(nome, descricao, defesa, caminhoImagem);
                 break;
             case "Adaga":
                 double danoAdaga = Double.parseDouble(partes[5]);

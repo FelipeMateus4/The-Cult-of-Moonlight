@@ -63,6 +63,13 @@ public abstract class Inimigo extends Individuo {
         double danoAplicado = 0.0;
         if (vivo) {
             danoAplicado = escolherAtaque();
+            if (jogador.getArmaduraAtual() != null) {
+                double defesaFisica = jogador.getArmaduraAtual().getDefesa();
+                danoAplicado = danoAplicado - (defesaFisica/10);
+                if (danoAplicado < 0) {
+                    danoAplicado = 0;
+                }
+            }
             jogador.perderVida(danoAplicado);
 
             if (jogador.getVidaJogador() <= 0) {

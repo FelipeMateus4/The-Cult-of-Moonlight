@@ -45,18 +45,4 @@ public class InimigoComum extends Inimigo {
                 return 1.0;
         }
     }
-
-    @Override
-    public double atacar(Jogador jogador) {
-        double danoAplicado = 0.0;
-        if (isVivo()) {
-            danoAplicado = escolherAtaque();
-            jogador.perderVida(danoAplicado);
-
-            if (jogador.getVidaJogador() <= 0) {
-                jogador.setMorto();
-            }
-        }
-        return danoAplicado;
-    }
 }

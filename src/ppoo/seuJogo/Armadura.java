@@ -1,32 +1,24 @@
 package ppoo.seuJogo;
 
 public class Armadura extends Item implements Equipavel{
-    private double defesaFisica;
-    private double defesaMagica;
+    private double defesa;
 
-    public Armadura(String nome, String descricao, double defesaFisica, double defesaMagica, String caminhoImagem) {
+    public Armadura(String nome, String descricao, double defesa, String caminhoImagem) {
         super(nome, descricao, caminhoImagem);
-        this.defesaFisica = defesaFisica;
-        this.defesaMagica = defesaMagica;
+        this.defesa = defesa;
     }
 
-    public double getDefesaFisica() {
-        return defesaFisica;
-    }
-
-    public double getDefesaMagica() {
-        return defesaMagica;
+    public double getDefesa() {
+        return defesa;
     }
 
     @Override
     public String equipado(Jogador jogador) {
         String nome = getNome();
-        double defesaFisica = getDefesaFisica();
-        double defesaMagica = getDefesaMagica();
+        double defesa = getDefesa();
         String mensagem = "Armadura:\n";
         mensagem += "Você está equipado com a armadura: " + nome + "\n";
-        mensagem += "Defesa Física: " + defesaFisica + "\n";
-        mensagem += "Defesa Mágica: " + defesaMagica + "\n";
+        mensagem += "Defesa: " + defesa + "\n";
         
         return mensagem;
     }
