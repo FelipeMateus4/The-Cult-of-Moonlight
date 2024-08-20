@@ -29,7 +29,7 @@ public class Jogo {
             jogador = new Jogador(configuracao.getNomeJogador(), configuracao.getClasseJogador(), 100.0, 
                     new Mao("Mão", 1.0, "Somente sua mão.", Integer.MAX_VALUE, "imagens\\avb.jpeg"),
                     new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0, "imagens\\avb.jpeg"),
-                    new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "imagens\\avb.jpeg"),
+                    new Acessorio("Medalhão antigo", "um medalhão simples encontrado pelo caminho", "de não deixar a história se perder", "imagens\\avb.jpeg"),
                     ambienteInicial);
 
             // Notifica a interface sobre o ambiente inicial
