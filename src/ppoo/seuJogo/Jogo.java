@@ -2,7 +2,6 @@ package ppoo.seuJogo;
 
 import ppoo.baseJogo.InterfaceUsuario;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class Jogo {
@@ -27,9 +26,9 @@ public class Jogo {
                 throw new RuntimeException("Nenhum ambiente inicial encontrado na configuração.");
             }
             jogador = new Jogador(configuracao.getNomeJogador(), configuracao.getClasseJogador(), 100.0, 
-                    new Mao("Mão", 1.0, "Somente sua mão.", Integer.MAX_VALUE, "imagens\\avb.jpeg"),
-                    new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0, "imagens\\avb.jpeg"),
-                    new Acessorio("Medalhão antigo", "um medalhão simples encontrado pelo caminho", "de não deixar a história se perder", "imagens\\avb.jpeg"),
+                    new Mao("Mão", 1.0, "Somente sua mão.", Integer.MAX_VALUE, "imagens\\mao.jpeg"),
+                    new Armadura("Roupa velha", "Trapos rasgados e sujos", 5, 0, "imagens\\roupaVelha.jpeg"),
+                    new Acessorio("Medalhão antigo", "um medalhão simples encontrado pelo caminho", "de não deixar a história se perder", "imagens\\medalhao.jpeg"),
                     ambienteInicial);
 
             // Notifica a interface sobre o ambiente inicial
@@ -250,11 +249,11 @@ public void atacar(Comando comando) {
             jogador.getLocalizacaoAtual().largarItem(itemProcurado);
             interfaceUsuario.jogadorDescartouItem(itemProcurado); // Remove a imagem do item da UI
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
-                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\avb.jpeg"));
+                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\mao.jpeg"));
             } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
-                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0, "imagens\\avb.jpeg"));
+                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, 0, "imagens\\roupaVelha.jpeg"));
             } else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
-                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "imagens\\avb.jpeg"));
+                jogador.setAcessorioAtual(new Acessorio("Medalhão antigo", "um medalhão simples encontrado pelo caminho", "de não deixar a história se perder", "imagens\\medalhao.jpeg"));
             }
             interfaceUsuario.exibirMensagem("Você largou " + nomeItem + " no chão.");
         } else {

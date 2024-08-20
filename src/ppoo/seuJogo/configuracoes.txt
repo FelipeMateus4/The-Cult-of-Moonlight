@@ -23,22 +23,22 @@ Tunel Esgoto 8|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 7|
 Tunel Esgoto 9|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 8|SUDOESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 6|NORDESTE=Salao Espera|Toxico
 Salao Espera|no salão de espera|imagens/salaoEspera.jpeg|SUDOESTE=Tunel Esgoto 9|NORTE=Sala do Boss
 Sala do Boss|na sala do boss|imagens/salaBossMelhor.jpeg|SUL=Salao Espera
-Sala Tesouro|na sala do tesouro|imagens/avb.jpeg|LESTE=Tunel Esgoto 4
+Sala Tesouro|na sala do tesouro|imagens/salaoTesouro.jpeg|LESTE=Tunel Esgoto 4
 Lago|à beira de um lago tranquilo|imagens/lago.jpeg|NORTE=Cabana|LESTE=Caverna
-Caverna|em uma caverna escura|imagens/lago.jpeg|NORTE=Floresta|OESTE=Lago|Toxico
+Caverna|em uma caverna escura|imagens/caverna.jpeg|NORTE=Floresta|OESTE=Lago|Toxico
 
 [Itens]
 Cajado_De_Madeira|um cajado de madeira que não parece ser poderoso,|Cajado|Praça Central|imagens/imagens/cajadoMadeira.jpeg|5.0|100
 Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|8.0|20
 Adaga_Velha|uma adaga enferrujada,|Adaga|Praça Central|imagens/adaga.jpeg|7.0|20
-Mascara|uma máscara respiratória que protege contra gases tóxicos|Acessorio|null|imagens/avb.jpeg|proteger
+Mascara|uma máscara respiratória que protege contra gases tóxicos|Acessorio|null|imagens/mascara.jpeg|proteger
 Espada_Longa|uma espada usada, com marcas do tempo|Espada|Caverna|imagens/espadaLonga.jpeg|20.0|100
 Pocao_Grande|uma poção grande que recupera 50 de vida|Pocao|null|imagens/pocaoGrande.jpeg|50|15
 Pocao_Media|uma poção media que recupera 35 de vida|Pocao|Igreja|imagens/pocaoMedia.jpeg|35|20
 Pocao_Pequena|uma poção pequena que recupera 25 de vida|Pocao|Taverna|imagens/pocaoPequena.jpeg|25|20
 Pocao_Inicial|uma poção tão pequena que parece amostra grátis|Pocao|null|imagens/pocaoMinuscula.jpeg|10|8
 Chave_De_Ferro|uma chave de ferro com uma cruz gravada nela|Consumivel|Cabana|imagens/chaveIgreja.jpeg|1
-Carta|uma carta velha, jogada no canto da Praça|Carta|Praça Central|imagens/avb.jpeg|Seu conteúdo diz: "Os rumores eram verdadeiros. Vi com meus próprios olhos. Não vá ao cemitério desarmado, coisas estranhas habitam aquele lugar. Caso insista em ir mesmo assim, vá pela Igreja. Que a sorte esteja com você."
+Carta|uma carta velha, jogada no canto da Praça|Carta|Praça Central|imagens/carta.jpeg|Seu conteúdo diz: "Os rumores eram verdadeiros. Vi com meus próprios olhos. Não vá ao cemitério desarmado, coisas estranhas habitam aquele lugar. Caso insista em ir mesmo assim, vá pela Igreja. Que a sorte esteja com você."
 Armadura_de_Ferro|uma armadura de ferro|Armadura|Cabana|imagens/armadura.jpeg|50.0|10
 Cajado_Sagrado|um cajado com uma aura sagrada|Cajado|null|imagens/cajadoSagrado.jpeg|20.0|100
 Chave_Tesouro|uma chave dourada, com um símbolo de baú encravado nela|Consumivel|null|imagens/chaveTesouro.jpeg|1
