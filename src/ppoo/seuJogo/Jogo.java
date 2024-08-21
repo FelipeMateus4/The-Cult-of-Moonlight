@@ -204,6 +204,7 @@ public void atacar(Comando comando) {
             }
         } else {
             // Se o inimigo foi derrotado
+
             interfaceUsuario.exibirMensagem("Você derrotou " + inimigo.getNome() + ".");
             jogador.adicionarPontos(inimigo.getPontos());
             interfaceUsuario.exibirMensagem("Você ganhou " + inimigo.getPontos() + " pontos.");
@@ -213,6 +214,12 @@ public void atacar(Comando comando) {
             for (Item item : itensDrop) {
                 jogador.getLocalizacaoAtual().adicionarItem(item);
                 interfaceUsuario.exibirMensagem("O inimigo " + inimigo.getNome() + " dropou " + item.getNome() + ".");
+            }
+
+            if (inimigo.isBoss()) {
+                interfaceUsuario.exibirMensagem("Você derrotou o chefão final!");
+                encerrarJogo("Parabéns! Você ganhou o jogo!");
+                return;
             }
     
             // Remove o inimigo da localização atual
@@ -285,15 +292,15 @@ public void atacar(Comando comando) {
         Item itemProcurado = jogador.getItemEspecifico(nomeItem);
         if (itemProcurado != null) {
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
-                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\avb.jpeg"));
+                jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\mao.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
                 interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
-                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, "imagens\\avb.jpeg"));
+                jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, "imagens\\roupaVelha.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
                 interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
-                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "imagens\\avb.jpeg"));
+                jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "imagens\\medalhao.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
                 interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else {

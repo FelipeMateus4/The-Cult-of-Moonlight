@@ -9,6 +9,7 @@ public abstract class Inimigo extends Individuo {
     private List<Item> itensDrop;
     private int pontos;
     private double vidaMaxima;
+    private boolean boss;
 
     public Inimigo(String nome, String descricao, double vida, double dano, int pontos, List<Item> itensDrop) {
         super(nome, descricao);
@@ -18,9 +19,18 @@ public abstract class Inimigo extends Individuo {
         this.pontos = pontos;
         this.itensDrop = itensDrop;
         this.vidaMaxima = vida;
+        this.boss = false;
     }
 
     // Getters e Setters
+
+    public void setBoss(boolean boss) {
+        this.boss = boss;
+    }
+
+    public boolean isBoss() {
+        return boss;
+    }
 
     public List<Item> getItensDrop() {
         return itensDrop;
@@ -77,13 +87,16 @@ public abstract class Inimigo extends Individuo {
         return danoAplicado;
     }
 
-    public void receberDano(double danoRecebido) {
+    public Boolean receberDano(double danoRecebido) {
         if (vivo) {
             vida -= danoRecebido;
             if (vida <= 0) {
                 vivo = false;
+                vida = 0;
+                return true;
             }
         }
+        return false;
     }
 
     public abstract double escolherAtaque();

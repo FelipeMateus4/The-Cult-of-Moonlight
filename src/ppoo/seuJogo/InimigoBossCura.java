@@ -9,6 +9,7 @@ public class InimigoBossCura extends Inimigo {
 
     public InimigoBossCura(String nome, String descricao, double vida, double dano, int pontos, List<Item> itensDrop) {
         super(nome, descricao, vida, dano, pontos, itensDrop);
+        setBoss(true);
     }
 
     @Override
