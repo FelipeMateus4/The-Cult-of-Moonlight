@@ -30,7 +30,7 @@ Caverna|em uma caverna escura|imagens/caverna.jpeg|NORTE=Floresta|OESTE=Lago|Tox
 [Itens]
 Cajado_De_Madeira|um cajado de madeira que não parece ser poderoso,|Cajado|Praça Central|imagens/cajadoMadeira.jpeg|5.0|30
 Lampiao|um lampiao antigo|Acessorio|Floresta|imagens/lampiao.jpeg|iluminar
-Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|30.0|30
+Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|8.0|30
 Adaga_Velha|uma adaga enferrujada,|Adaga|Praça Central|imagens/adaga.jpeg|7.0|30
 Mascara|uma máscara respiratória que protege contra gases tóxicos|Acessorio|null|imagens/mascara.jpeg|proteger
 Espada_Longa|uma espada usada, com marcas do tempo|Espada|Caverna|imagens/espadaLonga.jpeg|20.0|100
@@ -57,7 +57,7 @@ Coveiro|um coveiro cansado e preocupado|O coveiro diz: 'Não me recordo de ter s
 Alma|uma alma mensageira|A alma diz: 'Atenção! Você enfrentou diversos inimigos até agora, alguns mais desafiadores que outros, mas nenhum tão poderoso quanto ao que está por vir. Se não estiver preparado o suficiente, não siga adiante.|Salao Espera|null
 
 [Inimigos]
-Boss|Esqueleto|um esqueleto assustador|Praça Central|50|5|50|null|Cura
+Comum|Esqueleto|um esqueleto assustador|Praça Central|50|5|50|null|Cura
 Lobisomem|Lobisomem|um lobisomem feroz. Cuidado, ele possui roubo de vida.|Floresta|100|10|200|null|Cura
 Comum|EsqueletoAlfa|um esqueleto assustador|Cemitério|100|15|300
 Comum|Fantasma|um fantasma assustador|Cemitério|50|5|80
