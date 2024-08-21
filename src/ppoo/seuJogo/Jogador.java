@@ -2,6 +2,14 @@ package ppoo.seuJogo;
 
 import java.util.*;
 
+import ppoo.seuJogo.Ambientes.Ambiente;
+import ppoo.seuJogo.Equipaveis.Acessorio;
+import ppoo.seuJogo.Equipaveis.Arma;
+import ppoo.seuJogo.Equipaveis.Armadura;
+import ppoo.seuJogo.Equipaveis.Item;
+import ppoo.seuJogo.Inimigo.Inimigo;
+import ppoo.seuJogo.Pegaveis.Pocao;
+
 public class Jogador {
     private String nome;
     private String classe;

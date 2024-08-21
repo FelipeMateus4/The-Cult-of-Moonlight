@@ -1,6 +1,18 @@
 package ppoo.seuJogo;
 
 import ppoo.baseJogo.InterfaceUsuario;
+import ppoo.seuJogo.Ambientes.Ambiente;
+import ppoo.seuJogo.Equipaveis.Acessorio;
+import ppoo.seuJogo.Equipaveis.Arma;
+import ppoo.seuJogo.Equipaveis.Armadura;
+import ppoo.seuJogo.Equipaveis.Item;
+import ppoo.seuJogo.Equipaveis.Mao;
+import ppoo.seuJogo.Inimigo.Inimigo;
+import ppoo.seuJogo.NPCS.Npc;
+import ppoo.seuJogo.interfaces.Bebivel;
+import ppoo.seuJogo.interfaces.Equipavel;
+import ppoo.seuJogo.interfaces.Legivel;
+
 import java.io.IOException;
 import java.util.*;
 

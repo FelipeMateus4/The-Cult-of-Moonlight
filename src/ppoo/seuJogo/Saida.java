@@ -1,5 +1,7 @@
 package ppoo.seuJogo;
 
+import ppoo.seuJogo.Ambientes.Ambiente;
+
 // Classe que representa a saída dos ambientes.
 public class Saida {
     private Ambiente destino;

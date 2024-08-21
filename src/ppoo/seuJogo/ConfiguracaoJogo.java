@@ -2,6 +2,23 @@ package ppoo.seuJogo;
 
 import java.io.*;
 import java.util.*;
+import ppoo.seuJogo.Ambientes.Ambiente;
+import ppoo.seuJogo.Ambientes.AmbienteEscuro;
+import ppoo.seuJogo.Ambientes.AmbienteToxico;
+import ppoo.seuJogo.Equipaveis.Acessorio;
+import ppoo.seuJogo.Equipaveis.Adaga;
+import ppoo.seuJogo.Equipaveis.Armadura;
+import ppoo.seuJogo.Equipaveis.Cajado;
+import ppoo.seuJogo.Equipaveis.Espada;
+import ppoo.seuJogo.Equipaveis.Item;
+import ppoo.seuJogo.Inimigo.Inimigo;
+import ppoo.seuJogo.Inimigo.InimigoCuraFactory;
+import ppoo.seuJogo.Inimigo.InimigoFactory;
+import ppoo.seuJogo.Inimigo.InimigoNaoCuraFactory;
+import ppoo.seuJogo.NPCS.Npc;
+import ppoo.seuJogo.Pegaveis.Carta;
+import ppoo.seuJogo.Pegaveis.Consumivel;
+import ppoo.seuJogo.Pegaveis.Pocao;
 
 public class ConfiguracaoJogo {
     private Map<String, Ambiente> ambientes;
