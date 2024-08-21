@@ -49,42 +49,44 @@ Quais são os tipos de ambientes e quais são suas funções específicas?
 
 (Na entrega final) Quais são os personagens (NPCs) do jogo e o que eles fazem?
 
-> digite aqui
+> NPCs(Coveiro, Recepcionista, Bêbado, Mendigo, Guarda, Padre, Alma): Conversam com jogador e trazem informaçoes relevantes e podem dar ou não itens ao fim do diálogo.
 
-(Na entrega final) Quas são os inimigos do jogo e o que eles fazem?
+(Na entrega final) Quais são os inimigos do jogo e o que eles fazem?
 
-> digite aqui
+> Comum (Esqueleto, EsqueletoAlfa, Fantasma, Zumbi, ZumbiMinerador): Todos são desafios de combate ao jogador e possuem variações de dano ou defesa e podem dropar itens ou não. <br>
+
+> Curam (Lobisomem, LobisomemGuarda, Miquella): Todos são desafios de combate ao jogador e possuem variações de dano ou defesa e podem dropar itens ou não. Além disso, eles curam ao atacar o jogador
 
 ## Checklist dos Requisitos de jogabilidade
 
 Para cada história abaixo escreva sim ou não, indincando se ela foi implementada **de acordo com os critérios de aceitação**.
 
-- História 1:
-- História 2:
-- História 3:
-- História 4:
-- História 5:
-- História 6:
-- História 7:
-- História 8:
-- História 9:
-- História 10:
-- História 11:
-- História 12:
-- História 13:
-- História 14:
+- História 1: sim
+- História 2: sim
+- História 3: sim
+- História 4: sim
+- História 5: sim
+- História 6: sim
+- História 7: sim
+- História 8: sim
+- História 9: sim
+- História 10: sim
+- História 11: sim
+- História 12: sim
+- História 13: sim
+- História 14: sim
 
 ## Checklist dos Requisitos de OO
 
 Para cada requisito de OO abaixo escreva sim ou não, indicando se ele foi utilizado adequadamente:
 
-- Modelagem de classes:
-- Encapsulamento:
-- Relacionamentos de composição, agregação e associação:
-- Design de classes (acoplamento, coesão, design baseado em responsabilidade, etc.):
-- Divisão de camadas:
-- Polimorfismo:
-- Tratamento de exceções:
+- Modelagem de classes: sim
+- Encapsulamento: sim
+- Relacionamentos de composição, agregação e associação: sim
+- Design de classes (acoplamento, coesão, design baseado em responsabilidade, etc.): sim
+- Divisão de camadas: sim
+- Polimorfismo: sim
+- Tratamento de exceções: sim
 
 Foi implementado algum Design Pattern?
 
