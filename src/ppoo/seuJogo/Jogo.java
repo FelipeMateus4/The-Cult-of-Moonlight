@@ -120,10 +120,13 @@ public class Jogo {
         return querSair;
     }
 
-    private void getItensCarregados() {
-        interfaceUsuario.exibirMensagem(jogador.getItensCarregados());
-        jogador.getItens().forEach(interfaceUsuario::jogadorPegouItem);
-    }
+private void getItensCarregados() {
+    interfaceUsuario.limparItensExibidos(); 
+    interfaceUsuario.exibirMensagem(jogador.getItensCarregados());
+    jogador.getItens().forEach(item -> {
+        interfaceUsuario.jogadorPegouItem(item);
+    });
+}
 
     private void imprimirAjuda() {
         interfaceUsuario.exibirMensagem("Suas palavras de comando são:");
@@ -256,6 +259,7 @@ public void atacar(Comando comando) {
         Npc npc = jogador.getLocalizacaoAtual().getNpc(nomeNpc);
         if (npc == null) {
             interfaceUsuario.exibirMensagem("Não existe esse NPC aqui.");
+            return;
         } else {
             interfaceUsuario.exibirMensagem(npc.getDialogo());
         }
@@ -306,15 +310,12 @@ public void atacar(Comando comando) {
             if (itemProcurado.getNome().equals(jogador.getArmaAtual().getNome())) {
                 jogador.setArmaAtual(new Mao("Mão", 1.0, "mãos com socos fortes.", infinito, "imagens\\mao.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
-                interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else if (itemProcurado.getNome().equals(jogador.getArmaduraAtual().getNome())) {
                 jogador.setArmaduraAtual(new Armadura("Roupa velha", "uma roupa rasgada e suja", 5, "imagens\\roupaVelha.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
-                interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else if (itemProcurado.getNome().equals(jogador.getAcessorioAtual().getNome())) {
                 jogador.setAcessorioAtual(new Acessorio("Pulseira elegante", "uma bela pulseira que você ganhou de sua tia Gilda", "de te deixar feliz", "imagens\\medalhao.jpeg"));
                 interfaceUsuario.exibirMensagem("Você desequipou " + nomeItem + ".");
-                interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI
             } else {
                 interfaceUsuario.exibirMensagem("Item não equipado");
             }
@@ -347,11 +348,11 @@ public void atacar(Comando comando) {
             if (oi == true) {
                 interfaceUsuario.exibirMensagem("Seus usos acabaram. Você não tem mais " + itemProcurado.getNome() + " na mochila.");
                 interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI ao consumir o item
-        } else {
-            interfaceUsuario.exibirMensagem("O item " + nomeItem + " não pode ser bebido.");
-        }
+        } 
+    } else {
+        interfaceUsuario.exibirMensagem("O item " + nomeItem + " não pode ser bebido.");
     }
-    }
+}
 
     private void equipado(Comando comando) {
         if (comando.temSegundaPalavra()) {
@@ -447,7 +448,9 @@ public void atacar(Comando comando) {
             Saida saidaBloqueada = jogador.getLocalizacaoAtual().getSaidaBloqueada(nomeItem);
             if (saidaBloqueada != null) {
                 saidaBloqueada.desbloquear();
+                Item lixo = jogador.getItemEspecifico(nomeItem);
                 jogador.removerItem(nomeItem);
+                interfaceUsuario.jogadorDescartouItem(lixo);
                 interfaceUsuario.exibirMensagem("A saída foi destravada.");
                 interfaceUsuario.ambienteAtualMudou(jogador.getLocalizacaoAtual()); // Atualiza a UI após usar o item
             } else {

@@ -20,14 +20,15 @@ Tunel Esgoto 5|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 4|
 Tunel Esgoto 6|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 3|SUDOESTE=Tunel Esgoto 2|NORTE=Tunel Esgoto 9|Toxico
 Tunel Esgoto 7|em um túnel do esgoto|imagens/esgoto2.jpeg|SUL=Tunel Esgoto 4|SUDESTE=Tunel Esgoto 5|LESTE=Tunel Esgoto 8|Toxico
 Tunel Esgoto 8|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 7|SUDOESTE=Tunel Esgoto 4|SUL=Tunel Esgoto 5|SUDESTE=Tunel Esgoto 6|LESTE=Tunel Esgoto 9|Toxico
-Tunel Esgoto 9|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 8|SUDOESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 6|NORDESTE=Salao Espera|Toxico
-Salao Espera|no salão de espera|imagens/salaoEspera.jpeg|SUDOESTE=Tunel Esgoto 9|NORTE=Sala do Boss
+Tunel Esgoto 9|em um túnel do esgoto|imagens/esgoto2.jpeg|OESTE=Tunel Esgoto 8|SUDOESTE=Tunel Esgoto 5|SUL=Tunel Esgoto 6|NORDESTE=Salao Espera:Chave_Espera:Voce nao tem a chave|Toxico
+Salao Espera|no salão de espera|imagens/salaoEspera.jpeg|SUDOESTE=Tunel Esgoto 9|NORTE=Sala do Boss:Chave_Miquella:Voce nao possui a chave de Miquella que esta com alma perdida
 Sala do Boss|na sala do boss|imagens/salaBossMelhor.jpeg|SUL=Salao Espera
 Sala Tesouro|na sala do tesouro|imagens/salaoTesouro.jpeg|LESTE=Tunel Esgoto 4
 Lago|à beira de um lago tranquilo|imagens/lago.jpeg|NORTE=Cabana|LESTE=Caverna
 Caverna|em uma caverna escura|imagens/caverna.jpeg|NORTE=Floresta|OESTE=Lago|Toxico
 
 [Itens]
+a|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|1000.0|300
 Cajado_De_Madeira|um cajado de madeira que não parece ser poderoso,|Cajado|Praça Central|imagens/cajadoMadeira.jpeg|5.0|30
 Lampiao|um lampiao antigo|Acessorio|Floresta|imagens/lampiao.jpeg|iluminar
 Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|8.0|30
@@ -43,6 +44,8 @@ Carta|uma carta velha, jogada no canto da Praça|Carta|Praça Central|imagens/ca
 Armadura_de_Ferro|uma armadura de ferro|Armadura|Praça Central|imagens/armadura.jpeg|50.0
 Cajado_Sagrado|um cajado com uma aura sagrada|Cajado|null|imagens/cajadoSagrado.jpeg|20.0|100
 Chave_Tesouro|uma chave dourada, com um símbolo de baú encravado nela|Consumivel|null|imagens/chaveTesouro.jpeg|1
+Chave_Espera|uma chave estranha|Consumivel|null|imagens/chaveTesouro.jpeg|1
+Chave_Miquella|chave de Miquella|Consumivel|null|imagens/chaveTesouro.jpeg|1
 
 
 
@@ -54,7 +57,7 @@ Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Pra�
 Mendigo|um mendigo maltrapilho|O mendigo diz: 'A última vez que pisei naquele esgoto, quase morri com aquele gás tóxico. Ouvi dizer que existem máscaras que protegem disso.'|Praça Central
 Bebado|um morador local extremamente bêbado|O bêbado diz: 'Ah, eu ajudei a construir aquela sala... lá nos esgotos, sabe? Nem sei o que fazem lá, é um mistério. E olha, quando eu tava entediado, eu criei uma... uma salinha pequenininha lá nos túneis, foi... foi meio doido, viu?'|Taverna
 Coveiro|um coveiro cansado e preocupado|O coveiro diz: 'Não me recordo de ter sepultado tantas pessoas assim de uma vez. Os tempos mudaram...'|Cemitério
-Alma|uma alma mensageira|A alma diz: 'Atenção! Você enfrentou diversos inimigos até agora, alguns mais desafiadores que outros, mas nenhum tão poderoso quanto ao que está por vir. Se não estiver preparado o suficiente, não siga adiante.|Salao Espera
+Alma|uma alma mensageira|A alma diz: 'Atenção! Você enfrentou diversos inimigos até agora, alguns mais desafiadores que outros, mas nenhum tão poderoso quanto ao que está por vir. Se não estiver preparado o suficiente, não siga adiante. Mas caso voce seja inconsequente, tome essa chave e arrisque-se por honra|Salao Espera|Chave_Miquella
 
 [Inimigos]
 Comum|Esqueleto|um esqueleto assustador|Floresta|50|5|50|null|Cura
@@ -62,7 +65,7 @@ Lobisomem|Lobisomem|um lobisomem feroz. Cuidado, ele possui roubo de vida.|Flore
 Comum|EsqueletoAlfa|um esqueleto assustador|Cemitério|100|15|300
 Comum|Fantasma|um fantasma assustador|Cemitério|50|5|80
 Comum|Zumbi|um zumbi da growth|Cabana|70|20|300|Pocao_Grande
-Comum|ZumbiMinerador|um zumbi com uma máscara de gás|Caverna|100|10|40|Mascara|null|Cura
+Comum|ZumbiMinerador|um zumbi com uma máscara de gás|Caverna|100|10|40|Mascara|Cura
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Esgoto|100|20|400
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 1|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 2|100|10|200
@@ -72,5 +75,5 @@ Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 6|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 7|100|10|200
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 8|100|10|200
-Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 9|100|10|200
-Boss|Boss Final|Um inimigo temido e poderoso, responsável pelo caos na Vila Moonlight. Sua presença é esmagadora. Prepare-se para um combate épico, pois ele possui habilidades devastadoras e uma resistência impressionante. Cuidado, ele possui uma variação de ataques e possui a habilidade de roubo de vida ao atacar. Boa sorte.|Sala do Boss|500|30|2000|null|Cura
+Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 9|100|10|200|Chave_Espera
+Boss|Miquella|Um inimigo temido e poderoso, responsável pelo caos na Vila Moonlight. Sua presença é esmagadora. Prepare-se para um combate épico, pois ele possui habilidades devastadoras e uma resistência impressionante. Cuidado, ele possui uma variação de ataques e possui a habilidade de roubo de vida ao atacar. Boa sorte.|Sala do Boss|500|30|2000|null|Cura

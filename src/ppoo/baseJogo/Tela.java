@@ -553,7 +553,16 @@ public class Tela implements InterfaceUsuario {
             altura = 50;
         }
 
+
+        
         // redimenciona a imagem e a retorna
         return imagem.getScaledInstance(largura, altura, Image.SCALE_DEFAULT);
+    }
+    @Override
+    public void limparItensExibidos() {
+        painelItens.removeAll();
+        painelItens.revalidate();
+        painelItens.repaint();
+        componentesDosItens.clear();
     }
 }

@@ -47,4 +47,10 @@ public class Terminal implements InterfaceUsuario {
     public void limparMensagens() {
         // Não precisa fazer nada para terminal, pois as mensagens não são acumuladas.
     }
+    @Override
+    public void limparItensExibidos() {
+        // Não precisa fazer nada para terminal, pois não há ambiente gráfico.
+    }
 }
+
+

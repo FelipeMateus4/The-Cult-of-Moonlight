@@ -126,7 +126,6 @@ public class Jogador {
         } else {
             vida += pocao.getVidaDada();
         }
-        System.out.println(vida);
         return vida;
     }
 

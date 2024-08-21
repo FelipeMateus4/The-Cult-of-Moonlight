@@ -61,4 +61,6 @@ public interface InterfaceUsuario {
      * @param item Objeto do item que o usuário não tem mais.
      */
     void jogadorDescartouItem(EntidadeGrafica item);
-}
+
+    void limparItensExibidos();
+    }
