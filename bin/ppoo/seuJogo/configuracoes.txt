@@ -50,11 +50,11 @@ Chave_Tesouro|uma chave dourada, com um símbolo de baú encravado nela|Consumiv
 [Personagens]
 Padre|um padre idoso|O padre diz: 'Então você é o novo mercenário contratado para lidar com esses monstros? Ótimo, lhe darei um cajado para que abençoe sua jornada.'|Igreja|Cajado_Sagrado
 Recepcionista|uma recepcionista jovem|A recepcionista diz: 'Bem-vindo à Pousada! Você parece um novo aventureiro, tome aqui uma Poção para ajudá-lo em sua aventura.'|Pousada|Pocao_Pequena
-Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Praça Central|null
-Mendigo|um mendigo maltrapilho|O mendigo diz: 'A última vez que pisei naquele esgoto, quase morri com aquele gás tóxico. Ouvi dizer que existem máscaras que protegem disso.'|Praça Central|null
-Bebado|um morador local extremamente bêbado|O bêbado diz: 'Ah, eu ajudei a construir aquela sala... lá nos esgotos, sabe? Nem sei o que fazem lá, é um mistério. E olha, quando eu tava entediado, eu criei uma... uma salinha pequenininha lá nos túneis, foi... foi meio doido, viu?'|Taverna|null
-Coveiro|um coveiro cansado e preocupado|O coveiro diz: 'Não me recordo de ter sepultado tantas pessoas assim de uma vez. Os tempos mudaram...'|Cemitério|null
-Alma|uma alma mensageira|A alma diz: 'Atenção! Você enfrentou diversos inimigos até agora, alguns mais desafiadores que outros, mas nenhum tão poderoso quanto ao que está por vir. Se não estiver preparado o suficiente, não siga adiante.|Salao Espera|null
+Guarda|um guarda da cidade|O guarda diz: 'Tenha cuidado ao sair da cidade.'|Praça Central
+Mendigo|um mendigo maltrapilho|O mendigo diz: 'A última vez que pisei naquele esgoto, quase morri com aquele gás tóxico. Ouvi dizer que existem máscaras que protegem disso.'|Praça Central
+Bebado|um morador local extremamente bêbado|O bêbado diz: 'Ah, eu ajudei a construir aquela sala... lá nos esgotos, sabe? Nem sei o que fazem lá, é um mistério. E olha, quando eu tava entediado, eu criei uma... uma salinha pequenininha lá nos túneis, foi... foi meio doido, viu?'|Taverna
+Coveiro|um coveiro cansado e preocupado|O coveiro diz: 'Não me recordo de ter sepultado tantas pessoas assim de uma vez. Os tempos mudaram...'|Cemitério
+Alma|uma alma mensageira|A alma diz: 'Atenção! Você enfrentou diversos inimigos até agora, alguns mais desafiadores que outros, mas nenhum tão poderoso quanto ao que está por vir. Se não estiver preparado o suficiente, não siga adiante.|Salao Espera
 
 [Inimigos]
 Comum|Esqueleto|um esqueleto assustador|Praça Central|50|5|50|null|Cura

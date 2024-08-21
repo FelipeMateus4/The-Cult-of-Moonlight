@@ -6,6 +6,12 @@ public class Npc {
     private String dialogo;
     private Item item;
 
+    public Npc(String nome, String descricao, String dialogo) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dialogo = dialogo;
+    }
+
     public Npc(String nome, String descricao, String dialogo, Item item) {
         this.nome = nome;
         this.descricao = descricao;
