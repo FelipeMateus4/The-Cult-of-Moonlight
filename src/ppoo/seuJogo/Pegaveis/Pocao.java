@@ -22,9 +22,9 @@ public class Pocao extends Consumivel implements Bebivel {
             this.setUsosDiminuir();
             if (this.getUsos() == 0) {
                 jogador.removerItem(this.getNome());
-                System.out.println("Seus usos acabaram. Você não tem mais " + this.getNome() + " na mochila.");
+                return true;
             }
-            return true;
+            return false;
         } 
         else { 
             return false;

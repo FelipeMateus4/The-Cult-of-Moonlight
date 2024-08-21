@@ -9,6 +9,7 @@ import ppoo.seuJogo.Equipaveis.Armadura;
 import ppoo.seuJogo.Equipaveis.Item;
 import ppoo.seuJogo.Inimigo.Inimigo;
 import ppoo.seuJogo.Pegaveis.Pocao;
+import ppoo.baseJogo.InterfaceUsuario;
 
 public class Jogador {
     private String nome;

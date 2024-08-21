@@ -341,13 +341,16 @@ public void atacar(Comando comando) {
                 interfaceUsuario.exibirMensagem("Sua vida já está cheia.");
                 return;
             }
-            bebivel.beberPocao(jogador);
+            boolean oi = bebivel.beberPocao(jogador);
             double vidaNova = jogador.getVidaJogador();
             interfaceUsuario.exibirMensagem("Você recuperou " + (vidaNova - vidaAntiga) + " de vida.");
-            interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI ao consumir o item
+            if (oi == true) {
+                interfaceUsuario.exibirMensagem("Seus usos acabaram. Você não tem mais " + itemProcurado.getNome() + " na mochila.");
+                interfaceUsuario.jogadorDescartouItem(itemProcurado); // Atualiza a UI ao consumir o item
         } else {
             interfaceUsuario.exibirMensagem("O item " + nomeItem + " não pode ser bebido.");
         }
+    }
     }
 
     private void equipado(Comando comando) {

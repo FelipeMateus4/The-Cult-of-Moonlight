@@ -36,7 +36,7 @@ Mascara|uma máscara respiratória que protege contra gases tóxicos|Acessorio|n
 Espada_Longa|uma espada usada, com marcas do tempo|Espada|Caverna|imagens/espadaLonga.jpeg|20.0|100
 Pocao_Grande|uma poção grande que recupera 50 de vida|Pocao|null|imagens/pocaoGrande.jpeg|50|15
 Pocao_Media|uma poção media que recupera 35 de vida|Pocao|Igreja|imagens/pocaoMedia.jpeg|35|20
-Pocao_Pequena|uma poção pequena que recupera 25 de vida|Pocao|Taverna|imagens/pocaoPequena.jpeg|25|20
+Pocao_Pequena|uma poção pequena que recupera 25 de vida|Pocao|Taverna|imagens/pocaoPequena.jpeg|25|2
 Pocao_Inicial|uma poção tão pequena que parece amostra grátis|Pocao|null|imagens/pocaoMinuscula.jpeg|10|8
 Chave_De_Ferro|uma chave de ferro com uma cruz gravada nela|Consumivel|Cabana|imagens/chaveIgreja.jpeg|1
 Carta|uma carta velha, jogada no canto da Praça|Carta|Praça Central|imagens/carta.jpeg|Seu conteúdo diz: "Os rumores eram verdadeiros. Vi com meus próprios olhos. Não vá ao cemitério desarmado, coisas estranhas habitam aquele lugar. Caso insista em ir mesmo assim, vá pela Igreja. Que a sorte esteja com você."
