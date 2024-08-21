@@ -262,24 +262,34 @@ public class ConfiguracaoJogo {
 
     private void adicionarPersonagem(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");
-        if (partes.length < 5) {
+        
+        if (partes.length < 4) {
             throw new IllegalArgumentException("Configuração inválida para personagem: " + linha);
         }
+        
         String nome = partes[0];
         String descricao = partes[1];
         String dialogo = partes[2];
         String ambienteInicial = partes[3];
-        String itemNome = partes[4];
         
         Item item = null;
-        if (!itemNome.equals("null")) {
-            item = encontrarItemPorNome(itemNome);
-            if (item == null) {
-                throw new IllegalArgumentException("Item não encontrado: " + itemNome);
+        if (partes.length == 5) {
+            String itemNome = partes[4];
+            if (itemNome != null && !itemNome.trim().isEmpty()) {
+                item = encontrarItemPorNome(itemNome);
+                if (item == null) {
+                    throw new IllegalArgumentException("Item não encontrado: " + itemNome);
+                }
             }
         }
         
-        Npc npc = new Npc(nome, descricao, dialogo, item);
+        Npc npc;
+        if (partes.length == 5) {
+            npc = new Npc(nome, descricao, dialogo, item);
+        } else {
+            npc = new Npc(nome, descricao, dialogo);
+        }
+        
         npcs.add(npc);
         Ambiente ambiente = ambientes.get(ambienteInicial);
         if (ambiente != null) {
@@ -288,6 +298,7 @@ public class ConfiguracaoJogo {
             System.out.println("Erro: Ambiente " + ambienteInicial + " não encontrado.");
         }
     }
+    
 
     private void adicionarInimigo(String linha) throws IllegalArgumentException {
         String[] partes = linha.split("\\|");

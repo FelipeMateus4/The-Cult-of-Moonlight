@@ -409,6 +409,7 @@ public void atacar(Comando comando) {
             interfaceUsuario.exibirMensagem("Ir pra onde?");
             return;
         }
+        interfaceUsuario.limparMensagens();
         Direcao direcao = Direcao.pelaString(comando.getSegundaPalavra());
         Ambiente ambienteAtual = jogador.getLocalizacaoAtual();
         Ambiente proximoAmbiente = ambienteAtual.getSaida(direcao);
@@ -428,7 +429,6 @@ public void atacar(Comando comando) {
                     interfaceUsuario.exibirMensagem("Nome: " + inimigo.getNome() + " Vida: " + inimigo.getVida());
                 }
             }
-            interfaceUsuario.limparMensagens();
             interfaceUsuario.ambienteAtualMudou(proximoAmbiente); // Atualiza a UI com o novo ambiente
             imprimirLocalizacaoAtual();
         }
