@@ -1,6 +1,6 @@
 [Jogador]
 Nome=Radahn
-Classe=Guerreiro
+Classe=Ladrão
 
 [Ambientes]
 Praça Central|na Praça Central da vila Moonlight.|imagens/pracaCentral.jpeg|LESTE=Pousada|SUL=Beco|OESTE=Floresta|NORDESTE=Taverna|NORTE=Igreja:Chave_De_Ferro:Porta enferrujada e trancada
@@ -31,14 +31,15 @@ Caverna|em uma caverna escura|imagens/caverna.jpeg|NORTE=Floresta|OESTE=Lago|Tox
 Cajado_De_Madeira|um cajado de madeira que não parece ser poderoso,|Cajado|Praça Central|imagens/cajadoMadeira.jpeg|5.0|30
 Lampiao|um lampiao antigo|Acessorio|Floresta|imagens/lampiao.jpeg|iluminar
 Espada_Trincada|uma espada trincada, aparentemente frágil,|Espada|Praça Central|imagens/espadaTrincada.jpeg|8.0|30
-Adaga_Velha|uma adaga enferrujada,|Adaga|Praça Central|imagens/adaga.jpeg|7.0|30
+Adaga_Velha|uma adaga enferrujada,|Adaga|Praça Central|imagens/adaga.jpeg|777.0|30
+Adaga_Forte|uma adaga afiada,|Adaga|null|imagens/adagaBoa.jpeg|7.0|30
 Mascara|uma máscara respiratória que protege contra gases tóxicos|Acessorio|null|imagens/mascara.jpeg|proteger
 Espada_Longa|uma espada usada, com marcas do tempo|Espada|Caverna|imagens/espadaLonga.jpeg|20.0|100
 Pocao_Grande|uma poção grande que recupera 50 de vida|Pocao|null|imagens/pocaoGrande.jpeg|50|15
 Pocao_Media|uma poção media que recupera 35 de vida|Pocao|Igreja|imagens/pocaoMedia.jpeg|35|20
 Pocao_Pequena|uma poção pequena que recupera 25 de vida|Pocao|Taverna|imagens/pocaoPequena.jpeg|25|20
-Pocao_Inicial|uma poção tão pequena que parece amostra grátis|Pocao|null|imagens/pocaoMinuscula.jpeg|10|10
-Chave_De_Ferro|uma chave de ferro com uma cruz gravada nela|Consumivel|Cabana|imagens/chaveIgreja.jpeg|1
+Pocao_Inicial|uma poção tão pequena que parece amostra grátis|Pocao|Praça Central|imagens/pocaoMinuscula.jpeg|10|10
+Chave_de_Ferro|uma chave de ferro com uma cruz gravada nela|Consumivel|Cabana|imagens/chaveIgreja.jpeg|1
 Carta|uma carta velha, jogada no canto da Praça|Carta|Praça Central|imagens/carta.jpeg|Seu conteúdo diz: "Os rumores eram verdadeiros. Vi com meus próprios olhos. Não vá ao cemitério desarmado, coisas estranhas habitam aquele lugar. Caso insista em ir mesmo assim, vá pela Igreja. Que a sorte esteja com você."
 Armadura_de_Ferro|uma armadura de ferro|Armadura|Praça Central|imagens/armadura.jpeg|50.0
 Cajado_Sagrado|um cajado com uma aura sagrada|Cajado|null|imagens/cajadoSagrado.jpeg|20.0|100
@@ -61,9 +62,9 @@ Alma|uma alma mensageira|A alma diz: 'Atenção! Você enfrentou diversos inimig
 [Inimigos]
 Comum|Esqueleto|um esqueleto assustador|Floresta|50|5|50|null|Cura
 Lobisomem|Lobisomem|um lobisomem feroz. Cuidado, ele possui roubo de vida.|Floresta|100|10|200|null|Cura
-Comum|EsqueletoAlfa|um esqueleto assustador|Cemitério|100|15|300
+Comum|EsqueletoAlfa|um esqueleto assustador|Cemitério|100|15|300|Adaga_Forte
 Comum|Fantasma|um fantasma assustador|Cemitério|50|5|80
-Comum|Zumbi|um zumbi da growth|Cabana|70|20|300|Pocao_Grande
+Comum|Zumbi|um zumbi gigante|Cabana|70|20|300|Pocao_Grande
 Comum|ZumbiMinerador|um zumbi com uma máscara de gás|Caverna|100|10|40|Mascara|Cura
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Esgoto|100|20|400
 Lobisomem|Lobisomem|um lombisomem deformado. Cuidado, ele possui roubo de vida.|Tunel Esgoto 1|100|10|200
